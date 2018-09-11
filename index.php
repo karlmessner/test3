@@ -1,1 +1,1 @@
-<?PHP echo "Hello world, again4"; ?>
+<?PHP echo "<a href=s3.php>upload</a>"; ?>
