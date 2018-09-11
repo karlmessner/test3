@@ -4,10 +4,10 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require './vendor/autoload.php';
 
-/*
+
 $dotenv = new Dotenv\Dotenv(__DIR__);
-$dotenv->load();	
-*/
+$dotenv->overload();	
+
 
 	?>
 	
