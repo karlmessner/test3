@@ -1,4 +1,8 @@
-<?PHP echo "<a href=s3.php>upload</a>"; ?>
+<?PHP echo "<a href=s3.php>upload</a>"; 
+	
+	
+	echo $_ENV['secret'];
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
