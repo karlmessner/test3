@@ -1,9 +1,11 @@
 <?PHP
 //composer
+/*
 require './vendor/autoload.php';
 
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();	
+*/
 	?>
 	
 	<?PHP echo "<a href=s3.php>upload</a>"; 
