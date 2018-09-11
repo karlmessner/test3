@@ -1,8 +1,8 @@
 <?PHP
 //composer
-/*
-require './vendor/autoload.php';
 
+require './vendor/autoload.php';
+/*
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();	
 */
