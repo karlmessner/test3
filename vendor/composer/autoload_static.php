@@ -29,6 +29,10 @@ class ComposerStaticInit4e0d68b47df3627807c67b4e4d40fd8a
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
+        'D' => 
+        array (
+            'Dotenv\\' => 7,
+        ),
         'A' => 
         array (
             'Aws\\' => 4,
@@ -55,6 +59,10 @@ class ComposerStaticInit4e0d68b47df3627807c67b4e4d40fd8a
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
         'Aws\\' => 
         array (

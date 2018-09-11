@@ -1,4 +1,10 @@
-<?PHP echo "<a href=s3.php>upload</a>"; 
+<?PHP
+
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();	
+	?>
+	
+	<?PHP echo "<a href=s3.php>upload</a>"; 
 	
 	
 	echo $_ENV['secret'];
