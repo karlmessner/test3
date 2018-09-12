@@ -37,7 +37,7 @@ ini_set("display_errors", 1);
 
 
 // check for pk=Wa6-abf-oDM4-rgEn otherwise send to 404
-if ($_POST['pk']!=$goodKey){
+if ($_POST['pk']!=$goodKey)||(1){
 	header('Location:http://www.actorslaunchpad.com/');
 	} else {
 		$auth_good='1';}
