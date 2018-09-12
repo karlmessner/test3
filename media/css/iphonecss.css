@@ -1,0 +1,56 @@
+/* @override https://www.actorslaunchpad.com/moodcaster/media/css/iphonecss.css */
+*{
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+body{
+}
+
+#wrapper {
+	background: url("../images/iphone.jpg") no-repeat;
+	width: 1000px;
+	height: 683px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+#theform{
+	position: absolute;
+	top: 75px;
+	left: 396px;
+	transform:rotate(16.25deg);
+}
+
+input{
+	height: 17px;
+	width: 180px;
+	margin-bottom: 6px;
+}
+input[type="file"]{
+display: none;
+}
+
+label{
+	width: 100%;
+	height: 20px;
+	display: block;
+	border-radius:5px;
+	font-size: 14px;
+	background-color: #fa4958;
+	text-align: center;
+	margin-top: 10px;
+	border: 1px solid white;
+	color: white;
+}
+
+
+input[type="submit"]{
+	width: 100%;
+	height: 50px;
+	display: block;
+	border: none;
+	border-radius:10px;
+	font-size: 18px;
+	background-color: #fa4958;
+	border: 1px solid white;
+	color: white;
+}

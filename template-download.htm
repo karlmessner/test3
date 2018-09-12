@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+	<style>$stylesheetXXX</style>
+<base href = "https://www.actorslaunchpad.com/moodcaster/download.php" />	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+	<script>
+$( document ).ready(function() {
+		$( "#showshare" ).click(function(e) {
+			e.preventDefault();
+			$( "#Sharedivwrapper" ).toggleClass( "current" );
+			/* Get the text field */
+			var copyText = document.getElementById("sharelink");
+			
+			/* Select the text field */
+			copyText.select();
+			
+			/* Copy the text inside the text field */
+			document.execCommand("copy");
+			
+			});
+
+		$("#video").click(function(){
+			$('#video')[0].currentTime = 0;
+			
+			
+			
+		})
+
+		});
+	</script>
+	
+	<link rel="stylesheet" href=media/css/download.css />
+	<link rel="stylesheet" href=media/css/download-right-default.css />
+	
+  </head>
+  <body>
+		<div id="wrapper">
+			<div id="masthead">
+				<div id="logo">
+					<a href="http://www.getmoodcaster.com/" target='_blank'><img src="media/images/moodcaster-red.svg" /></a>
+				</div><!-- logo-->			
+				<div id="toplinks">
+					<ul>
+						<li><a href="http://www.getmoodcaster.com/" target='_blank'>Login</a></li>
+						<li><a href="http://www.getmoodcaster.com/" class="current" target='_blank'>Who we are</a></li>
+				</div><!-- toplinks-->
+			</div><!-- masthead-->
+			
+			<div id="videoDiv">
+			<div id="vidbox">
+			<video id='video'	
+				controls
+				src="$m4vPath"
+				width="100%"
+			       >
+			    Sorry, your browser doesn't support embedded videos.
+			</video>				
+			</div><!-- vidbox-->
+			<div id="downloadSubmissiondiv">
+				<a href="$downloadLink">Download individual clips</a>
+			</div><!-- downloadSubmissiondiv-->
+			
+			<div id="Sharedivwrapper" class=''>
+
+			<div id="Sharediv">
+				<a href="###" id='showshare'>share submission</a>
+			</div><!-- Sharediv-->
+			<div id="Sharedivhidden" >
+				<input type="text"  value="$shareLink" id='sharelink'/><br />
+				<span class='copied'>(Link copied to clipboard)</span>
+			</div><!-- Sharediv-->
+			
+			</div><!-- shared div wrapper -->
+			</div><!-- videoDiv-->			
+			
+			<div id="right">
+				
+			<div id="rightContainer">
+			<div id="logoBox">
+				<img src="media/images/logo-white-m-red-square.png" alt="logo-white-m-red-square"  />
+					
+					<span id="logotext">Casting Simplified</span>
+				
+			</div><!-- logoBox-->
+			<div id="titleRightBox">
+				<h1>Meet the world&apos;s most powerful casting tool</h1>
+			</div><!-- titleRightBox-->
+			<div id="copyRightBox">
+				<p>Streamline your submissions into a single dashboard designed for collaboration. Share your casting breakdowns anywhere through a simple yet powerful technology we call moodcodes. Suddenly life is a lot easier.</p>
+			</div><!-- copyRightBox-->
+			<div id="ctaRightBox">
+				<a href="http://www.getmoodcaster.com/" target='_blank'>Let&apos;s do this!</a>
+			</div><!-- ctaRightBox-->
+			</div><!-- rightContainer-->	
+				
+				
+				
+			</div><!-- right-->			
+			
+			
+						
+		</div><!-- wrapper -->
+	</body>
+</html>			
+			
+			

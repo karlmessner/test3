@@ -1,0 +1,92 @@
+/* @override https://www.actorslaunchpad.com/moodcaster/media/css/trackercss.css */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+*{
+	font-family: "Open Sans";
+}
+body{
+	position: relative;
+	background: linear-gradient(#FF5C5C,#B61A45) repeat-x fixed;
+}
+
+#mast {
+	height: 58px;
+	position: relative;
+}
+#headerLogo img{
+	height: 25px;
+	position: absolute;
+	top: 9px;
+	left: 1px;
+}
+
+#body{
+	background-color: #EAEAEA;
+	width: auto;
+	position: absolute;
+	left: 32px;
+	padding: 13px;
+	min-width: 95%;
+
+}
+#content{
+	background-color: white;
+	padding: 15px 15px 15px 25px;
+	border-radius:5px;
+   	min-height: 1000px;
+}
+
+h1{
+	color: #4A4A4A;
+	font-size: 20px;
+	font-weight: bold;
+}
+.table {
+   display: table;
+   width: 100%;
+}
+.table .th {
+   display: table-row;
+   	color: #4A4A4A;
+	border-bottom: 1px solid gray;
+}
+
+.table .th .td{
+	border-bottom: 1px solid #d9d9d9;
+	border-right: 0;
+	font-size: 15px;
+	font-weight: bold;
+}
+.table .tr:nth-child(odd) {
+	background-color: #eafcfc;
+}
+.table .tr{
+  display: table-row;
+  border-bottom: 1px solid #000;
+}
+.table .td {
+  display: table-cell;
+  padding: 15px;
+  color: #4a4a4a;
+  border-right: 1px solid #d9d9d9;
+  vertical-align: middle;
+  font-size: 11px;
+}
+
+.table .td:last-child {
+	border-right:0;
+	}
+
+
+
+.table .tr:first-child .td{
+border-top: 2px solid #D9D9D9;
+}
+
+.clear {
+  clear: both;
+}
+
+img.thumb{
+	height: 3vw;
+}

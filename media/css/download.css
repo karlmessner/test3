@@ -1,0 +1,248 @@
+/* @override 
+	http://www.actorslaunchpad.com/moodcaster/media/css/emailcss.css
+	https://www.actorslaunchpad.com/moodcaster/media/css/download.css
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Chivo:900,900i');
+
+
+
+@font-face {
+  font-family: 'Cinetype';
+  src: url('../fonts/GT-Cinetype-Trial-Regular.otf');
+  font-weight: normal;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: 'Cinetype';
+  src: url('../fonts/GT-Cinetype-Trial-Bold.otf');
+  font-weight: bold;
+  font-style: normal; 
+}
+
+
+html{
+	height: 100%;
+}
+body{
+	background-color: #B61B46;
+	/*background-image: url('../images/jens-kreuter-85328-unsplash.jpg');*/
+	/* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+*{
+	font-family: "Cinetype";
+}
+
+#wrapper {
+	width: 97%;
+	max-width: 1500px;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	padding-top: 20px;
+}
+
+#masthead{
+	width: 100%;
+	height: 5vw;
+	min-height: 100px;
+}
+
+#masthead #logo{
+	position: relative;
+	left: 20px;
+	top:10px;
+}
+
+#masthead #logo img{
+	width: 150px;
+}
+
+#masthead #toplinks{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#masthead #toplinks ul{
+	
+}
+
+#masthead #toplinks ul li{
+	display: inline;
+	margin-left: 20px;
+}
+
+#masthead #toplinks ul li a{
+		font: 18px "Cinetype", "Helvetica Neue", "Arial", sans-serif;
+	text-decoration: none;
+	color: #5e5e5e;
+}
+
+#masthead #toplinks ul li a.current{
+	border-bottom: 2px solid #fb5c5f;
+	padding-bottom: 4px;
+}
+
+#videoDiv{
+	width: 50%;
+	float: left;
+		position: relative;
+	top: 6vw;
+	/*background-color: green;*/
+}
+#right {
+	width:50%;
+	float:right;
+	/*background-color: red;*/
+}
+
+#vidbox {
+
+	display: block;
+	width:30vw;
+	height: 16.875vw;
+	max-width: 620px;
+	max-height: 348.75px;
+	background-color: white;
+	filter: drop-shadow(0px 3px 5px #000);	
+	margin-right: auto;
+	margin-left: auto;
+		border-radius:10px;
+
+}
+
+#vidbox video {
+	border-radius:10px;
+	
+	 /*transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+    -o-transform:rotate(180deg);
+    -ms-transform:rotate(180deg);*/
+
+}
+#downloadSubmissiondiv{
+	position: relative;
+	top: 90;
+	width:  100%;
+	/*background-color: orange;*/
+}
+
+#downloadSubmissiondiv a{
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #FF5C5C;
+	font: 14px "Cinetype", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-decoration: none;
+	color: white;
+	width: 209px;
+	display: block;
+	text-align: center;
+	height: 20px;
+	border-radius:20px;
+	border-style: solid;
+	border-width: 1px;
+	padding-top: 12px;
+	padding-bottom: 8px;
+	border: 0;	
+}
+
+
+#Sharedivwrapper{
+	position: relative;
+	top: 100;
+	width:  100%;
+	height: 100px;
+}
+
+#Sharediv {
+
+}
+
+#Sharediv a{
+	margin-right: auto;
+	margin-left: auto;
+	font: 14px "Cinetype", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-decoration: none;
+	width: 209px;
+	display: block;
+	text-align: center;
+	height: 20px;
+	color: #5e5e5e;
+	padding-top: 12px;
+	padding-bottom: 8px;	
+}
+
+#Sharedivwrapper.current{
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	font: 14px "Cinetype", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-decoration: none;
+	width: 309px;
+	display: block;
+	text-align: center;
+	color: #5e5e5e;
+	padding-bottom: 8px;
+	text-align: center;
+	border-radius:10px;
+	border-style: hidden;
+	border-width: 1px;
+}
+
+#Sharedivhidden{
+	position: relative;
+	width:  100%;
+	/*background-color: orange;*/
+}
+
+#Sharedivhidden input{
+	margin-right: auto;
+	margin-left: auto;
+	font: 14px sans-serif;
+	text-decoration: none;
+	width: 100%;
+	display: none;
+	text-align: center;
+	height: 20px;
+	color: #000;
+	padding-top: 12px;
+	padding-bottom: 8px;
+	outline: none;	
+	background-color: #B61B46;
+	border: 0;
+}
+#Sharedivhidden  .copied{
+	display: none;
+	font: 10px "Cinetype", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	
+}
+
+
+#Sharedivwrapper.current .copied,
+#Sharedivwrapper.current #Sharedivhidden input{
+	display: block;
+}
+
+#Sharedivwrapper.current #showshare{
+}
+
+
+
+
+
+
+

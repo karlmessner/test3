@@ -1,0 +1,10 @@
+RewriteEngine on
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+
+
+#RewriteRule index.php /moodcaster/download.php [QSA]
+# works for http://d.moodcaster.com/?s=387&c=1535508260
+
+
+RewriteRule ^(.*)$ /moodcaster/download.php?s=($1) 

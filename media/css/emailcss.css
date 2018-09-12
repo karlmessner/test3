@@ -1,0 +1,150 @@
+/* @override http://www.actorslaunchpad.com/moodcaster/media/css/emailcss.css */
+
+@import url('https://fonts.googleapis.com/css?family=Chivo:900,900i');
+
+body{
+	
+	background-color: #B61B46;
+/* 	background-color: #f2f2f2; */
+
+}
+#fauxbody{
+	width:100%;
+	height:3000px;
+	background-color: #B61B46;
+	position: relative;
+}
+#wrapper {
+	width: 600px;
+	height: 3000px;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	padding-top: 20px;
+}
+
+table, table tr, table tr td, table tr td *{border-collapse: collapse;border:0;}
+
+table {
+	width:600px;
+	}
+
+#container {
+	background-color: #B61B46;
+	height: 512px;
+
+}
+
+#headerLogo{
+	
+}
+
+img.headerLogo {
+	height: 25px;
+	vertical-align: middle;
+}
+
+.headerTitle{
+	font-family: "Myriad Pro", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	color: white;
+	vertical-align: middle;
+	position: relative;
+	top:5px;
+	margin-left: 5px;
+}
+
+.body{
+	background-color: white;
+	margin-top:10px;
+}
+
+.body td {
+	padding-left:30px;
+	padding-top:20px;
+	height:340px;
+	vertical-align: top;
+	}
+
+.head, p.actorname {
+	color: #44D9E6;
+	font: italic 40px 'Chivo';
+	line-height: 0px;
+}
+
+.head{margin-top:20px;}
+
+p.actorname{
+	font-size: 48px;
+	line-height: 0px;
+}
+
+.subhead{
+	top: 176px;
+	font: 20px "Myriad Pro", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+p.downloadp{
+	width:209px;
+	margin-top: 40px;
+	margin-left: 20px;
+}
+a.downloadButton{
+	background-color: #FF5C5C;
+	font: 14px "Myriad Pro", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-decoration: none;
+	color: white;
+	width: 209px;
+	display: block;
+	text-align: center;
+	height: 20px;
+	border-radius:20px;
+	border-style: solid;
+	border-width: 1px;
+	padding-top: 12px;
+	padding-bottom: 8px;
+}
+
+
+a.getMoodcasterLink {
+	font: 14px "Myriad Pro", "Helvetica Neue", "Arial", sans-serif;
+	text-decoration: none;
+	color: #2F323A;	
+}
+
+p.bottomspace{font-size: 1px;}
+
+td.lefthalf{
+	width:360px;
+}
+
+td.imgtd{
+	text-align: center;
+	padding: 0;
+	width:240px;
+	vertical-align: middle;
+}
+
+img.thumb {
+	height: 200;
+}
+
+
+.footerLogo{
+	height:13px ;
+	padding-top: 10px;
+}
+
+.vcard {
+	width:100%;
+	text-align:center;
+	margin-top:40px;
+	}
+.vcard *, .vcard a {
+	width:100%;
+	display: inline;
+	font: 14px "Myriad Pro", "Helvetica Neue", "Arial", sans-serif;
+	color:#ed6d92;
+}
+
+.vcard .org{display:block;}
+
