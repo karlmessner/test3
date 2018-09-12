@@ -1,16 +1,23 @@
 <?php
+	require './vendor/autoload.php';
+	
+	// READ ENVIRONMENT VARS
+	$awsKey=$_ENV['awsKey'];
+	$awsSecret=$_ENV['awsSecret'];	
+	
+	
 	if(isset($_FILES['image'])){
 		$file_name = $_FILES['image']['name'];   
 		$temp_file_location = $_FILES['image']['tmp_name']; 
 
-		require './vendor/autoload.php';
+		
 
 		$s3 = new Aws\S3\S3Client([
 			'region'  => 'us-east-1',
 			'version' => 'latest',
 			'credentials' => [
-				'key'    => "AKIAIYK4QWH5PDWMC2XQ",
-				'secret' => "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",
+				'key'    => "$awsKey",
+				'secret' => "$awsSecret",
 			]
 		]);		
 

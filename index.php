@@ -25,6 +25,6 @@ $dotenv->load();
     <title></title>
   </head>
   <body>
-    <img src="https://s3.amazonaws.com/mc-vid-submissions/DSC02196.JPG" />
+
   </body>
 </html>
