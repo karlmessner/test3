@@ -6,7 +6,7 @@ require './vendor/autoload.php';
 
 
 $dotenv = new Dotenv\Dotenv(__DIR__);
-if (file_exists(.env)){
+if (file_exists('.env')){
 $dotenv->load();	
 }
 
