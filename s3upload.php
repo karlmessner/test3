@@ -3,14 +3,16 @@
 	
 	// READ ENVIRONMENT VARS
 	$awsKey=$_ENV['awsKey'];
-	$awsSecret=$_ENV['awsSecret'];	
+	$awsSecret=$_ENV['awsSecret'];
 	
 	
-	if(isset($_FILES['image'])){
-		$file_name = $_FILES['image']['name'];   
-		$temp_file_location = $_FILES['image']['tmp_name']; 
-
-		
+	$fieldname = 'image';
+	$bucket = 	'mc-vid-submissions'
+	
+	
+	if(isset($_FILES[$fieldname])){
+		$file_name = $_FILES[$fieldname]['name'];   
+		$temp_file_location = $_FILES[$fieldname]['tmp_name']; 
 
 		$s3 = new Aws\S3\S3Client([
 			'region'  => 'us-east-1',
@@ -22,13 +24,13 @@
 		]);		
 
 		$result = $s3->putObject([
-			'Bucket' => 'mc-vid-submissions',
+			'Bucket' => $bucket,
 			'Key'    => $file_name,
 			'SourceFile' => $temp_file_location,
 			'ACL' => 'public-read'		
 		]);
 
-		var_dump($result);
+		if ($debug) {echo "<pre>" ; var_dump($result); echo "</pre";}
 	}
 ?>
 

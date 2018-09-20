@@ -12,12 +12,29 @@ class ComposerStaticInit4e0d68b47df3627807c67b4e4d40fd8a
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
         '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '3f8bdd3b35094c73a26f0106e3c0f8b2' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/SendGrid.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Ctype\\' => 23,
+            'Symfony\\Component\\Process\\' => 26,
+            'Symfony\\Component\\Filesystem\\' => 29,
+            'SendGrid\\Stats\\' => 15,
+            'SendGrid\\Mail\\' => 14,
+            'SendGrid\\Contacts\\' => 18,
+            'SendGrid\\' => 9,
+        ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
+        ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
         ),
         'J' => 
         array (
@@ -32,6 +49,7 @@ class ComposerStaticInit4e0d68b47df3627807c67b4e4d40fd8a
         'D' => 
         array (
             'Dotenv\\' => 7,
+            'Doctrine\\Common\\Cache\\' => 22,
         ),
         'A' => 
         array (
@@ -40,9 +58,46 @@ class ComposerStaticInit4e0d68b47df3627807c67b4e4d40fd8a
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
+        'Symfony\\Component\\Process\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
+        'Symfony\\Component\\Filesystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/filesystem',
+        ),
+        'SendGrid\\Stats\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/stats',
+        ),
+        'SendGrid\\Mail\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/mail',
+        ),
+        'SendGrid\\Contacts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/contacts',
+        ),
+        'SendGrid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sendgrid/php-http-client/lib',
+            1 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
         'JmesPath\\' => 
         array (
@@ -64,9 +119,44 @@ class ComposerStaticInit4e0d68b47df3627807c67b4e4d40fd8a
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
+        'Doctrine\\Common\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
+        ),
         'Aws\\' => 
         array (
             0 => __DIR__ . '/..' . '/aws/aws-sdk-php/src',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'N' => 
+        array (
+            'Neutron' => 
+            array (
+                0 => __DIR__ . '/..' . '/neutron/temporary-filesystem/src',
+            ),
+        ),
+        'F' => 
+        array (
+            'FFMpeg' => 
+            array (
+                0 => __DIR__ . '/..' . '/php-ffmpeg/php-ffmpeg/src',
+            ),
+        ),
+        'E' => 
+        array (
+            'Evenement' => 
+            array (
+                0 => __DIR__ . '/..' . '/evenement/evenement/src',
+            ),
+        ),
+        'A' => 
+        array (
+            'Alchemy' => 
+            array (
+                0 => __DIR__ . '/..' . '/alchemy/binary-driver/src',
+            ),
         ),
     );
 
@@ -75,6 +165,7 @@ class ComposerStaticInit4e0d68b47df3627807c67b4e4d40fd8a
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit4e0d68b47df3627807c67b4e4d40fd8a::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit4e0d68b47df3627807c67b4e4d40fd8a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit4e0d68b47df3627807c67b4e4d40fd8a::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

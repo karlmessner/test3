@@ -1,1 +1,2 @@
-<?PHP print_r($_GET); ?>
+<?PHP 
+	phpinfo(); ?>

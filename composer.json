@@ -1,6 +1,9 @@
 {
     "require": {
         "aws/aws-sdk-php": "^3.67",
-        "vlucas/phpdotenv": "^2.5"
+        "vlucas/phpdotenv": "^2.5",
+        "sendgrid/sendgrid": "~7",
+        "php-ffmpeg/php-ffmpeg": "^0.12.0"
+
     }
 }

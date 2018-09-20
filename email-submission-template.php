@@ -20,7 +20,7 @@ if (strlen($title_card_text) >0){
 
 // PROFILE PIC OR TITLE CARD?
 // IF THEY UPLOADED A TITLE CARD PICTURE, USE THAT, IF NOT, USE THE PROFILE URL THEY SENT
-$Profile_shot = ($title_card_url) ? $title_card_url : $Profile_pic_url;
+$Profile_shot = ($titleCardURL) ? $titleCardURL : $Profile_pic_url;
 
 //injections
 $variablesToInject = array("stylesheet","firstLineText","firstLineSize","secondLineText","secondLineSize","Role","Title","Profile_shot","fontSize","lineHeight","s","downloadLink");
