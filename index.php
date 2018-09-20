@@ -18,7 +18,6 @@ ini_set("display_errors", 1);
 }
 
 
-
 // LOAD FUNCTIONS
 require('includes/functions.php');
 
