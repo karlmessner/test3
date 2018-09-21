@@ -19,7 +19,6 @@ $video = $ffmpeg->open($file);
 $format = new FFMpeg\Format\Video\x264();
 $format->setAudioCodec("aac");
 $format->setAdditionalParameters(array('-strict', '-2'));
-$format->setAdditionalParameters(array('-passlogfile', '/var/tmp/f'));
 $video->save($format,'fixed-appL.mp4');
 
 
