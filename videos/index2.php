@@ -5,10 +5,13 @@ ini_set("display_errors", 1);
 
 $output = shell_exec("date"); echo $output;
 
+
+// on heroku, the path is /app/vendor/ffmpeg/ffmpeg
+// on localhost the path is /usr/local/bin/ffmpeg
+
 $codecArr=shell_exec("/app/vendor/ffmpeg/ffmpeg -codecs"); 
 
 echo "<pre>$codecArr";
-exit;
 
 $file="appL.mp4";
 $config = array(
