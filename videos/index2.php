@@ -12,7 +12,7 @@ $output = shell_exec("ls -l"); echo "<PRE>".$output."</pre>";
 // on localhost the path is /usr/local/bin/ffmpeg
 
 $ffmpegPath = $_ENV['FFMPEGPATH']; 
-//echo $ffmpegPath;
+echo $ffmpegPath;
 
 $ffmpegCommand = ' -i appL.mp4 appl2.mp4';
 //$ffmpegCommand = ' -codecs';
