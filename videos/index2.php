@@ -14,7 +14,7 @@ $output = shell_exec("ls -l"); echo "<PRE>".$output."</pre>";
 $ffmpegPath = $_ENV['FFMPEGPATH']; 
 echo $ffmpegPath;
 
-$ffmpegCommand = ' -i appL.mp4 appl2.mp4';
+$ffmpegCommand = ' -i appL.mp4 -vfilters "rotate=180" appl3.mp4';
 //$ffmpegCommand = ' -codecs';
 //$ffmpegCommand = ' -version';
 
