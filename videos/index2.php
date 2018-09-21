@@ -3,6 +3,15 @@ require '../vendor/autoload.php';
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
+
+
+exec("ffmpeg -codecs", $codecArr);
+for($ii=0,$ii<count($codecArr);$ii++){
+    echo $codecArr[$ii];
+}
+
+
+
 $file="appL.mp4";
 $config = array(
 'timeout' => 3600, // The timeout for the underlying process
