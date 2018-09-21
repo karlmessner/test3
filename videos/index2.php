@@ -9,7 +9,7 @@ $output = shell_exec("date"); echo $output;
 // on heroku, the path is /app/vendor/ffmpeg/ffmpeg
 // on localhost the path is /usr/local/bin/ffmpeg
 
-$ffmpegPath = $_ENV['FFMPEGPATH'];
+$ffmpegPath = $_ENV['FFMPEGPATH']; echo $ffmpegPath;
 
 $ffmpegCommand = 'ffmpeg -i appL.mp4';
 
