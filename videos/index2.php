@@ -24,6 +24,16 @@ $codecArr=shell_exec($ffmpegPath .  ' '. $ffmpegCommand);
 //echo $ffmpegPath .$ffmpegCommand;
 echo "<pre>$codecArr</pre>";
 
+
+
+
+$output = shell_exec("ls -l"); echo "<PRE>".$output."</pre>";
+
+
+
+
+
+
 /*
 echo "<pre>$codecArr";
 
