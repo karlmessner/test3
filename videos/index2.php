@@ -6,7 +6,7 @@ require '../env.php';
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-$output = shell_exec("which ffmpeg"); echo $output;
+$output = shell_exec("ls -l"); echo "<PRE>".$output."</pre>";
 
 // on heroku, the path is /app/vendor/ffmpeg/ffmpeg
 // on localhost the path is /usr/local/bin/ffmpeg
