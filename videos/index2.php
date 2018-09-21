@@ -16,7 +16,7 @@ $ffmpegPath = $_ENV['FFMPEGPATH'];
 
 $ffmpegCommand = ' -i appL.mp4';
 
-$codecArr=shell_exec('ffmpeg -i appL.mp4'); 
+$codecArr=shell_exec('/app/vendor/ffmpeg/ffmpeg -i appL.mp4'); 
 
 
 //echo $ffmpegPath .$ffmpegCommand;
