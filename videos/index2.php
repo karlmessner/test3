@@ -3,14 +3,12 @@ require '../vendor/autoload.php';
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
+$output = shell_exec("date"); echo $output;
 
+$codecArr=shell_exec("/app/vendor/ffmpeg/ffmpeg -codecs"); 
 
-shell_exec("/app/vendor/ffmpeg/ffmpeg -codecs", $codecArr);
-for($ii=0,$ii<count($codecArr),$ii++){
-    echo $codecArr[$ii];
-}
-
-
+echo "<pre>$codecArr";
+exit;
 
 $file="appL.mp4";
 $config = array(
