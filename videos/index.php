@@ -1,7 +1,12 @@
 <?PHP
 require '../vendor/autoload.php';
+require '../env.php';
+// print_r($_ENV);
+
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+
+
 
 
 $files1 = scandir('./');
@@ -18,80 +23,47 @@ foreach ($files1 as $file) {
 // FUNCTIONS
 	
 function fixVideo($file) {
-$config = array(
-'timeout' => 3600, // The timeout for the underlying process
-'ffmpeg.threads' => 12, // The number of threads that FFMpeg should use
-);
+
+$ffmpegPath = $_ENV['FFMPEGPATH']; 
+$ffprobePath = $_ENV['FFPROBEPATH']; 
+
+
+
+echo "<video src='$file' width='100'></video><br>";
+echo "$file<br>";
+
+
 
 $resultFile = 'FIXED_'.$file;
 
-// create the ffmpeg object
-$ffmpeg = FFMpeg\FFMpeg::create($config, null);
+// DO WE NEED TO ROTATE
+$ffprobeCommand =  " -loglevel error -select_streams v:0 -show_entries stream_tags=rotate -of default=nw=1:nk=1 -i ". $file ;
+$rotation=shell_exec($ffprobePath .  ' '. $ffprobeCommand); 
+echo "<pre>";print_r($rotation);echo "</pre>";
 
-// open video file
-$video = $ffmpeg->open($file);
 
-// get the first video stream
-$videostream = $ffmpeg->getFFProbe()
-                      ->streams($file)
-                      ->videos()
-                      ->first();
+// IS IT NOT H.264
+$ffprobeCommand =  "  -v error -select_streams v:0 -show_entries stream=codec_name \
+  -of default=noprint_wrappers=1:nokey=1 ". $file ;
+$vidCodec=shell_exec($ffprobePath .  ' '. $ffprobeCommand); 
+echo "<pre>";print_r($vidCodec);echo "</pre>";
 
-//echo "<pre>";print_r($videostream);
-                      
 
-if (!$videostream instanceof FFMpeg\FFProbe\DataMapping\Stream) {
-    throw new \Exception('No stream given'); 
-    } else {
-	    echo "<video src='$file' width='100'></video><br>";
-	    echo "$file<br>";
+
+
+
+// ROTATE AND SAVE
+/*
+$ffmpegCommand = ' -i ' . $file . '  -vf "transpose=2,transpose=2" videoSandbox/'.$resultFile;
+$ffmpegExec=shell_exec($ffmpegPath .  ' '. $ffmpegCommand); 
+echo $ffmpegPath .$ffmpegCommand;
+*/
+
+
+
 	    
-	    echo "<pre>";print_r($videostream);
-	    
 	    
 
-	if ($videostream->has('tags')) { 
-		//echo "has tags<BR>";
-	
-// MUST WE ROTATE?	
-		$tags = $videostream->get('tags');
-				if (isset($tags['rotate'])) { 
-			echo "has rotate" . $tags['rotate'] . "<BR>" ;
-		
-			if ($tags['rotate'] != 0) { 
-				echo "rotate not 0<BR>";
-			
-				switch($tags['rotate']) {
-				    case 270:
-				        $angle = FFMpeg\Filters\Video\RotateFilter::ROTATE_270;
-				        break;
-				    case 180:
-				        $angle = FFMpeg\Filters\Video\RotateFilter::ROTATE_180;
-				        break;
-				    case 90:
-				        $angle = FFMpeg\Filters\Video\RotateFilter::ROTATE_90;
-				        break;
-				}
-				
-				$video->filters()
-			      ->rotate($angle); echo "rotating<br>";
-
-			} // if ($tags['rotate']	
-			
-			
-// MUST WE REENCODE TO H.264?
-		if (isset($tags['encoder'])) {
-
-		echo "encoding: " . $tags['encoder'];
-			} 
-				
-			$format = new FFMpeg\Format\Video\X264();
-			//$format->setAudioCodec("aac");
-			//$video->save($format,$resultFile );
-		} // if (isset($tags['rotate']
-	} // if ($videostream->has('tags')
-	echo "<BR><BR>";
-} // if $videostream instanceof
 
 }//function
 
