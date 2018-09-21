@@ -6,7 +6,7 @@ require '../env.php';
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-//$output = shell_exec("date"); echo $output;
+$output = shell_exec("date"); echo $output;
 
 // on heroku, the path is /app/vendor/ffmpeg/ffmpeg
 // on localhost the path is /usr/local/bin/ffmpeg
