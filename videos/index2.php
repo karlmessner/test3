@@ -9,7 +9,7 @@ $output = shell_exec("date"); echo $output;
 // on heroku, the path is /app/vendor/ffmpeg/ffmpeg
 // on localhost the path is /usr/local/bin/ffmpeg
 
-$codecArr=shell_exec("/app/vendor/ffmpeg/ffmpeg -codecs"); 
+//$codecArr=shell_exec("/app/vendor/ffmpeg/ffmpeg -codecs"); 
 
 echo "<pre>$codecArr";
 
@@ -28,6 +28,5 @@ $format = new FFMpeg\Format\Video\x264();
 $format->setAudioCodec("aac");
 $format->setAdditionalParameters(array('-strict', '-2'));
 $video->save($format,'fixed-appL.mp4');
-
 
 
