@@ -25,7 +25,7 @@ require('includes/functions.php');
 require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
-		
+
 // DEFS
 $mc_file_size = '';
 $title_card_url='';

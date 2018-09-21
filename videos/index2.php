@@ -1,19 +1,26 @@
 <?PHP
 require '../vendor/autoload.php';
+require '../env.php';
+//print_r($_ENV);
+
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-$output = shell_exec("date"); echo $output;
+//$output = shell_exec("date"); echo $output;
 
-print_r($_ENV);
 // on heroku, the path is /app/vendor/ffmpeg/ffmpeg
 // on localhost the path is /usr/local/bin/ffmpeg
 
-$ffmpegPath = $_ENV['FFMPEGPATH']; echo $ffmpegPath;
+$ffmpegPath = $_ENV['FFMPEGPATH']; 
+//echo $ffmpegPath;
 
 $ffmpegCommand = ' -i appL.mp4';
 
-$codecArr=shell_exec($ffmpegPath. ' ' .$ffmpegCommand ); 
+$codecArr=shell_exec('ffmpeg -i appL.mp4'); 
+
+
+//echo $ffmpegPath .$ffmpegCommand;
+echo "<pre>$codecArr</pre>";
 
 /*
 echo "<pre>$codecArr";
