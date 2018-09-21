@@ -15,7 +15,7 @@ $ffmpegPath = $_ENV['FFMPEGPATH'];
 //echo $ffmpegPath;
 
 $ffmpegCommand = ' -i appL.mp4 -vf "transpose=2,transpose=2" appl3.mp4';
-$ffmpegCommand = ' -i ./appL.mp4';
+//$ffmpegCommand = ' -i ./appL.mp4';
 //$ffmpegCommand = ' -codecs';
 //$ffmpegCommand = ' -version';
 
