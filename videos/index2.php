@@ -12,16 +12,17 @@ $output = shell_exec("ls -l"); echo "<PRE>".$output."</pre>";
 // on localhost the path is /usr/local/bin/ffmpeg
 
 $ffmpegPath = $_ENV['FFMPEGPATH']; 
-echo $ffmpegPath;
+//echo $ffmpegPath;
 
-$ffmpegCommand = ' -i appL.mp4 -vfilters "rotate=180" appl3.mp4';
+$ffmpegCommand = ' -i appL.mp4 -vf "transpose=2,transpose=2" appl3.mp4';
+$ffmpegCommand = ' -i ./appL.mp4';
 //$ffmpegCommand = ' -codecs';
 //$ffmpegCommand = ' -version';
 
 $codecArr=shell_exec($ffmpegPath .  ' '. $ffmpegCommand); 
 
 
-//echo $ffmpegPath .$ffmpegCommand;
+echo $ffmpegPath .$ffmpegCommand;
 echo "<pre>$codecArr</pre>";
 
 
