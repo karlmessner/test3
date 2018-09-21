@@ -11,7 +11,7 @@ $output = shell_exec("date"); echo $output;
 
 $ffmpegPath = $_ENV['FFMPEGPATH']; echo $ffmpegPath;
 
-$ffmpegCommand = 'ffmpeg -i appL.mp4';
+$ffmpegCommand = ' -i appL.mp4';
 
 $codecArr=shell_exec($ffmpegPath. ' ' .$ffmpegCommand ); 
 
