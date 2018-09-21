@@ -5,8 +5,8 @@ ini_set("display_errors", 1);
 
 
 
-exec("ffmpeg -codecs", $codecArr);
-for($ii=0,$ii<count($codecArr);$ii++){
+shell_exec("../vendor/ffmpeg/ffmpeg -codecs", $codecArr);
+for($ii=0,$ii<count($codecArr),$ii++){
     echo $codecArr[$ii];
 }
 
