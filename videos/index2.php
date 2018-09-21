@@ -12,9 +12,11 @@ $output = shell_exec("ls -l"); echo "<PRE>".$output."</pre>";
 // on localhost the path is /usr/local/bin/ffmpeg
 
 $ffmpegPath = $_ENV['FFMPEGPATH']; 
+$ffprobePath = $_ENV['FFPROBEPATH']; 
 //echo $ffmpegPath;
 
-$ffmpegCommand = ' -i appL.mp4 -vf "transpose=2,transpose=2" appl3.mp4';
+$ffmpegCommand = ' -i appL.mp4 -vf "transpose=2,transpose=2" videoSandbox/appl3.mp4';
+//$ffmpegCommand = ' -i appL.mp4 appl3.mp4';
 //$ffmpegCommand = ' -i ./appL.mp4';
 //$ffmpegCommand = ' -codecs';
 //$ffmpegCommand = ' -version';
