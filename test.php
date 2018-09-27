@@ -1,6 +1,6 @@
 <?PHP 
 
-require 'env.php';
+//require 'env.php';
 echo "<pre>";
 print_r($_ENV);	
 	
