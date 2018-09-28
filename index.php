@@ -1,22 +1,37 @@
 <?PHP 
-// INCREASE MAX FILE UPLOAD SIZE
+	
+	
 /*
-ini_set("upload_max_filesize", "150m");
-ini_set("post_max_size", "151m");
+
+This app is an endpoint for an ios device. It accepts a
+post request which includes a zip file full of individual files
+The zip is unzipped,  individual video files are normalized
+to codec, size, and orientation. Then, they're re-keyframed
+then it re-keyframes every video to 30fps with keyframes every 
+1 sec, STITCHES THEM TOGETHER, trims off the unavoidable first 
+1/2 second, then moves the new stitched file, along with all the 
+newly fixed  individual scenes into a new folder, rezips it, 
+uploads it to Amazon, uploads the stitched final file separately, 
+records all the info, including the amazon urls into the database, 
+builds the email, sends it through Sendgrid.	
 */
-// TESTING	
+		
+		
+		
+		
+		
+// TESTING SETTINGS  	
 $debug 				= false;
 $allowNoFile		= false;
 $actuallySendEmail 	= true;
 $debugBody 			= false; // nb: triggers read pixel
-$overRideRecipients	= true;
+$overRideRecipients	= false;
 
 // ERROR REPORTING
 if ($debug){
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 }
-
 
 // LOAD FUNCTIONS
 require('includes/functions.php');
@@ -26,13 +41,15 @@ require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
 
+//print_r($_ENV);
+//print_r($_POST);
+
 // DEFS
 $mc_file_size = '';
 $title_card_url='';
 $fontSize='';
 $lineHeight='';
 $vidSize='';
-
 
 // PRIVATE KEY
 $goodKey = $_ENV['GOODKEY'];
@@ -74,16 +91,62 @@ if ($debug) {echo "</pre>";}
 $rawPost = mysqli_real_escape_string($db, print_r($_POST,true) );
 $rawPost .= mysqli_real_escape_string($db, print_r($_FILES,true) );
 
+// SET NAME OF FINAL DOWNLOADABLE
+$auditionDate = date("m-d-Y g_ia",$now);
+$downloadableFolderName = "MOODCASTER-" . $Title . "-" . $Role . "-" . $Name . "-" . $auditionDate;
+$downloadableFolderName = str_replace(' ', '_', $downloadableFolderName);
+
+// UNZIP, NORMALIZE VIDEOS, STITCH, RE-ZIP NEW FILES
+	// create a tmp directory with timestamp-email as name
+		$emailWithoutSymbols = preg_replace("/[^A-Za-z0-9 ]/", '', $Email);
+		$sandbox = tempdir(null, $emailWithoutSymbols);
+		if ($debug) {echo "SANDBOX : " .$sandbox, "\n";}
+	
+	// copy Zip_file into it
+		$fieldname = 'Zip_file';
+		if(isset($_FILES[$fieldname])){
+			$file_name = $_FILES[$fieldname]['name']; 
+			$uploadedFile = $_FILES['Zip_file']['tmp_name'];
+			$tmpFileName = $sandbox . '/' . $file_name;
+			move_uploaded_file( $uploadedFile , $tmpFileName );
+		}
+		
+	// unzip file
+		$zip = new ZipArchive;
+		$res = $zip->open($tmpFileName);
+	if ($res === TRUE){
+		$zip->extractTo($sandbox);
+		$zip->close();
+		}	
+				
+	// stitch files
+		$stitchedFilePath = stitchMP4sIn($sandbox);
+		if ($debug) {echo "<BR>STITCHED FILE: $stitchedFilePath <BR>";}
+		
+	// upload stitched file
+		if ($stitchedFilePath){
+			$stitchAWS = uploadFile ($stitchedFilePath,$_ENV['AWSVIDBUCKET'],'');
+			$stitchURL = $stitchAWS['ObjectURL'];
+		if ($debug) {echo "<BR>STITCHED FILE URL: $stitchURL <BR>";}
+		}	
+		
+	// REZIP
+		// CREATES NEW TMP SUBDIR, MOVES FIXED_ VIDEO FILES, TRIMMING FIXED_ FROM FILE, 
+		// MOVE IN STITCHED FILE RENAMED FINAL.MP4
+		$newZipPath = rezip($sandbox, $downloadableFolderName );
+
 // upload video files
-$zipAWS = uploadFile ('Zip_file',$_ENV['AWSVIDBUCKET']);
-$zipURL = $zipAWS['ObjectURL'];
-$zipFileSize = $_FILES['Zip_file']['size'];
-
-$titleFrameAWS = uploadFile ('Title_frame',$_ENV['AWSVIDBUCKET']);
-$titleFrameURL = $titleFrameAWS['ObjectURL'];
-
-$titleCardAWS = uploadFile ('Title_card',$_ENV['AWSVIDBUCKET']);
-$titleCardURL = $titleCardAWS['ObjectURL'];
+if ($newZipPath){
+	$zipAWS = uploadFile ($newZipPath,$_ENV['AWSVIDBUCKET'],$downloadableFolderName);
+	$zipURL = $zipAWS['ObjectURL'];
+	$zipFileSize = $_FILES['Zip_file']['size'];
+	$file_good = ($zipAWS);
+	}
+	
+if ($_FILES['Title_card']['size'] >1){
+	$titleCardAWS = uploadFileFromFieldname('Title_card',$_ENV['AWSVIDBUCKET']);
+	$titleCardURL = $titleCardAWS['ObjectURL'];
+	}
 
 // INSERT INTO DATABASE
 $sql = "INSERT INTO mc_submissions SET \n";
@@ -97,26 +160,30 @@ $sql .=" mc_recipients_emails 	= '$Recipients_emails', \n";
 $sql .=" mc_age_range 			= '$Age_range', \n";
 $sql .=" mc_bio		 			= '$Bio', \n";
 $sql .=" mc_profile_pic			= '$profile_pic', \n";
-$sql .=" mc_title_frame_url		= '$titleFrameURL', \n";
-$sql .=" mc_file_url			= '$zipURL', \n";
+$sql .=" mc_zip_file_url		= '$zipURL', \n";
+$sql .=" mc_stitch_file_url		= '$stitchURL', \n";
+$sql .=" mc_zip_file_size		= '$zipFileSize', \n";
 $sql .=" mc_title_card_text		= '$title_card_text', \n";
 $sql .=" mc_title_card_url		= '$titleCardURL', \n";
 $sql .=" mc_profile_url			= '$Profile_pic_url', \n";
-$sql .=" mc_file_size			= '$zipFileSize', \n";
 $sql .=" mc_rawpost				= '$rawPost', \n";
 $sql .=" mc_pk					= '$pk' \n";
 
-if ($debug) echo "<BR><pre>$sql</pre><br /><br />";
+if ($debug) echo "<BR><BR><pre>$sql</pre><br /><br />";
 
 // ONLY INSERT INTO DATABASE IF THEY ATTACHED SOMETHING OR allowNoFile=true
 if (($zipFileSize>0)||($allowNoFile)){
-	$result = mysqli_query($db, $sql); echo mysqli_error($db);
+	$result = mysqli_query($db, $sql); 
+	if ($debug) {echo mysqli_error($db);}
 	$id = mysqli_insert_id($db);
 	}
 	
 // CREATE SHORT URL TO DOWNLOAD PAGE, STORE IN DB
 $s=base64_encode($id);
 $shortDownloadLink = "http://d.moodcaster.com/$s";
+
+$shortDownloadLink = $_ENV['DOMAIN'] . 'download.php?s='.$s;
+
 $sql = "UPDATE mc_submissions SET mc_download_link = '$shortDownloadLink' WHERE mc_id ='$id' LIMIT 1";
 mysqli_query($db,$sql);
 	
@@ -125,7 +192,6 @@ if ($debug) echo mysqli_error($db);
 
 // CALCULATE FONT SIZE and LINE-HEIGHT OF NAME BASED ON NAME LENGTH
 include('calcFontSize.php');
-
 
 // EMBED SUBMISSION NUMBER
 $s=$id;
@@ -140,7 +206,6 @@ $fromName = "Moodcaster";
 
 // OVERRIDE RECIPIENT TO ME
 if ($overRideRecipients){ $to="karlmessner@gmail.com";}
-
 
 //$bcc="submissions@moodcaster.com";
 $subject = "Video submission: $Role in $Title by $Name (" . date("m.d.y g:ia") . ")";
@@ -165,11 +230,9 @@ if ($zipFileSize>0){
 		    print $response->body() . "\n";
 		    }
 		} catch (Exception $e) {
-		    echo 'Caught exception: '. $e->getMessage() ."\n";
-		}		
+		    if ($debug) {echo 'Caught exception: '. $e->getMessage() ."\n";}
+			}		
 		
-		
-		//$result = mail($to, $subject, $body,$headers);
 		} // if actuallySendEmail
 	} // if vidSize	
 if ($result){$em_good='1';}
@@ -181,7 +244,7 @@ if ($debugBody) echo $body;
 
 // callback to app
 if ($auth_good * $file_good * $db_good * $em_good){	
-	echo $shortDownloadLink;
+	if ($debug) {echo $shortDownloadLink;}
 	}
 	
 if ($debug){
@@ -192,6 +255,9 @@ if ($debug){
 	if ($em_good) {echo "Email Sent\n";}	
 	}
 
-	
+//IF EVERYTHING WENT SMOOTHLY, REPORT SUCCESS TO APP
+ if (($auth_good)&&($file_good)&&($db_good)&&($em_good)){
+	 echo "success";
+	 }	
 ?>
 
