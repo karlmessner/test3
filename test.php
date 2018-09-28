@@ -9,4 +9,4 @@ echo "<pre>";
 print_r($_ENV);	
 	
 	
-	phpinfo(); ?>
+phpinfo(); ?>
