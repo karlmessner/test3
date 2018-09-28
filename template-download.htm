@@ -3,32 +3,39 @@
   <head>
     <meta charset="utf-8">
 	<style>$stylesheetXXX</style>
-<base href = "https://www.actorslaunchpad.com/moodcaster/download.php" />	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
 	<script>
 $( document ).ready(function() {
-		$( "#showshare" ).click(function(e) {
-			e.preventDefault();
-			$( "#Sharedivwrapper" ).toggleClass( "current" );
-			/* Get the text field */
-			var copyText = document.getElementById("sharelink");
-			
-			/* Select the text field */
-			copyText.select();
-			
-			/* Copy the text inside the text field */
-			document.execCommand("copy");
-			
+	$( "#showshare" ).click(function(e) {
+		e.preventDefault();
+		$( "#Sharedivwrapper" ).toggleClass( "current" );
+		/* Get the text field */
+		var copyText = document.getElementById("sharelink");
+		
+		/* Select the text field */
+		copyText.select();
+		
+		/* Copy the text inside the text field */
+		document.execCommand("copy");
+		
+		/* AJAX TRIGGER THE SHARE TRACKER */
+		
+		$.ajax({
+			type: "GET",
+			url: "$DOMAINshare.php",
+			async: true,
+			data: "s=$sGetVar"
 			});
-
-		$("#video").click(function(){
-			$('#video')[0].currentTime = 0;
-			
-			
-			
-		})
-
+			return false;
+		
 		});
+
+	$("#video").click(function(){
+		$('#video')[0].currentTime = 0;
+	})
+	
+	
+});
 	</script>
 	
 	<link rel="stylesheet" href=media/css/download.css />
@@ -39,12 +46,12 @@ $( document ).ready(function() {
 		<div id="wrapper">
 			<div id="masthead">
 				<div id="logo">
-					<a href="http://www.getmoodcaster.com/" target='_blank'><img src="media/images/moodcaster-red.svg" /></a>
+					<a href="http://www.moodcaster.com/casting-professional.html" target='_blank'><img src="media/images/moodcaster-red.svg" /></a>
 				</div><!-- logo-->			
 				<div id="toplinks">
 					<ul>
-						<li><a href="http://www.getmoodcaster.com/" target='_blank'>Login</a></li>
-						<li><a href="http://www.getmoodcaster.com/" class="current" target='_blank'>Who we are</a></li>
+						<li><a href="http://www.moodcaster.com/casting-professional.html" target='_blank'>Login</a></li>
+						<li><a href="http://www.moodcaster.com/casting-professional.html" class="current" target='_blank'>Who we are</a></li>
 				</div><!-- toplinks-->
 			</div><!-- masthead-->
 			
@@ -91,7 +98,7 @@ $( document ).ready(function() {
 				<p>Streamline your submissions into a single dashboard designed for collaboration. Share your casting breakdowns anywhere through a simple yet powerful technology we call moodcodes. Suddenly life is a lot easier.</p>
 			</div><!-- copyRightBox-->
 			<div id="ctaRightBox">
-				<a href="http://www.getmoodcaster.com/" target='_blank'>Let&apos;s do this!</a>
+				<a href="http://www.moodcaster.com/casting-professional.html" target='_blank'>Let&apos;s do this!</a>
 			</div><!-- ctaRightBox-->
 			</div><!-- rightContainer-->	
 				
