@@ -25,7 +25,6 @@ require 'env.php';
 	    <input type="text" name="Bio" placeholder="Bio"/> <br/>
 	    <input type="text" name="Profile_pic_url" placeholder="Profile Pic Url"/> <br/>
 	    <input type="file" name="Title_card" id='titlecard'/><label for='titlecard'>Title_Card</label> <br/>
-	    <input type="file" name="Title_frame" id='titleframe'/><label for='titleframe'>Title_frame</label> <br/>
 	    <input type="file" name="Zip_file" id='zip'/><label for='zip'>Zip_file</label><br />
 	    <input type="hidden" name="pk" value ="Wa6-abf-oDM4-rgEn" readonly/>
 
