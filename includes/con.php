@@ -7,8 +7,8 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
 // PHP SETTINGS
-ini_set('post_max_size', '500M');
-ini_set('upload_max_filesize', '500M');
+ini_set('post_max_size', '5M');
+ini_set('upload_max_filesize', '5M');
 ini_set('memory_limit', '1000M');
 ini_set('max_execution_time', '1920');
 
