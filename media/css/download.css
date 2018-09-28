@@ -133,7 +133,7 @@ body{
 }
 #downloadSubmissiondiv{
 	position: relative;
-	top: 90;
+	top: 90px;
 	width:  100%;
 	/*background-color: orange;*/
 }
@@ -160,7 +160,7 @@ body{
 
 #Sharedivwrapper{
 	position: relative;
-	top: 100;
+	top: 100px;
 	width:  100%;
 	height: 100px;
 }
