@@ -31,10 +31,6 @@ mysqli_real_connect($db);
 */
 
 
-if (file_exists('/app/config/rds-combined-ca-bundle.pem')) echo "file exists";
-
-
-
 $db = mysqli_init();
 mysqli_options($db, MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
 mysqli_options($db, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
@@ -42,7 +38,6 @@ mysqli_options($db, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
 
 mysqli_ssl_set($db,NULL,NULL,'/app/config/rds-combined-ca-bundle.pem',NULL,NULL);
 mysqli_real_connect($db,$DB_SERVER, $DB_USERNAME, $DB_PASSWORD,$DB_DATABASE,'3306',NULL,MYSQLI_CLIENT_SSL);
-// $database = mysqli_select_db($db, $DB_DATABASE) or die(mysqli_error($db));
 
 // ONE TIME INITIALIZATION OF USER PRIV
 //mysqli_query($db,"GRANT USAGE ON *.* TO 'username'@'%' REQUIRE SSL;");echo mysqli_error($db);
