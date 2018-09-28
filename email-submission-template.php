@@ -2,6 +2,7 @@
 $body=file_get_contents("email-template.htm");
 $stylesheet=file_get_contents("media/css/emailcss.css");
 $downloadLink = $shortDownloadLink; 
+$trackingPixel = $_ENV['DOMAIN'] . "open.php?s=".$s;
 
 // TITLE CARD OR INTRODUCING NAME
 // IF THEY SUPPLIED TITLE CARD TEXT, SPLIT THAT INTO TWO LINES IF NECESSARY AND CREATE THE TWO LINES.
@@ -23,7 +24,7 @@ if (strlen($title_card_text) >0){
 $Profile_shot = ($titleCardURL) ? $titleCardURL : $Profile_pic_url;
 
 //injections
-$variablesToInject = array("stylesheet","firstLineText","firstLineSize","secondLineText","secondLineSize","Role","Title","Profile_shot","fontSize","lineHeight","s","downloadLink");
+$variablesToInject = array("stylesheet","firstLineText","firstLineSize","secondLineText","secondLineSize","Role","Title","Profile_shot","fontSize","lineHeight","s","downloadLink","trackingPixel");
 foreach ($variablesToInject as $thisVar){
 	$thisVal = $$thisVar;
 	$thisVar = "{{".$thisVar."}}";
