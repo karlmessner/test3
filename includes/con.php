@@ -32,11 +32,8 @@ mysqli_real_connect($db);
 
 $db = mysqli_init();
 mysqli_ssl_set($db,NULL,NULL,'config/rds-combined-ca-bundle.pem',NULL,NULL);
-mysqli_real_connect($db,$DB_SERVER, $DB_USERNAME, $DB_PASSWORD);
-
-
-
-$database = mysqli_select_db($db, $DB_DATABASE) or die(mysqli_error($db));
+mysqli_real_connect($db,$DB_SERVER, $DB_USERNAME, $DB_PASSWORD,$DB_DATABASE);
+// $database = mysqli_select_db($db, $DB_DATABASE) or die(mysqli_error($db));
 
 $now = time();
 
