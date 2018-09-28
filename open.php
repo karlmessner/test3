@@ -1,26 +1,31 @@
-<?PHP include('../includes/db2.php');?><?PHP 
-// this script attempts to track opens
-// it records date of first open (checks first)
+<?PHP 
+		
+//composer, ENV Vars & mysql
+require './vendor/autoload.php';
+require 'env.php';
+include('includes/con.php');
+
+
 
 // get submission number
 
-$s = mysql_real_escape_string($_GET['s']);
+$s = mysqli_real_escape_string($db,$_GET['s']);
 
 // check database to see if this submission has already been opened
 
 $sql = "SELECT mc_read from mc_submissions WHERE mc_id = '$s' and mc_read >0";
-$rsOPEN = mysql_query($sql);
-$opened = mysql_num_rows($rsOpen);
+$rsOPEN = mysqli_query($db,$sql); 
+$opened = mysqli_num_rows($rsOPEN); 
 
 if ($opened<1){
 	// first time opening	
 	$sql =  "UPDATE mc_submissions SET mc_read = '$now' WHERE mc_id='$s' LIMIT 1";
-	mysql_query($sql);	
+	mysqli_query($db,$sql);	
 }
 //Begin the header output
 header( 'Content-Type: image/gif' );	 	
 //Full URI to the image
-$graphic_http = 'http://www.actorslaunchpad.com/moodcaster/media/images/pixel.gif';
+$graphic_http = $_ENV['DOMAIN'] . 'media/images/pixel.gif';
 
 //Get the filesize of the image for headers
 $filesize = filesize( 'media/images/pixel.gif' );
