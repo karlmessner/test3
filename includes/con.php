@@ -30,6 +30,11 @@ mysqli_ssl_set($db,NULL,NULL,NULL,'config',NULL);
 mysqli_real_connect($db);
 */
 
+
+if (file_exists('/app/config/rds-combined-ca-bundle.pem')) echo "file exists";
+
+
+
 $db = mysqli_init();
 mysqli_options($db, MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
 mysqli_options($db, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
