@@ -21,7 +21,7 @@ builds the email, sends it through Sendgrid.
 		
 		
 // TESTING SETTINGS  	
-$debug 				= true;
+$debug 				= false;
 $allowNoFile		= false;
 $actuallySendEmail 	= true;
 $debugBody 			= false; // nb: triggers read pixel
