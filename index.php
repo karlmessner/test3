@@ -21,7 +21,7 @@ builds the email, sends it through Sendgrid.
 		
 		
 // TESTING SETTINGS  	
-$debug 				= false;
+$debug 				= true;
 $allowNoFile		= false;
 $actuallySendEmail 	= true;
 $debugBody 			= false; // nb: triggers read pixel
@@ -31,6 +31,7 @@ $overRideRecipients	= false;
 if ($debug){
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+
 }
 
 // LOAD FUNCTIONS
@@ -40,6 +41,11 @@ require('includes/functions.php');
 require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
+
+// ENV VARS
+if ($debug) {
+	echo "<pre>"; print_r($_ENV);echo "</pre>";
+	}
 
 //print_r($_ENV);
 //print_r($_POST);
@@ -62,6 +68,7 @@ $em_good	=0;
 
 // check for pk otherwise send to error
 if ($_POST['pk']!=$goodKey){
+	echo "Bad Auth";
 	$location = "Location:" . $_ENV['DOMAIN'] . "error.php";
 	header($location);
 	} else {
