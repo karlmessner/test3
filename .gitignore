@@ -1,3 +1,5 @@
 .env
 videos/videoSandbox/*
+videos/*
+videos/
 .htaccess
