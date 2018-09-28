@@ -42,10 +42,6 @@ require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
 
-// ENV VARS
-if ($debug) {
-	echo "<pre>"; print_r($_ENV);echo "</pre>";
-	}
 
 //print_r($_ENV);
 //print_r($_POST);
