@@ -27,7 +27,7 @@ $DB_DATABASE 	= $_ENV['MYSQL_SUBMISSIONS_DB'];
 $DB_URL 		= $_ENV['DATABASE_URL'];
 
 // SSL CERTIFICATE PATH
-$certpath = $_SERVER["DOCUMENT_ROOT"] . $_ENV['CERTPATH']; echo $certpath;
+$certpath = $_SERVER["DOCUMENT_ROOT"] . $_ENV['CERTPATH'];
 
 $db = mysqli_init();
 mysqli_options($db, MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
