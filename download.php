@@ -1,5 +1,10 @@
-<?PHP include('../includes/db.php');?>
-<?PHP
+<?PHP 
+	
+//composer, ENV Vars & mysql
+require './vendor/autoload.php';
+require 'env.php';
+include('includes/con.php');
+
 
 /*
 	
@@ -21,18 +26,18 @@ $showerrors = false;
 
 // EXTRACT GET
 
-$s=mysql_real_escape_string($_GET['s']);
+$s=mysqli_real_escape_string($db,$_GET['s']);
 $s=base64_decode($s);
 
 // PULL RECORD
 $sql =  "SELECT * from mc_submissions WHERE mc_id='$s'  LIMIT 1";
-$rsSUBS = mysql_query($sql);
-$thisSUB = mysql_fetch_array($rsSUBS);
+$rsSUBS = mysqli_query($db,$sql); echo mysqli_error($db);
+$thisSUB = mysqli_fetch_array($rsSUBS); 
 extract($thisSUB);
 
 // UPDATE CLICK TABLE
 $sql =  "UPDATE mc_submissions SET mc_click='$now',mc_ip='$ip', mc_useragent='$user_agent' where mc_id='$s' LIMIT 1";
-mysql_query($sql);echo mysql_error();
+mysqli_query($db,$sql);echo mysqli_error($db);
 
 // MAP VARS
 $Name = $mc_name;
@@ -47,46 +52,17 @@ include('calcFontSize.php');
 $body=file_get_contents("template-download.htm");
 
 $stylesheet=file_get_contents("media/css/download.css");
-//echo "$mc_file_path";
-if ($mc_file_path){
-// unzip movie to play
-$zipfile = $mc_file_path;
-$zip = new ZipArchive;
-$path = "/uploads-moodcaster-submissions-zip-sandbox/" . $now . "-" . $mc_id ."-". $mc_email ."/";
-$abspath = $_SERVER['DOCUMENT_ROOT'] . $path;
 
-$res = $zip->open($zipfile);
-if ($res === TRUE){
-	$zip->extractTo($abspath);
-	$zip->close();
-	//echo "successfully opened zip";
-	
-	//choose file with extension .m4v
-	$globstring = $abspath . '*.mp4';
-	$m4vPath = glob($globstring);
-	$firstm4v = $m4vPath[0];
-	$m4vfile = substr($firstm4v, strrpos($firstm4v, '/') + 1);
-	//echo "<BR>file: $m4vfile<BR><BR>";
-	
-	$m4vPath = $path . $m4vfile;
-	//echo "<BR>url: $m4vPath<BR><BR>";
-	
-	//figure out orientation from META data
-	
-
-	
-	
-	
-	}// if res
-
-} // if mc_file_path
+$m4vPath = $mc_stitch_file_url;
 
 // SHARELINK IS PHPSELF
 $shareLink = $mc_download_link;
 
 //injections
 $downloadLink = "download_file.php?s=$s";
-$variablesToInject = array("stylesheet","Name","Role","Title","Profile_pic","fontSize","lineHeight","shareLink","downloadLink","m4vPath");
+$sGetVar = $s;
+$DOMAIN = $_ENV['DOMAIN'];
+$variablesToInject = array("stylesheet","Name","Role","Title","Profile_pic","fontSize","lineHeight","shareLink","downloadLink","m4vPath","sGetVar","DOMAIN");
 foreach ($variablesToInject as $thisVar){
 	$thisVal = $$thisVar;
 	$thisVar = "$".$thisVar;
