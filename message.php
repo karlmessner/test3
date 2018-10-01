@@ -30,8 +30,9 @@ $numMESSAGES = mysqli_num_rows($rsMESSAGE);
 if ($numMESSAGES>0){
 	$thisMessage = mysqli_fetch_assoc($rsMESSAGE); 
     $data[] = $thisMessage;
-	echo "<pre>";
+	//echo "<pre>";
+	header('Content-type: application/json');
 	echo json_encode($data);
-	echo "</pre>";
+	//echo "</pre>";
 
 }?>
