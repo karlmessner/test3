@@ -42,10 +42,6 @@ require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
 
-
-//print_r($_ENV);
-//print_r($_POST);
-
 // DEFS
 $mc_file_size = '';
 $title_card_url='';
@@ -218,26 +214,35 @@ if ($zipFileSize>0){
 	// don't email unless there is a file attached	
 	if ($actuallySendEmail) {
 		
-		$email = new \SendGrid\Mail\Mail(); 
-		$email->setFrom($fromEmail, $fromName);
-		$email->setSubject($subject);
-		$email->addTo($Recipients_emails);
-		$email->addContent("text/plain", "and easy to do anywhere, even with PHP");
-		$email->addContent("text/html", $body);
-		$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-		try {
-		    $response = $sendgrid->send($email);
-		    if($debug){
-		    print $response->statusCode() . "\n";
-		    print_r($response->headers());
-		    print $response->body() . "\n";
-		    }
-		} catch (Exception $e) {
-		    if ($debug) {echo 'Caught exception: '. $e->getMessage() ."\n";}
-			}		
 		
-		} // if actuallySendEmail
-	} // if vidSize	
+		// explode Recipients_emails
+		$recipARR = explode(',', $Recipients_emails);
+		
+		foreach ($recipARR as $eachEmail){
+							$email = new \SendGrid\Mail\Mail(); 
+							$email->setFrom($fromEmail, $fromName);
+							$email->setSubject($subject);
+							$email->addTo($eachEmail);
+							$email->addContent("text/plain", "You have a new video audition submission sent from $fromName: $shortDownloadLink");
+							$email->addContent("text/html", $body);
+							$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+							try {
+							    $response = $sendgrid->send($email);
+							    if($debug){
+								   echo "<pre>LINE 251:";
+							    print $response->statusCode() . "\n";
+							    print_r($response->headers());
+							    print_r($response->body()) . "\n";
+							    echo "(251)</pre>";
+							    }
+							} catch (Exception $e) {
+							    if ($debug) {echo 'Caught exception: '. $e->getMessage() ."\n";}
+								}	
+								
+		} //foreach	
+		
+	} // if actuallySendEmail
+} // if zipsize	
 if ($result){$em_good='1';}
 if ($debug) echo "TO:$to<BR>";
 if ($debug) echo "FROM:$fromEmail<BR>";
@@ -245,10 +250,6 @@ if ($debug) echo "HEADERS:$headers<BR>";
 
 if ($debugBody) echo $body;
 
-// callback to app
-if ($auth_good * $file_good * $db_good * $em_good){	
-	if ($debug) {echo $shortDownloadLink;}
-	}
 	
 if ($debug){
 	echo "\n\n\n";
@@ -260,7 +261,8 @@ if ($debug){
 
 //IF EVERYTHING WENT SMOOTHLY, REPORT SUCCESS TO APP
  if (($auth_good)&&($file_good)&&($db_good)&&($em_good)){
-	 echo "success";
-	 }	
+	//echo "success";
+	echo $shortDownloadLink;
+	}	
 ?>
 
