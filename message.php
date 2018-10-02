@@ -23,7 +23,7 @@ if ($_REQUEST['pk']!=$goodKey){
 */
 
 
-$sql = "SELECT max(mdm_date)as message_date, mdm_id, mdm_message,mdm_must_update,mdm_current_version from mc_downstream_messages";
+$sql = "SELECT mdm_date as message_date, mdm_id, mdm_message, mdm_must_update,mdm_current_version from mc_downstream_messages ORDER BY mdm_date desc limit 1";
 $rsMESSAGE = mysqli_query($db,$sql);
 echo mysqli_error($db);
 $numMESSAGES = mysqli_num_rows($rsMESSAGE); 
