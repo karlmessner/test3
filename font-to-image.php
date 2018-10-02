@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 $fontsize = $_GET['s'];
 $imsize = 1.5* $fontsize;
 $text = $_GET['t'];
