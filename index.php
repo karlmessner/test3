@@ -30,9 +30,11 @@ $overRideRecipients	= false;
 
 
 // DEBUG BY EMAIL NEEDS DEBUG TO BE TRUE
-if ($debugByEmail){$debug=true;}
+if ($debugByEmail){$debug=true;
 
 ob_start();
+}
+
 
 // ERROR REPORTING
 if ($debug){
@@ -273,10 +275,12 @@ if ($debug){
 	}	
 	
 	
+
+
+if ($debugByEmail){
 $debugText = ob_get_contents();	
 ob_end_clean();	
 
-if ($debugByEmail){
 	echo $debugText;
 	$email = new \SendGrid\Mail\Mail(); 
 	$email->setFrom('hello@moodcaster.com', 'DEBUG REPORT');
