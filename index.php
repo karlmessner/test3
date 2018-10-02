@@ -22,10 +22,17 @@ builds the email, sends it through Sendgrid.
 		
 // TESTING SETTINGS  	
 $debug 				= false;
+$debugByEmail		= true;
 $allowNoFile		= false;
 $actuallySendEmail 	= true;
 $debugBody 			= false; // nb: triggers read pixel
 $overRideRecipients	= false;
+
+
+// DEBUG BY EMAIL NEEDS DEBUG TO BE TRUE
+if ($debugByEmail){$debug=true;}
+
+ob_start();
 
 // ERROR REPORTING
 if ($debug){
@@ -264,5 +271,21 @@ if ($debug){
 	//echo "success";
 	echo $shortDownloadLink;
 	}	
+	
+	
+$debugText = ob_get_contents();	
+ob_end_clean();	
+
+if ($debugByEmail){
+	$email = new \SendGrid\Mail\Mail(); 
+	$email->setFrom('hello@moodcaster.com', 'DEBUG REPORT');
+	$email->setSubject('MOODCASTER SELF TAPE DEBUG REPORT');
+	$email->addTo('karl@moodcaster.com');
+	$email->addContent("text/plain", "need html");
+	$email->addContent("text/html", $debugText);
+	$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+}
+
+
 ?>
 
