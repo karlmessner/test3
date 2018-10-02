@@ -74,7 +74,22 @@ if ($_POST['pk']!=$goodKey){
 	header($location);
 	} else {
 		$auth_good='1';}
-	
+?>		
+		
+		
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>API ENDPOINT</title>
+  </head>
+  <body>
+		
+		
+		
+		
+		
+<?PHP	
 // SANITZE POST
 $pk 							= mysqli_real_escape_string($db,$_POST['pk']);
 $Name 							= mysqli_real_escape_string($db,$_POST['Name']);
