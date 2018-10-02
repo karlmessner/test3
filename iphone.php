@@ -10,9 +10,7 @@ require 'env.php';
     <link href="media/css/iphonecss.css" media="all" rel="stylesheet" type="text/css" />
   </head>
   <body>
-	  
-	  <?PHP include('wake.php');?>
-	 <div id='wrapper'>
+	<div id='wrapper'>
     <form id='theform' enctype="multipart/form-data" action="<?PHP echo $_ENV['DOMAIN'];?>index.php" method="post">
 	    <input type="text" name="Name" placeholder="Name"/> <br/>
 	    <input type="text" name="Role" placeholder="Role"/> <br/>

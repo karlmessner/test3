@@ -277,6 +277,7 @@ $debugText = ob_get_contents();
 ob_end_clean();	
 
 if ($debugByEmail){
+	echo $debugText;
 	$email = new \SendGrid\Mail\Mail(); 
 	$email->setFrom('hello@moodcaster.com', 'DEBUG REPORT');
 	$email->setSubject('MOODCASTER SELF TAPE DEBUG REPORT');

@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Neutron' => array($vendorDir . '/neutron/temporary-filesystem/src'),
+    'Imagick' => array($vendorDir . '/calcinai/php-imagick/src'),
     'FFMpeg' => array($vendorDir . '/php-ffmpeg/php-ffmpeg/src'),
     'Evenement' => array($vendorDir . '/evenement/evenement/src'),
     'Alchemy' => array($vendorDir . '/alchemy/binary-driver/src'),

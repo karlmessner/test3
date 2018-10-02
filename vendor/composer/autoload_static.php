@@ -137,6 +137,13 @@ class ComposerStaticInit4e0d68b47df3627807c67b4e4d40fd8a
                 0 => __DIR__ . '/..' . '/neutron/temporary-filesystem/src',
             ),
         ),
+        'I' => 
+        array (
+            'Imagick' => 
+            array (
+                0 => __DIR__ . '/..' . '/calcinai/php-imagick/src',
+            ),
+        ),
         'F' => 
         array (
             'FFMpeg' => 
