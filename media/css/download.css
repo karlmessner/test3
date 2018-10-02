@@ -9,14 +9,14 @@
 
 @font-face {
   font-family: 'Cinetype';
-  src: url('../fonts/GT-Cinetype-Trial-Regular.otf');
+  src: url('../fonts/GT-Cinetype-Regular.otf');
   font-weight: normal;
   font-style: normal; 
 }
 
 @font-face {
   font-family: 'Cinetype';
-  src: url('../fonts/GT-Cinetype-Trial-Bold.otf');
+  src: url('../fonts/GT-Cinetype-Bold.otf');
   font-weight: bold;
   font-style: normal; 
 }
