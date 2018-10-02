@@ -203,8 +203,6 @@ if (($zipFileSize>0)||($allowNoFile)){
 	
 // CREATE SHORT URL TO DOWNLOAD PAGE, STORE IN DB
 $s=base64_encode($id);
-$shortDownloadLink = "http://d.moodcaster.com/$s";
-
 $shortDownloadLink = $_ENV['DOMAIN'] . 'download.php?s='.$s;
 
 $sql = "UPDATE mc_submissions SET mc_download_link = '$shortDownloadLink' WHERE mc_id ='$id' LIMIT 1";
