@@ -22,7 +22,7 @@ builds the email, sends it through Sendgrid.
 		
 // TESTING SETTINGS  	
 $debug 				= false;
-$debugByEmail		= true;
+$debugByEmail		= false;
 $allowNoFile		= false;
 $actuallySendEmail 	= true;
 $debugBody 			= false; // nb: triggers read pixel
