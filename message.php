@@ -22,15 +22,6 @@ if ($_REQUEST['pk']!=$goodKey){
 	
 */
 
-?>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>MESSAGE MGT</title>
-  </head>
-  <body>
-<?PHP
 
 $sql = "SELECT max(mdm_date)as message_date, mdm_id, mdm_message,mdm_must_update,mdm_current_version from mc_downstream_messages";
 $rsMESSAGE = mysqli_query($db,$sql);
