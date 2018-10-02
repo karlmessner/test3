@@ -4,7 +4,6 @@
         "vlucas/phpdotenv": "^2.5",
         "sendgrid/sendgrid": "~7",
         "php-ffmpeg/php-ffmpeg": "^0.12.0",
-        "calcinai/php-imagick": "^0.1.2",
         "ext-imagemagick" :"*"
     }
 }
