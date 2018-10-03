@@ -298,4 +298,29 @@ function fixVideo($file,$resultFile,$ffmpegPath,$ffprobePath,$debug,$targetWidth
 	$ffmpegExec=shell_exec($ffmpegPath .' '. $ffmpegCommand); 
 	
 	}//function
+	
+	
+	
+	
+function createShortLink($id){
+	$seed = str_split('abcdefghijklmnopqrstuvwxyz'
+                     .'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                     .'0123456789!@#$%^&*()'); // and any other characters
+    shuffle($seed); // probably optional since array_is randomized; this may be redundant
+    $rand = '';
+    foreach (array_rand($seed, 2) as $k) $rand .= $seed[$k];
+	$slug = $rand . $id;
+	$code=base64_encode($slug);
+	return $code;
+
+}	
+
+
+function decodeShortLink($code){
+	$slug = base64_decode($code);
+	$id = substr($slug, 2);
+	return $id;
+}
+	
+	
 ?>
