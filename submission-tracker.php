@@ -39,6 +39,7 @@ include('includes/con.php');
 			    <div class="td">Title</div>
 			    <div class="td">Role</div>
 			    <div class="td">Share Link</div>
+			    <div class="td">Raw </div>
 			    <div class="td">Recipients</div>
 			    <div class="td">Sent</div>
 			    <div class="td">Read</div>
@@ -70,6 +71,7 @@ $shortDownloadLinkNoTrack = $shortDownloadLink . '&n=1';
 			    <div class="td"><?PHP echo $mc_title;?></div>
 			    <div class="td"><?PHP echo $mc_role;?></div>
 			    <div class="td"><?PHP echo "<a href='$shortDownloadLinkNoTrack' target=_blank >$shortDownloadLink</a>";?></div>
+			    <div class="td"><?PHP echo ($mc_raw_zip_file_url) ? "<a href='$mc_raw_zip_file_url' target='_blank' style='font-size:18px'>&#x2b07;</a>" : "";?></div>
 			    <div class="td"><?PHP echo $mc_recipients_emails;?></div>
 			    <div class="td"><?PHP if ($mc_creation) echo date('n/d/y g:ia',$mc_creation);?></div>
 			    <div class="td"><?PHP if ($mc_read) echo date('n/d/y g:ia',$mc_read);?></div>
