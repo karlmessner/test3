@@ -107,7 +107,7 @@ function uploadFileFromFieldname ($fieldname,$bucket){
 } // function uploadFile
 
 
-// upload Stitched file to AWS 	
+// upload file to AWS 	
 function uploadFile ($pathToStitchedFile,$bucket,$folderName){	
 	// READ ENVIRONMENT VARS
 	$awsKey=$_ENV['AWSKEY'];
