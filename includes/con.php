@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 */
 
+
 /*
 // PHP SETTINGS
 ini_set('post_max_size', '5M');
@@ -36,11 +37,20 @@ $certpath = $_SERVER["DOCUMENT_ROOT"] . $_ENV['CERTPATH'];
 $db = mysqli_init();
 mysqli_options($db, MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
 mysqli_options($db, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
+
+
+if (!$_ENV['DOMAIN']=='http://localhost/test3/'){    //
 mysqli_ssl_set($db,NULL,NULL,$certpath,NULL,NULL);
+}
 mysqli_real_connect($db,$DB_SERVER, $DB_USERNAME, $DB_PASSWORD,$DB_DATABASE,'3306',NULL,MYSQLI_CLIENT_SSL);
+
 
 // ONE TIME INITIALIZATION OF USER PRIV
 //mysqli_query($db,"GRANT USAGE ON *.* TO 'username'@'%' REQUIRE SSL;");echo mysqli_error($db);
+// mysqli_query($db,"ALTER USER 'mstr_li_top_sec'@'%' REQUIRE NONE;");echo mysqli_error($db);
+
+
+   
 
 $now = time();
 
