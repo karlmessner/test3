@@ -120,6 +120,14 @@ $downloadableFolderName = str_replace(' ', '_', $downloadableFolderName);
 			move_uploaded_file( $uploadedFile , $tmpFileName );
 		}
 		
+	// upload raw file
+		if ($tmpFileName){
+			$rawAWS = uploadFile ($tmpFileName,$_ENV['AWSVIDBUCKET'],'');
+			$rawURL = $rawAWS['ObjectURL'];
+		if ($debug) {echo "<BR>RAW ZIP FILE URL: $rawURL <BR>";}
+		}	
+		
+		
 	// unzip file
 		$zip = new ZipArchive;
 		$res = $zip->open($tmpFileName);
@@ -170,6 +178,7 @@ $sql .=" mc_age_range 			= '$Age_range', \n";
 $sql .=" mc_bio		 			= '$Bio', \n";
 $sql .=" mc_profile_pic			= '$profile_pic', \n";
 $sql .=" mc_zip_file_url		= '$zipURL', \n";
+$sql .=" mc_raw_zip_file_url	= '$rawURL', \n";
 $sql .=" mc_stitch_file_url		= '$stitchURL', \n";
 $sql .=" mc_zip_file_size		= '$zipFileSize', \n";
 $sql .=" mc_title_card_text		= '$title_card_text', \n";
