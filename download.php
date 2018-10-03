@@ -4,7 +4,7 @@
 require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
-
+include('includes/functions.php');
 
 /*
 	
@@ -27,7 +27,8 @@ $showerrors = false;
 // EXTRACT GET
 
 $s=mysqli_real_escape_string($db,$_GET['s']);
-$s=base64_decode($s);
+$s=decodeShortLink($s);
+
 $n=mysqli_real_escape_string($db,$_GET['n']);
 
 

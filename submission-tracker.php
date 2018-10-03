@@ -4,6 +4,7 @@
 require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
+include('includes/functions.php');
 	
 	
 ?>
@@ -59,7 +60,12 @@ while ($thisSUB = mysqli_fetch_array($rsSUBS)){
 	extract($thisSUB);
 	
 // CREATE SHORT URL TO DOWNLOAD PAGE, flag n=1 to tell downstream pages to not track 
-$s=base64_encode($mc_id);
+
+
+
+
+$s = createShortLink ($mc_id);
+
 $shortDownloadLink = $_ENV['DOMAIN'] . 'download.php?s='.$s;
 $shortDownloadLinkNoTrack = $shortDownloadLink . '&n=1';
 ?>	 
