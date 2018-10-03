@@ -1,4 +1,3 @@
-/* @override https://www.actorslaunchpad.com/moodcaster/media/css/trackercss.css */
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 *{
@@ -9,6 +8,10 @@ body{
 	background: linear-gradient(#FF5C5C,#B61A45) repeat-x fixed;
 }
 
+a{
+	color: #B61A45;
+	text-decoration: none;
+}
 #mast {
 	height: 58px;
 	position: relative;

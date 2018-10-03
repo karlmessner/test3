@@ -28,6 +28,8 @@ $showerrors = false;
 
 $s=mysqli_real_escape_string($db,$_GET['s']);
 $s=base64_decode($s);
+$n=mysqli_real_escape_string($db,$_GET['n']);
+
 
 // PULL RECORD
 $sql =  "SELECT * from mc_submissions WHERE mc_id='$s'  LIMIT 1";
@@ -36,8 +38,11 @@ $thisSUB = mysqli_fetch_array($rsSUBS);
 extract($thisSUB);
 
 // UPDATE CLICK TABLE
+// don't register click if clicked from submission tracker
+if (!$n){
 $sql =  "UPDATE mc_submissions SET mc_click='$now',mc_ip='$ip', mc_useragent='$user_agent' where mc_id='$s' LIMIT 1";
 mysqli_query($db,$sql);echo mysqli_error($db);
+}
 
 // MAP VARS
 $Name = $mc_name;
@@ -60,7 +65,12 @@ $shareLink = $mc_download_link;
 
 //injections
 $downloadLink = "download_file.php?s=$s";
+
+// pass flag along to download file that this came from submission tracker to not register the download
+$downloadLink .= ($n) ? '&n=1':'';
+
 $sGetVar = $s;
+$nGetVar = $n;
 $DOMAIN = $_ENV['DOMAIN'];
 $variablesToInject = array("stylesheet","Name","Role","Title","Profile_pic","fontSize","lineHeight","shareLink","downloadLink","m4vPath","sGetVar","DOMAIN");
 foreach ($variablesToInject as $thisVar){

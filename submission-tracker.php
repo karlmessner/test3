@@ -38,6 +38,7 @@ include('includes/con.php');
 			    <div class="td">Name</div>
 			    <div class="td">Title</div>
 			    <div class="td">Role</div>
+			    <div class="td">Share Link</div>
 			    <div class="td">Recipients</div>
 			    <div class="td">Sent</div>
 			    <div class="td">Read</div>
@@ -55,6 +56,11 @@ $rsSUBS = mysqli_query($db,$sql);
 
 while ($thisSUB = mysqli_fetch_array($rsSUBS)){
 	extract($thisSUB);
+	
+// CREATE SHORT URL TO DOWNLOAD PAGE, flag n=1 to tell downstream pages to not track 
+$s=base64_encode($mc_id);
+$shortDownloadLink = $_ENV['DOMAIN'] . 'download.php?s='.$s;
+$shortDownloadLinkNoTrack = $shortDownloadLink . '&n=1';
 ?>	 
 			  
 			  <div class="tr">
@@ -63,6 +69,7 @@ while ($thisSUB = mysqli_fetch_array($rsSUBS)){
 			    <div class="td"><?PHP echo $mc_name;?></div>
 			    <div class="td"><?PHP echo $mc_title;?></div>
 			    <div class="td"><?PHP echo $mc_role;?></div>
+			    <div class="td"><?PHP echo "<a href='$shortDownloadLinkNoTrack' target=_blank >$shortDownloadLink</a>";?></div>
 			    <div class="td"><?PHP echo $mc_recipients_emails;?></div>
 			    <div class="td"><?PHP if ($mc_creation) echo date('n/d/y g:ia',$mc_creation);?></div>
 			    <div class="td"><?PHP if ($mc_read) echo date('n/d/y g:ia',$mc_read);?></div>
