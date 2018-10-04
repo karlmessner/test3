@@ -244,20 +244,10 @@ function stitchMP4sIn($dirPath){
 
 	// READ ALL MP4 FILES IN DIRECTORY AND PROCESS THEM
 	$files1 = scandir($dirPath);
+if ($debug) {echo "(stitchMP4sIn  Looping through dir ...<BR>";}
 	foreach ($files1 as $file) {
 		
-		if ($debug) {echo "file: $file ...<BR>";}
-		
-		// NORMALIZE FILENAME
-		// GET BASE FILENAME WITHOUT EXTENSION
-		$path_parts = pathinfo($file);
-		$filenameOnly = $path_parts['basename'];	
-		$newFileName = normalizeString ($filenameOnly);
-		$oldFilePath = $dirPath . $file;
-		$newFilePath = $dirPath . $newFileName;
-		rename($oldFilePath, $newFilePath);
-		$file = $newFilePath;
-		if ($debug){echo "(from function stitchMP4sIn): old base filename: $oldFilePath <BR>Normalized to: $newFilePath <BR>";}
+		if ($debug) {echo "START OF file: $file ...<BR>";}
 		
 		$fileinfo = new SplFileInfo($file);
 		if ($debug) {echo "fileinfo: <pre>"; print_r($fileinfo); echo "</pre><BR>";}
@@ -265,14 +255,29 @@ function stitchMP4sIn($dirPath){
 			if ($debug) {echo "ext: $extn...<BR>";}
 		if ($extn == 'mp4'){
 			if ($debug) {echo "Trying to fix: $file...<BR>";}
+			
+			
+			// NORMALIZE FILENAME
+			// GET BASE FILENAME WITHOUT EXTENSION
+			$path_parts = pathinfo($file);
+			$filenameOnly = $path_parts['basename'];	
+			$newFileName = normalizeString ($filenameOnly);
+			$oldFilePath = $dirPath . $file;
+			$newFilePath = $dirPath . $newFileName;
+			rename($oldFilePath, $newFilePath);
+			$file = $newFilePath;
+			if ($debug){echo "(from function stitchMP4sIn): old base filename: $oldFilePath <BR>Normalized to: $newFilePath <BR>";}
+			
 
-			$resultFileName = 'FIXED_'.$file;
+			$resultFileName = 'FIXED_'.$newFileName;
 			$resultFile = $dirPath . $resultFileName;
-			$pathToFile = $dirPath .'/'.$file;
+			$pathToFile = $dirPath .'/'.$newFileName;
 			fixVideo($pathToFile,$resultFile,$ffmpegPath,$ffprobePath,$targetWidth,$targetHeight,$targetFPS,$targetKeyFramesInterval);	
 			// ADD FILE TO THE text LIST	
 			$textFileContents .= "file '" . $resultFileName . "' \n";
 		}	
+		
+		if ($debug) {echo "END OF $file ...<BR><BR>";}
 	}
 	
 	// CREATE BLANK TEXT FILE
