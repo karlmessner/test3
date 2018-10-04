@@ -93,7 +93,7 @@ $Profile_pic_url 				= mysqli_real_escape_string($db,$_POST['Profile_pic_url']);
 if ($debug) {echo "<pre>";}
 if ($debug) {echo "POST:<br>"; print_r($_POST);}
 if ($debug) {echo "FILES:<br>"; print_r($_FILES);}
-if ($debug) {echo "ENV:<br>"; print_r($_ENV);}
+if ($debug) {/*echo "ENV:<br>"; print_r($_ENV);*/}
 if ($debug) {echo "</pre>";}
 
 // STORE RAW POST
@@ -107,11 +107,13 @@ $downloadableFolderName = str_replace(' ', '_', $downloadableFolderName);
 
 // UNZIP, NORMALIZE VIDEOS, STITCH, RE-ZIP NEW FILES
 	// create a tmp directory with timestamp-email as name
+		if ($debug) {echo "create tmp dir...<BR>";}
 		$emailWithoutSymbols = preg_replace("/[^A-Za-z0-9 ]/", '', $Email);
 		$sandbox = tempdir(null, $emailWithoutSymbols);
 		if ($debug) {echo "SANDBOX : " .$sandbox, "\n";}
 	
 	// copy Zip_file into it
+		if ($debug) {echo "Copy zip...<BR>";}
 		$fieldname = 'Zip_file';
 		if(isset($_FILES[$fieldname])){
 			$file_name = $_FILES[$fieldname]['name']; 
@@ -121,6 +123,7 @@ $downloadableFolderName = str_replace(' ', '_', $downloadableFolderName);
 		}
 		
 	// upload raw file
+		if ($debug) {echo "upload raw zip to s3...<BR>";}
 		if ($tmpFileName){
 			$rawAWS = uploadFile ($tmpFileName,$_ENV['AWSVIDBUCKET'],'');
 			$rawURL = $rawAWS['ObjectURL'];
@@ -129,6 +132,7 @@ $downloadableFolderName = str_replace(' ', '_', $downloadableFolderName);
 		
 		
 	// unzip file
+		if ($debug) {echo "unzip file...<BR>";}
 		$zip = new ZipArchive;
 		$res = $zip->open($tmpFileName);
 	if ($res === TRUE){
@@ -137,10 +141,12 @@ $downloadableFolderName = str_replace(' ', '_', $downloadableFolderName);
 		}	
 				
 	// stitch files
+		if ($debug) {echo "stitch files...<BR>";}
 		$stitchedFilePath = stitchMP4sIn($sandbox);
 		if ($debug) {echo "<BR>STITCHED FILE: $stitchedFilePath <BR>";}
 		
 	// upload stitched file
+		if ($debug) {echo "upload stitched file...<BR>";}
 		if ($stitchedFilePath){
 			$stitchAWS = uploadFile ($stitchedFilePath,$_ENV['AWSVIDBUCKET'],'');
 			$stitchURL = $stitchAWS['ObjectURL'];
@@ -150,10 +156,12 @@ $downloadableFolderName = str_replace(' ', '_', $downloadableFolderName);
 	// REZIP
 		// CREATES NEW TMP SUBDIR, MOVES FIXED_ VIDEO FILES, TRIMMING FIXED_ FROM FILE, 
 		// MOVE IN STITCHED FILE RENAMED FINAL.MP4
+		if ($debug) {echo "rezip...<BR>";}
 		$newZipPath = rezip($sandbox, $downloadableFolderName );
 
 // upload video files
 if ($newZipPath){
+	if ($debug) {echo "upload new zip...<BR>";}
 	$zipAWS = uploadFile ($newZipPath,$_ENV['AWSVIDBUCKET'],$downloadableFolderName);
 	$zipURL = $zipAWS['ObjectURL'];
 	$zipFileSize = $_FILES['Zip_file']['size'];
@@ -161,11 +169,14 @@ if ($newZipPath){
 	}
 	
 if ($_FILES['Title_card']['size'] >1){
+	if ($debug) {echo "upload title card...<BR>";}
 	$titleCardAWS = uploadFileFromFieldname('Title_card',$_ENV['AWSVIDBUCKET']);
 	$titleCardURL = $titleCardAWS['ObjectURL'];
 	}
 
 // INSERT INTO DATABASE
+if ($debug) {echo "insert into database if there's a file...<BR>";}
+
 $sql = "INSERT INTO mc_submissions SET \n";
 $sql .=" mc_creation 			= '$now', \n";
 $sql .=" mc_name 				= '$Name', \n";
@@ -191,12 +202,14 @@ if ($debug) echo "<BR><BR><pre>$sql</pre><br /><br />";
 
 // ONLY INSERT INTO DATABASE IF THEY ATTACHED SOMETHING OR allowNoFile=true
 if (($zipFileSize>0)||($allowNoFile)){
+if ($debug) {echo "inserting...<BR>";}
 	$result = mysqli_query($db, $sql); 
 	if ($debug) {echo mysqli_error($db);}
 	$id = mysqli_insert_id($db);
 	}
 	
 // CREATE SHORT URL TO DOWNLOAD PAGE, STORE IN DB
+if ($debug) {echo "create short url...<BR>";}
 $s=createShortLink($id);
 $shortDownloadLink = $_ENV['DOMAIN'] . 'download.php?s='.$s;
 
@@ -205,6 +218,9 @@ mysqli_query($db,$sql);
 	
 if ($result){$db_good='1';}
 if ($debug) echo mysqli_error($db);
+
+
+// EMAIL
 
 // CALCULATE FONT SIZE and LINE-HEIGHT OF NAME BASED ON NAME LENGTH
 include('calcFontSize.php');
@@ -230,7 +246,8 @@ $subject = stripslashes($subject);
 if ($zipFileSize>0){
 	// don't email unless there is a file attached	
 	if ($actuallySendEmail) {
-		
+		if ($debug) {echo "sending email...<BR>";}
+
 		
 		// explode Recipients_emails
 		$recipARR = explode(',', $Recipients_emails);
@@ -277,6 +294,7 @@ if ($debug){
 	}
 
 //IF EVERYTHING WENT SMOOTHLY, REPORT SUCCESS TO APP
+if ($debug) {echo "callback to ios...<BR>";}
  if (($auth_good)&&($file_good)&&($db_good)&&($em_good)){
 	//echo "success";
 	echo $shortDownloadLink;
