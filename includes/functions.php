@@ -300,6 +300,9 @@ function fixVideo($file,$resultFile,$ffmpegPath,$ffprobePath,$debug,$targetWidth
 	// EXECUTE COMMAND
 	$ffmpegExec=shell_exec($ffmpegPath .' '. $ffmpegCommand); 
 	
+	
+		if ($debug){echo "(from function fixVideo): ffmpeg command: $ffmpegPath  $ffmpegCommand <BR>";}
+
 	}//function
 	
 	
