@@ -231,6 +231,7 @@ function stitchMP4sIn($dirPath){
 		$fileinfo = new SplFileInfo($file);
 		$extn = $fileinfo->getExtension();	
 		if ($extn == 'mp4'){
+			
 			$resultFileName = 'FIXED_'.$file;
 			$resultFile = $dirPath . $resultFileName;
 			$pathToFile = $dirPath .'/'.$file;
@@ -258,6 +259,8 @@ function fixVideo($file,$resultFile,$ffmpegPath,$ffprobePath,$debug,$targetWidth
 	// GET BASE FILENAME WITHOUT EXTENSION
 	$path_parts = pathinfo($file);
 	$filenameOnly = $path_parts['filename'];
+	
+	if ($debug){echo "(from function fixVideo): file: $file  filename: $filenameOnly <BR>";}
 
 	// DO WE NEED TO ROTATE
 	// STEP 1: CHECK FOR ROTATION META DATA
