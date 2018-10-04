@@ -230,6 +230,7 @@ function normalizeString ($str = '')
 
 // STITCHING
 function stitchMP4sIn($dirPath){
+	global $debug;
 	// CONSTANTS
 	$ffmpegPath = $_ENV['FFMPEGPATH']; 
 	$ffprobePath = $_ENV['FFPROBEPATH']; 
@@ -256,7 +257,7 @@ function stitchMP4sIn($dirPath){
 			$resultFileName = 'FIXED_'.$file;
 			$resultFile = $dirPath . $resultFileName;
 			$pathToFile = $dirPath .'/'.$file;
-			fixVideo($pathToFile,$resultFile,$ffmpegPath,$ffprobePath,$debug,$targetWidth,$targetHeight,$targetFPS,$targetKeyFramesInterval);	
+			fixVideo($pathToFile,$resultFile,$ffmpegPath,$ffprobePath,$targetWidth,$targetHeight,$targetFPS,$targetKeyFramesInterval);	
 			// ADD FILE TO THE text LIST	
 			$textFileContents .= "file '" . $resultFileName . "' \n";
 		}	
@@ -278,7 +279,8 @@ function stitchMP4sIn($dirPath){
 	}
 
 // FUNCTION
-function fixVideo($file,$resultFile,$ffmpegPath,$ffprobePath,$debug,$targetWidth,$targetHeight,$targetFPS,$targetKeyFramesInterval) {
+function fixVideo($file,$resultFile,$ffmpegPath,$ffprobePath,$targetWidth,$targetHeight,$targetFPS,$targetKeyFramesInterval) {
+	global $debug;
 	// GET BASE FILENAME WITHOUT EXTENSION
 	$path_parts = pathinfo($file);
 	$filenameOnly = $path_parts['filename'];
