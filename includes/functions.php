@@ -211,6 +211,22 @@ function tempdir($dir = null, $prefix = 'tmp_', $mode = 0700, $maxAttempts = 100
     return $path;
 }
 
+// NORMALIZE FILE NAMES
+function normalizeString ($str = '')
+{
+    $str = strip_tags($str); 
+    $str = preg_replace('/[\r\n\t ]+/', ' ', $str);
+    $str = preg_replace('/[\"\*\/\:\<\>\?\'\|]+/', ' ', $str);
+    $str = strtolower($str);
+    $str = html_entity_decode( $str, ENT_QUOTES, "utf-8" );
+    $str = htmlentities($str, ENT_QUOTES, "utf-8");
+    $str = preg_replace("/(&)([a-z])([a-z]+;)/i", '$2', $str);
+    $str = str_replace(' ', '-', $str);
+    $str = rawurlencode($str);
+    $str = str_replace('%', '-', $str);
+    return $str;
+}
+
 
 // STITCHING
 function stitchMP4sIn($dirPath){
@@ -228,6 +244,8 @@ function stitchMP4sIn($dirPath){
 	// READ ALL MP4 FILES IN DIRECTORY AND PROCESS THEM
 	$files1 = scandir($dirPath);
 	foreach ($files1 as $file) {
+		
+		
 		$fileinfo = new SplFileInfo($file);
 		$extn = $fileinfo->getExtension();	
 		if ($extn == 'mp4'){
