@@ -247,12 +247,24 @@ function stitchMP4sIn($dirPath){
 	foreach ($files1 as $file) {
 		
 		if ($debug) {echo "file: $file ...<BR>";}
+		
+		// NORMALIZE FILENAME
+		// GET BASE FILENAME WITHOUT EXTENSION
+		$path_parts = pathinfo($file);
+		$filenameOnly = $path_parts['basename'];	
+		$newFileName = normalizeString ($filenameOnly);
+		$oldFilePath = $dirpath . $file;
+		$newFilePath = $dirPath . $newFileName;
+		rename($oldFilePath, $newFilePath);
+		$file = $newFilePath;
+		if ($debug){echo "(from function stitchMP4sIn): old base filename: $oldFilePath <BR>Normalized to: $newFilePath <BR>";}
+		
 		$fileinfo = new SplFileInfo($file);
 		if ($debug) {echo "fileinfo: <pre>"; print_r($fileinfo); echo "</pre><BR>";}
 		$extn = $fileinfo->getExtension();	
-			if ($debug) {echo "ext: $pathToFile...<BR>";}
+			if ($debug) {echo "ext: $extn...<BR>";}
 		if ($extn == 'mp4'){
-			if ($debug) {echo "Trying to fix: $pathToFile...<BR>";}
+			if ($debug) {echo "Trying to fix: $file...<BR>";}
 
 			$resultFileName = 'FIXED_'.$file;
 			$resultFile = $dirPath . $resultFileName;
@@ -281,11 +293,14 @@ function stitchMP4sIn($dirPath){
 // FUNCTION
 function fixVideo($file,$resultFile,$ffmpegPath,$ffprobePath,$targetWidth,$targetHeight,$targetFPS,$targetKeyFramesInterval) {
 	global $debug;
-	// GET BASE FILENAME WITHOUT EXTENSION
-	$path_parts = pathinfo($file);
-	$filenameOnly = $path_parts['filename'];
 	
-	if ($debug){echo "(from function fixVideo): file: $file  filename: $filenameOnly <BR>";}
+	
+	
+	
+	
+	
+	
+	
 
 	// DO WE NEED TO ROTATE
 	// STEP 1: CHECK FOR ROTATION META DATA
