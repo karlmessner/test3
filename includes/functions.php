@@ -253,7 +253,7 @@ function stitchMP4sIn($dirPath){
 		$path_parts = pathinfo($file);
 		$filenameOnly = $path_parts['basename'];	
 		$newFileName = normalizeString ($filenameOnly);
-		$oldFilePath = $dirpath . $file;
+		$oldFilePath = $dirPath . $file;
 		$newFilePath = $dirPath . $newFileName;
 		rename($oldFilePath, $newFilePath);
 		$file = $newFilePath;
