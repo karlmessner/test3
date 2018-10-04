@@ -245,9 +245,11 @@ function stitchMP4sIn($dirPath){
 	$files1 = scandir($dirPath);
 	foreach ($files1 as $file) {
 		
-		
+		if ($debug) {echo "file: $file ...<BR>";}
 		$fileinfo = new SplFileInfo($file);
+		if ($debug) {echo "fileinfo: <pre>"; print_r($fileinfo); echo "</pre><BR>";}
 		$extn = $fileinfo->getExtension();	
+			if ($debug) {echo "ext: $pathToFile...<BR>";}
 		if ($extn == 'mp4'){
 			if ($debug) {echo "Trying to fix: $pathToFile...<BR>";}
 
