@@ -12,7 +12,7 @@ require 'env.php';
   <body>
 	<div id='wrapper'>
     <form id='theform' enctype="multipart/form-data" action="<?PHP echo $_ENV['DOMAIN'];?>index.php" method="post">
-	    <input type="checkbox" name="debug" id='debug' value='true'/><label for='debug'>Verbose output</label> <br/>
+	    <input type="checkbox" name="debug" id='debug' value='true'/>Verbose output <br/>
 	    <input type="text" name="Name" placeholder="Name"/> <br/>
 	    <input type="text" name="Role" placeholder="Role"/> <br/>
 	    <input type="text" name="Title" placeholder="Title"/> <br/>
