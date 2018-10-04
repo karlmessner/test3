@@ -249,7 +249,8 @@ function stitchMP4sIn($dirPath){
 		$fileinfo = new SplFileInfo($file);
 		$extn = $fileinfo->getExtension();	
 		if ($extn == 'mp4'){
-			
+			if ($debug) {echo "Trying to fix: $pathToFile...<BR>";}
+
 			$resultFileName = 'FIXED_'.$file;
 			$resultFile = $dirPath . $resultFileName;
 			$pathToFile = $dirPath .'/'.$file;
@@ -260,6 +261,7 @@ function stitchMP4sIn($dirPath){
 	}
 	
 	// CREATE BLANK TEXT FILE
+	if ($debug) {echo "creating text file of movies to stitch...<BR>";}
 	$textFileName = $dirPath . $stitchListFileName;
 	$theTextFile = fopen($textFileName, "w");
 	fwrite($theTextFile, $textFileContents);
@@ -268,6 +270,7 @@ function stitchMP4sIn($dirPath){
 	// STITCH FILES FROM TEXT FILE
 	$stitchedFilePath = $dirPath . $stitchedFileName;
 	$ffmpegCommand = "-ss 00:00:00.5 -f concat -i ".$dirPath . $stitchListFileName." -c copy  " . $stitchedFilePath . ' ' ;
+	if ($debug) {echo "trying to execute:$ffmpegPath $ffmpegCommand<BR>";}
 	$ffmpegExec=shell_exec($ffmpegPath .' '. $ffmpegCommand); 
 	return $stitchedFilePath;
 	}
