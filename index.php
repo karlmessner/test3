@@ -218,9 +218,13 @@ if ($result){$db_good='1';}
 if ($debug) echo mysqli_error($db);
 
 
-// EMAIL
-include ('email/sendRecipientEmail.php');
+// EMAIL SUBMISSION TO RECIPIENTS
+if ($debug) {echo "Sending Submission to recipients...<BR>";}
+include ('email/sendRecipientsEmail.php');
 
+// EMAIL NOTICE THAT SUBMISSION WAS SENT
+if ($debug) {echo "Notifying Sender...<BR>";}
+include ('email/sendSubmissionSentEmail.php');
 
 
 // RESPONSE TO CALLER	
