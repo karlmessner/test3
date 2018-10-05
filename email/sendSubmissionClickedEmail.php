@@ -1,6 +1,7 @@
 <?PHP 
 		// CALCULATE FONT SIZE and LINE-HEIGHT OF NAME BASED ON NAME LENGTH
 		require_once 'includes/calcFontSize.php';
+		$debug=false;	
 		
 		// BODY
 			$subject = "🍿 Whoop! They’re watching your audition.";
@@ -41,7 +42,6 @@
 		$subject = stripslashes($subject);
 		
 			// don't email unless there is a file attached	
-			if ($actuallySendEmail) {
 				if ($debug) {echo "sending email...<BR>";}
 						
 					$email = new \SendGrid\Mail\Mail(); 
@@ -65,10 +65,9 @@
 						}	
 										
 				
-			} // if actuallySendEmail
 		if ($result){$em_good='1';}
 		if ($debug) echo "TO:$to<BR>";
 		if ($debug) echo "FROM:$fromEmail<BR>";
-		if ($debug) echo "HEADERS:$headers<BR>";
+		if ($debug) echo "BODY:$body<BR>";
 		if ($debugBody) echo $body;	
 ?>
