@@ -1,15 +1,15 @@
 <?PHP 
 		// CALCULATE FONT SIZE and LINE-HEIGHT OF NAME BASED ON NAME LENGTH
-		include('../includes/calcFontSize.php');
+		require_once 'includes/calcFontSize.php';
 		
-		// EMBED SUBMISSION NUMBER
-		$s=$id;
-		
-		// BODY
-			$body=file_get_contents("templates/recipient-email-template.htm");
-			$stylesheet=file_get_contents("../media/css/emailcss.css");
+		// VARIABLES
+			$s=$id;
+			$template=file_get_contents("email/templates/Maroon5-email-template.htm");
+			$contents=file_get_contents("email/contents/RecipientsEmailContents.php");
+			$stylesheet=file_get_contents("media/css/emailcss.css");
 			$downloadLink = $shortDownloadLink; 
 			$trackingPixel = $_ENV['DOMAIN'] . "open.php?s=".$s;
+			
 			
 			// TITLE CARD OR INTRODUCING NAME
 			// IF THEY SUPPLIED TITLE CARD TEXT, SPLIT THAT INTO TWO LINES IF NECESSARY AND CREATE THE TWO LINES.
@@ -30,13 +30,30 @@
 			// IF THEY UPLOADED A TITLE CARD PICTURE, USE THAT, IF NOT, USE THE PROFILE URL THEY SENT
 			$Profile_shot = ($titleCardURL) ? $titleCardURL : $Profile_pic_url;
 			
-			//injections
-			$variablesToInject = array("stylesheet","firstLineText","firstLineSize","secondLineText","secondLineSize","Role","Title","Profile_shot","fontSize","lineHeight","s","downloadLink","trackingPixel");
+			// ASSEMBLE AND INJECT VARS
+			
+			$body = str_replace("{{content}}", $contents, $template);
+			$variablesToInject = array(
+				"stylesheet",
+				"firstLineText",
+				"firstLineSize",
+				"secondLineText",
+				"secondLineSize",
+				"Role",
+				"Title",
+				"Profile_shot",
+				"fontSize",
+				"lineHeight",
+				"s",
+				"downloadLink",
+				"trackingPixel"
+				);
 			foreach ($variablesToInject as $thisVar){
 				$thisVal = $$thisVar;
 				$thisVar = "{{".$thisVar."}}";
 				$body = str_replace($thisVar, $thisVal, $body);
 			}
+			
 			$body = stripslashes($body);
 		
 		// TO, FROM
