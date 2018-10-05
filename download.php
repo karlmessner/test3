@@ -29,7 +29,6 @@ $showerrors = false;
 $s=mysqli_real_escape_string($db,$_GET['s']);
 $e=mysqli_real_escape_string($db,$_GET['e']);
 $s=decodeShortLink($s);
-
 $n=mysqli_real_escape_string($db,$_GET['n']);
 
 
@@ -49,13 +48,15 @@ mysqli_query($db,$sql);echo mysqli_error($db);
 // MAP VARS
 $Name = $mc_name;
 $Role = $mc_role;
+$Email = $mc_email;
 $Title= $mc_title;
 $thumb_url=$mc_vid_thumb_url;
 
 // SEND EMAIL NOTIFICATION THAT AUDITION IS BEING WATCHED
 $shortRecipEmail = '';
-$shortRecipEmail = substr($e, 0,2) . '...'. substr($e, -5);
+$shortRecipEmail = substr($e, 0,4) . '...'. substr($e, -8);
 include('email/sendSubmissionClickedEmail.php');
+
 
 
 
@@ -63,7 +64,7 @@ include('email/sendSubmissionClickedEmail.php');
 
 	
 // CALCULATE FONT SIZE and LINE-HEIGHT OF NAME BASED ON NAME LENGTH
-require_once 'calcFontSize.php';
+//require_once 'calcFontSize.php';
 
 // $body=file_get_contents("download-template.htm");
 $body=file_get_contents("template-download.htm");
