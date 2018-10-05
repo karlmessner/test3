@@ -79,21 +79,27 @@
 				$recipARR = explode(',', $Recipients_emails);
 				
 				foreach ($recipARR as $eachEmail){
+					
+					// APPEND E=EMAILADDRESS FOR EACH DOWNLOAD LINK FOR TRACKING
+					$appendedDownloadLink = $downloadLink . '&e=' . urlencode($eachEmail);
+					$bodyToSend = str_replace($downloadLink, $appendedDownloadLink, $body)
+					
+					
 					$email = new \SendGrid\Mail\Mail(); 
 					$email->setFrom($fromEmail, $fromName);
 					$email->setSubject($subject);
 					$email->addTo($eachEmail);
 					$email->addContent("text/plain", "You have a new video audition submission sent from $fromName: $shortDownloadLink");
-					$email->addContent("text/html", $body);
+					$email->addContent("text/html", $bodyToSend);
 					$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 					try {
 					    $response = $sendgrid->send($email);
 					    if($debug){
-						   echo "<pre>LINE 251:";
+						   echo "<pre>";
 					    print $response->statusCode() . "\n";
 					    print_r($response->headers());
 					    print_r($response->body()) . "\n";
-					    echo "(251)</pre>";
+					    echo "</pre>";
 					    }
 					} catch (Exception $e) {
 					    if ($debug) {echo 'Caught exception: '. $e->getMessage() ."\n";}

@@ -212,11 +212,10 @@ if ($debug) {echo "inserting...<BR>";}
 	$id = mysqli_insert_id($db);
 	}
 	
-// CREATE SHORT URL TO DOWNLOAD PAGE, STORE IN DB
+// CREATE SHORT URL (FROM INSERT ID) TO DOWNLOAD PAGE, STORE IN DB
 if ($debug) {echo "create short url...<BR>";}
 $s=createShortLink($id);
 $shortDownloadLink = $_ENV['DOMAIN'] . 'download.php?s='.$s;
-
 $sql = "UPDATE mc_submissions SET mc_download_link = '$shortDownloadLink' WHERE mc_id ='$id' LIMIT 1";
 mysqli_query($db,$sql);
 	

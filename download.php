@@ -27,6 +27,7 @@ $showerrors = false;
 // EXTRACT GET
 
 $s=mysqli_real_escape_string($db,$_GET['s']);
+$e=mysqli_real_escape_string($db,$_GET['e']);
 $s=decodeShortLink($s);
 
 $n=mysqli_real_escape_string($db,$_GET['n']);
@@ -50,13 +51,22 @@ $Name = $mc_name;
 $Role = $mc_role;
 $Title= $mc_title;
 $thumb_url=$mc_vid_thumb_url;
+
+// SEND EMAIL NOTIFICATION THAT AUDITION IS BEING WATCHED
+$shortRecipEmail = '';
+$shortRecipEmail = substr($e, 0,2) . '...'. substr($e, -5);
+include('email/sendSubmissionClickedEmail.php');
+
+
+
+
+
 	
 // CALCULATE FONT SIZE and LINE-HEIGHT OF NAME BASED ON NAME LENGTH
-include('calcFontSize.php');
+require_once 'calcFontSize.php';
 
 // $body=file_get_contents("download-template.htm");
 $body=file_get_contents("template-download.htm");
-
 $stylesheet=file_get_contents("media/css/download.css");
 
 $m4vPath = $mc_stitch_file_url;
