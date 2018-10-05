@@ -1,4 +1,4 @@
-<img src="https://www.moodcaster.com/font-to-image.php?s={{firstLineSize}}&t=That's a wrap! " />
+<img src="https://www.moodcaster.com/font-to-image.php?s=28&t=That's a wrap! " />
 
 <br />
 
