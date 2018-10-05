@@ -98,6 +98,12 @@ if ($debug) {echo "</pre>";}
 $rawPost = mysqli_real_escape_string($db, print_r($_POST,true) );
 $rawPost .= mysqli_real_escape_string($db, print_r($_FILES,true) );
 
+
+// TODO >>>>>>>>>>>>>>
+//   *  INSERT INTO DATABASE NOW AND GET ID
+//   *  HAND OFF TO WORKER
+//   *  LET GOT OF API
+
 // SET NAME OF FINAL DOWNLOADABLE
 $auditionDate = date("m-d-Y g_ia",$now);
 $downloadableFolderName = "MOODCASTER-" . $Title . "-" . $Role . "-" . $Name . "-" . $auditionDate;
