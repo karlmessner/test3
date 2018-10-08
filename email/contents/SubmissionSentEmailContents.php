@@ -6,7 +6,7 @@
 
 <p>Your slate and audition have been sent. When they watch the video, we’ll drop you another line.</p>
 
-<P>We’re sending good vibes your way👍!</p
+<P>We’re sending good vibes your way👍</p
 
 <p>Moodcaster Team</p>
 
