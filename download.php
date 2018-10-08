@@ -31,12 +31,12 @@ $e=mysqli_real_escape_string($db,$_GET['e']);
 $s=decodeShortLink($s);
 $n=mysqli_real_escape_string($db,$_GET['n']);
 
-
 // PULL RECORD
 $sql =  "SELECT * from mc_submissions WHERE mc_id='$s'  LIMIT 1";
 $rsSUBS = mysqli_query($db,$sql); echo mysqli_error($db);
 $thisSUB = mysqli_fetch_array($rsSUBS); 
 extract($thisSUB);
+
 
 // UPDATE CLICK TABLE
 // don't register click if clicked from submission tracker
@@ -52,11 +52,16 @@ $Email = $mc_email;
 $Title= $mc_title;
 $thumb_url=$mc_vid_thumb_url;
 
+
 // SEND EMAIL NOTIFICATION THAT AUDITION IS BEING WATCHED
 $shortRecipEmail = '';
 $shortRecipEmail = substr($e, 0,4) . '...'. substr($e, -8);
-include('email/sendSubmissionClickedEmail.php');
 
+
+
+
+
+include('email/sendSubmissionClickedEmail.php');
 
 
 
