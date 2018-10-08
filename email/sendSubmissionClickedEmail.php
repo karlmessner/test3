@@ -1,14 +1,14 @@
-<?PHP 
+<?PHP 		
+
 		// CALCULATE FONT SIZE and LINE-HEIGHT OF NAME BASED ON NAME LENGTH
 		require_once 'includes/calcFontSize.php';
 		$debug=false;	
-		
 		// BODY
 			$subject = "🍿 Whoop! They’re watching your audition.";
 			$template=file_get_contents("email/templates/Maroon5-email-template.htm");
 			$contents=file_get_contents("email/contents/SubmissionClickedEmailContents.php");
 			$stylesheet=file_get_contents("media/css/emailcss.css");
-			$s=$id;
+			//$s=$id;
 			//$trackingPixel = $_ENV['DOMAIN'] . "open.php?s=".$s;
 			
 						
@@ -17,7 +17,6 @@
 				"stylesheet",
 				"Role",
 				"Title",
-				"s",
 				"shortRecipEmail",
 				"Name",
 				"trackingPixel"
@@ -34,7 +33,6 @@
 		$to = $Email;
 		$fromEmail = "submissions@moodcaster.com";
 		$fromName = "Moodcaster";
-		
 		// OVERRIDE RECIPIENT TO ME
 		if ($overRideRecipients){ $to="karlmessner@gmail.com";}
 		
