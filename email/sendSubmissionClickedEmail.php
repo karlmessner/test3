@@ -1,7 +1,7 @@
 <?PHP 
 		// CALCULATE FONT SIZE and LINE-HEIGHT OF NAME BASED ON NAME LENGTH
 		require_once 'includes/calcFontSize.php';
-		$debug=false;	
+		$debug=true;	
 		
 		// BODY
 			$subject = "🍿 Whoop! They’re watching your audition.";
