@@ -25,6 +25,7 @@ $sql = "insert into TESTvideoQueue set content = 'waiting'";
 mysqli_query($db, $sql);
 
 $callback = function ($msg) {
+	global $db;
     $comment =  ' [x] Received '. $msg->body . "\n";
 
 
