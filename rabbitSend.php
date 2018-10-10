@@ -25,7 +25,7 @@ $array = array("foo", "bar", "hello", "world",'1','3','5','7','9');
 foreach ($array as $msg_body){
 $msg = new AMQPMessage($msg_body, array('content_type' => 'text/plain', 'delivery_mode' => 2));
 $ch->basic_publish($msg, $exchange);
-echo "$msg <BR>";
+echo "$msg_body <BR>";
 }
 
 
