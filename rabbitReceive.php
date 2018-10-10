@@ -6,7 +6,7 @@ include('includes/con.php');
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-
+echo "trying";
 
 define('AMQP_DEBUG', true);
 use PhpAmqpLib\Connection\AMQPConnection;
@@ -36,7 +36,7 @@ $callback = function ($msg) {
 
 $sql = "insert into TESTvideoQueue set content = '$comment'";
 mysqli_query($db, $sql);
-
+echo "$comment <BR>";
 
     $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
 };
