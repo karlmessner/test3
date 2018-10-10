@@ -50,10 +50,12 @@ print_r($ch->callbacks);
 
 
 $i=1;
+/*
 while (count($ch->callbacks)) {
     $ch->wait();
     echo "$i <BR>"; $i++;
 }
+*/
 
 echo "step 6<BR>";
 
