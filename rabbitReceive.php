@@ -28,7 +28,7 @@ $retrived_msg = $ch->basic_get($queue);
 //var_dump($retrived_msg->body);
 
 $payload = $retrived_msg->body;
-
+$payload = "number of callbacks:" . count($ch->callbacks);
 
 $sql = "insert into TESTvideoQueue set content = '$payload'";
 mysqli_query($db, $sql);
@@ -41,7 +41,5 @@ $ch->basic_ack($retrived_msg->delivery_info['delivery_tag']);
     }
     
     
-/*
 $ch->close();
 $conn->close();
-*/
