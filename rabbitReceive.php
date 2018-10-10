@@ -3,8 +3,10 @@ require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
 
+/*
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+*/
 
 
 
@@ -33,7 +35,12 @@ mysqli_query($db, $sql);
 $ch->basic_ack($retrived_msg->delivery_info['delivery_tag']);
 
 
-
-
+    while (count($ch->callbacks)) {
+        $ch->wait();
+    }
+    
+    
+/*
 $ch->close();
 $conn->close();
+*/
