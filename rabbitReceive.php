@@ -32,9 +32,6 @@ mysqli_query($db, $sql);
 
 $ch->basic_ack($retrived_msg->delivery_info['delivery_tag']);
 
-while (count($ch->callbacks)){
-	$ch->wait();
-}
 
 
 
