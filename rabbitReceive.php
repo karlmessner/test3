@@ -5,7 +5,7 @@ include('includes/con.php');
 
 
 
-define('AMQP_DEBUG', true);
+define('AMQP_DEBUG', false);
 use PhpAmqpLib\Connection\AMQPConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 $url = parse_url(getenv('CLOUDAMQP_URL'));
