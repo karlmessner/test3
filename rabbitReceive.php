@@ -21,17 +21,11 @@ $ch->queue_declare($queue, false, true, false, false);
 $ch->exchange_declare($exchange, 'direct', true, true, false);
 $ch->queue_bind($queue, $exchange);
 
-
-
-
-
 $sql = "insert into TESTvideoQueue set content = 'waiting'";
 mysqli_query($db, $sql);
 
-
-
 $callback = function ($msg) {
-    $comment =  ' [x] Received ', $msg->body, "\n";
+    $comment =  ' [x] Received '. $msg->body . "\n";
 
 
 $sql = "insert into TESTvideoQueue set content = '$comment'";
