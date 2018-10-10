@@ -6,8 +6,10 @@ include('includes/con.php');
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
+/*
 $sql = "insert into TESTvideoQueue set content = 'trying'";
 mysqli_query($db, $sql);
+*/
 
 define('AMQP_DEBUG', true);
 use PhpAmqpLib\Connection\AMQPConnection;
@@ -22,18 +24,25 @@ $ch->queue_declare($queue, false, true, false, false);
 $ch->exchange_declare($exchange, 'direct', true, true, false);
 $ch->queue_bind($queue, $exchange);
 
-
-function doIt($ch,$queue,$db,$msg){
+function callback($msg){
+	global $db;
 	$payload = $msg->body;
 	
 	$sql = "insert into TESTvideoQueue set content = '$payload'";
 	mysqli_query($db, $sql);
-	$ch->basic_ack($msg->delivery_info['delivery_tag']);
+	$msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
+
 	}
 	
 	
-$msg = $ch->basic_get($queue);	
-doIt($ch,$queue,$db,$msg);	
+// $msg = $ch->basic_get($queue);	
+// doIt($ch,$queue,$db,$msg);	
+
+
+$ch->basic_qos(null, 1, null);
+$ch->basic_consume($queue, '', false, true, false, false, 'callback');
+
+
 
 while (count($ch->callbacks)) {
     $ch->wait();
