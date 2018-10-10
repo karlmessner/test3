@@ -21,16 +21,11 @@ $ch->queue_declare($queue, false, true, false, false);
 $ch->exchange_declare($exchange, 'direct', true, true, false);
 $ch->queue_bind($queue, $exchange);
 
-$sql = "insert into TESTvideoQueue set content = 'waiting'";
-mysqli_query($db, $sql);
 
 $callback = function ($msg) {
-	global $db;
     $comment =  ' [x] Received '. $msg->body . "\n";
 
 
-$sql = "insert into TESTvideoQueue set content = '$comment'";
-mysqli_query($db, $sql);
 echo "$comment <BR>";
 
     $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
