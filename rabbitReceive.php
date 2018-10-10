@@ -47,9 +47,10 @@ $ch->basic_ack($retrived_msg->delivery_info['delivery_tag']);
 echo "step 5<BR>";
 
 
-
+$i=1;
 while (count($ch->callbacks)) {
     $ch->wait();
+    echo "$i <BR>"; $i++;
 }
 
 echo "step 6<BR>";
