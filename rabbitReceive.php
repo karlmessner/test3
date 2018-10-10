@@ -33,7 +33,7 @@ function doIt($ch,$queue,$db,$msg){
 	
 	
 $msg = $ch->basic_get($queue);	
-doIt($ch,$queue,$db$msg);	
+doIt($ch,$queue,$db,$msg);	
 
 while (count($ch->callbacks)) {
     $ch->wait();
