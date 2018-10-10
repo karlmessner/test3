@@ -23,17 +23,48 @@ $ch->queue_declare($queue, false, true, false, false);
 $ch->exchange_declare($exchange, 'direct', true, true, false);
 $ch->queue_bind($queue, $exchange);
 
+//$msg = $ch->basic_get($queue);
 
-$retrived_msg = $ch->basic_get($queue);
+
+
+
+
+
+// First, you define `$callback` as a function receiving
+// one parameter (the _message_).
+$callback = function($msg) {
+
+
+	$payload = $msg->body;
+	
+	$sql = "insert into TESTvideoQueue set content = '$payload'";
+	mysqli_query($db, $sql);
+	
+	$ch->basic_ack($msg->delivery_info['delivery_tag']);
+	
+	};
+
+// Then, you assign `$callback` the the "hello" queue.
+$ch->basic_consume($queue, '', false, true, false, false, $callback);
+
+// Finally: While I have any callbacks defined for the channel, 
+while(count($ch->callbacks)) {
+    // inspect the queue and call the corresponding callbacks
+    //passing the message as a parameter
+    $ch->wait();
+}
+// This is an infinite loop: if there are any callbacks,
+// it'll run forever unless you interrupt script's execution.
+
+
+
+
+
+
+
 //var_dump($retrived_msg->body);
 
-$payload = $retrived_msg->body;
-$payload = "number of callbacks:" . count($ch->callbacks);
 
-$sql = "insert into TESTvideoQueue set content = '$payload'";
-mysqli_query($db, $sql);
-
-$ch->basic_ack($retrived_msg->delivery_info['delivery_tag']);
 
 
     while (count($ch->callbacks)) {
