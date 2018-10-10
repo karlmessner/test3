@@ -28,6 +28,7 @@ $retrived_msg = $ch->basic_get($queue);
 //var_dump($retrived_msg->body);
 
 $payload = $retrived_msg->body;
+$payload = print_r($retrived_msg,1);
 
 $sql = "insert into TESTvideoQueue set content = '$payload'";
 mysqli_query($db, $sql);
