@@ -44,8 +44,10 @@ mysqli_query($db, $sql);
 
 $ch->basic_qos(null, 1, null);
 $ch->basic_consume($queue, '', false, false, false, false, $callback);
+/*
 while (count(ch->callbacks)) {
     $ch->wait();
 }
+*/
 $ch->close();
 $conn->close();
