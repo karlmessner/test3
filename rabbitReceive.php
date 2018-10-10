@@ -1,4 +1,4 @@
-<?php
+<?PHP
 require './vendor/autoload.php';
 require 'env.php';
 
@@ -16,9 +16,6 @@ $ch->queue_declare($queue, false, true, false, false);
 $ch->exchange_declare($exchange, 'direct', true, true, false);
 $ch->queue_bind($queue, $exchange);
 
-$msg_body = 'the body is this';
-$msg = new AMQPMessage($msg_body, array('content_type' => 'text/plain', 'delivery_mode' => 2));
-$ch->basic_publish($msg, $exchange);
 
 $retrived_msg = $ch->basic_get($queue);
 var_dump($retrived_msg->body);
