@@ -8,6 +8,10 @@ ini_set("display_errors", 1);
 
 echo "trying<BR>";
 
+$sql = "insert into TESTvideoQueue set content = 'trying'";
+mysqli_query($db, $sql);
+
+
 define('AMQP_DEBUG', true);
 use PhpAmqpLib\Connection\AMQPConnection;
 use PhpAmqpLib\Message\AMQPMessage;
