@@ -11,7 +11,7 @@ $conn = new AMQPConnection($url['host'], 5672, $url['user'], $url['pass'], subst
 $ch = $conn->channel();
 
 $exchange = 'amq.direct';
-$queue = 'basic_get_queue';
+$queue = 'Video_Process_queue';
 $ch->queue_declare($queue, false, true, false, false);
 $ch->exchange_declare($exchange, 'direct', true, true, false);
 $ch->queue_bind($queue, $exchange);
