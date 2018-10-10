@@ -3,11 +3,6 @@ require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
 
-/*
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-*/
-
 
 
 define('AMQP_DEBUG', true);
@@ -41,7 +36,5 @@ $ch->basic_ack($retrived_msg->delivery_info['delivery_tag']);
     }
     
     
-/*
 $ch->close();
 $conn->close();
-*/
