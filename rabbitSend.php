@@ -7,6 +7,10 @@ ini_set("display_errors", 1);
 
 echo "starting<bR>";
 
+
+
+
+
 define('AMQP_DEBUG', true);
 use PhpAmqpLib\Connection\AMQPConnection;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -27,6 +31,13 @@ $msg = new AMQPMessage($msg_body, array('content_type' => 'text/plain', 'deliver
 $ch->basic_publish($msg, $exchange);
 echo "$msg_body <BR>";
 }
+
+
+
+
+
+
+
 
 
 
