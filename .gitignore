@@ -5,4 +5,5 @@ videos/
 .htaccess
 ___htaccess for localDev
 testing/*
-/vendor/
+vendor/
+vendor/*
