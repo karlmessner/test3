@@ -23,16 +23,17 @@ $ch->exchange_declare($exchange, 'direct', true, true, false);
 $ch->queue_bind($queue, $exchange);
 
 
-function doIt($ch,$queue,$db){
-	$retrived_msg = $ch->basic_get($queue);
-	$payload = $retrived_msg->body;
+function doIt($ch,$queue,$db,$msg){
+	$payload = $msg->body;
 	
 	$sql = "insert into TESTvideoQueue set content = '$payload'";
 	mysqli_query($db, $sql);
 	$ch->basic_ack($retrived_msg->delivery_info['delivery_tag']);
 	}
 	
-doIt($ch,$queue,$db);	
+	
+$msg = $ch->basic_get($queue);	
+doIt($ch,$queue,$db$msg);	
 
 while (count($ch->callbacks)) {
     $ch->wait();
