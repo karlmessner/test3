@@ -28,7 +28,7 @@ $callback = function($msg) {
     
     try {
 
-		$payload = $retrived_msg->body;
+		$payload = $msg->body;
 		$payload = print_r($retrived_msg,1);
 		
 		$sql = "insert into TESTvideoQueue set content = '$payload'";
