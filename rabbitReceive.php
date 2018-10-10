@@ -23,18 +23,21 @@ $ch->queue_bind($queue, $exchange);
 
 
 
-function noteSQL($comment){
-	global $db;
 
-$sql = "insert into TESTvideoQueue set content = '$comment'";
+
+$sql = "insert into TESTvideoQueue set content = 'waiting'";
 mysqli_query($db, $sql);
-}
 
-	noteSQL('waiting');
+
 
 $callback = function ($msg) {
     $comment =  ' [x] Received ', $msg->body, "\n";
-	noteSQL($comment);
+
+
+$sql = "insert into TESTvideoQueue set content = '$comment'";
+mysqli_query($db, $sql);
+
+
     $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
 };
 
