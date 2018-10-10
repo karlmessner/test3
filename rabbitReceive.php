@@ -27,10 +27,20 @@ $ch->queue_bind($queue, $exchange);
 echo "step 3<BR>";
 
 $retrived_msg = $ch->basic_get($queue);
-echo sprintf("Message recieved: %s\n", $retrived_msg->body);
-$ch->basic_ack($retrived_msg->delivery_info['delivery_tag']);
+$payload = $retrived_msg->body;
+echo "Message recieved: $payload <BR>";
+
+$sql = "insert into TESTvideoQueue set content = '$payload'";
+mysqli_query($db, $sql);
+
 
 echo "step 4<BR>";
+
+
+
+$ch->basic_ack($retrived_msg->delivery_info['delivery_tag']);
+
+echo "step 5<BR>";
 
 
 
@@ -38,10 +48,10 @@ while (count($ch->callbacks)) {
     $ch->wait();
 }
 
-echo "step 5<BR>";
+echo "step 6<BR>";
 
 
 
 $ch->close();
 $conn->close();
-echo "step 6<BR>";
+echo "step 7<BR>";
