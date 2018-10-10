@@ -28,7 +28,7 @@ function doIt($ch,$queue,$db,$msg){
 	
 	$sql = "insert into TESTvideoQueue set content = '$payload'";
 	mysqli_query($db, $sql);
-	$ch->basic_ack($retrived_msg->delivery_info['delivery_tag']);
+	$ch->basic_ack($msg->delivery_info['delivery_tag']);
 	}
 	
 	
