@@ -10,7 +10,6 @@
 	
 */
 
-echo "TRYING";
 
 // DEBUG SETTINGS  	
 $debug 				= $_POST['debug'];
