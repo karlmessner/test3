@@ -13,11 +13,9 @@
 echo "TRYING";
 
 // DEBUG SETTINGS  	
-$debug 				= $_POST['debug'];
+// $debug 				= $_POST['debug'];
+$debug 				= true;
 $allowNoFile		= false;
-$actuallySendEmail 	= true;
-$debugBody 			= false; // nb: triggers read pixel
-$overRideRecipients	= false;
 
 
 // ERROR REPORTING
@@ -35,6 +33,11 @@ require('includes/functions.php');
 require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
+
+// INIT RABBITMQ
+define('AMQP_DEBUG', true);
+use PhpAmqpLib\Connection\AMQPConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 
 // INIT VARS
@@ -146,9 +149,6 @@ if ($debug) echo mysqli_error($db);
 
 // ADD TO QUEUE
 if ($id){
-	define('AMQP_DEBUG', true);
-	use PhpAmqpLib\Connection\AMQPConnection;
-	use PhpAmqpLib\Message\AMQPMessage;
 	$url = parse_url(getenv('CLOUDAMQP_URL'));
 	$conn = new AMQPConnection($url['host'], 5672, $url['user'], $url['pass'], substr($url['path'], 1));
 	$ch = $conn->channel();
