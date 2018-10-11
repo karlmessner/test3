@@ -8,10 +8,12 @@
 
 <P>We’re sending good vibes your way👍</p
 
-<p>Moodcaster Team</p>
+<p>Team Moodcaster</p>
 
 <p class="subhead">Reading for <strong>{{Role}}</strong><br/>in <strong>{{Title}}</strong></p>
 <br />
+
+<p>P.S. <a href="{{downloadLink}}" target="_blank">Here's what they'll see.</a></p>
 
 <p class='bottomspace'>&nbsp;</p> 
 
