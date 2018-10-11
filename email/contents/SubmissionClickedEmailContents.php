@@ -4,7 +4,7 @@
 
 <p>Hey, {{Name}},</p>
 
-<p>{{shortRecipEmail}}  just clicked play. Pass the popcorn—this is gonna be good! 🤩 </p>
+<p style="text_tecoration:none; color:#000; cursor:default">{{shortRecipEmail}}  just clicked play. Pass the popcorn—this is gonna be good! 🤩 </p>
 
 <p>Moodcaster Team</p>
 
