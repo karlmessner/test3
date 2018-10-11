@@ -121,6 +121,7 @@ $sql .=" mc_age_range 			= '$Age_range', \n";
 $sql .=" mc_bio		 			= '$Bio', \n";
 $sql .=" mc_zip_file_url		= '$zipURL', \n";
 $sql .=" mc_raw_zip_file_url	= '$rawURL', \n";
+$sql .=" mc_zip_file_size		= '$zipFileSize', \n";
 $sql .=" mc_title_card_text		= '$title_card_text', \n";
 $sql .=" mc_title_card_url		= '$titleCardURL', \n";
 $sql .=" mc_profile_url			= '$Profile_pic_url', \n";
