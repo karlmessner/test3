@@ -37,7 +37,12 @@ function callback($msg){
 
 
 
-
+/*  TO DO
+	
+	Check to make sure it wasn't already done!
+	
+	
+	*/
 
 
 
@@ -96,7 +101,7 @@ $goodKey = $_ENV['GOODKEY'];
 
 
 // PULL RECORD FROM DB
-$sql= "SELECT * from mc_submission WHERE mc_id = '$id'";
+$sql= "SELECT * from mc_submissions WHERE mc_id = '$id'";
 if ($debug) {echo "SQL : " .$sql, "\n";}
 
 $rsSUBS = mysqli_query($db, $sql); 
