@@ -250,6 +250,7 @@ while (count($ch->callbacks)) {
     $ch->wait();
 }
 */
+    $ch->wait();
 
 
 $ch->close();
