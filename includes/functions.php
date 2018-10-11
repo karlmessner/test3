@@ -241,6 +241,7 @@ function stitchMP4sIn($dirPath){
 	$targetFPS = 30;
 	$targetKeyFramesInterval = 15;
 	$dirPath .= '/';
+	$textFileContents = '';
 
 	// READ ALL MP4 FILES IN DIRECTORY AND PROCESS THEM
 	$files1 = scandir($dirPath);
