@@ -31,7 +31,8 @@ function callback($msg){
 	/****************** APPLICATION CODE ******************************************************************/
 	
 
-
+$debug = true;
+if ($debug) {echo "<pre> \n";}
 
 
 
