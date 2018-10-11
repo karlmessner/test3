@@ -4,7 +4,7 @@
 		require_once 'includes/calcFontSize.php';
 		$debug=false;	
 		// BODY
-			$subject = "🍿 Whoop! They’re watching your audition.";
+			$subject = "🍿 Whoop! They’re watching your tape.";
 			$template=file_get_contents("email/templates/Maroon5-email-template.htm");
 			$contents=file_get_contents("email/contents/SubmissionClickedEmailContents.php");
 			$stylesheet=file_get_contents("media/css/emailcss.css");
