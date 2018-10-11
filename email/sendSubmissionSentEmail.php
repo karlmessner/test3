@@ -4,7 +4,7 @@
 		// EMBED SUBMISSION NUMBER
 		
 		// BODY
-			$subject = "🎬 That's a wrap! Your audition is on its way";
+			$subject = "🎬 That's a wrap! Your submission is on its way";
 			$template=file_get_contents("email/templates/Maroon5-email-template.htm");
 			$contents=file_get_contents("email/contents/SubmissionSentEmailContents.php");
 			$stylesheet=file_get_contents("media/css/emailcss.css");
@@ -79,7 +79,7 @@
 					$email->setFrom($fromEmail, $fromName);
 					$email->setSubject($subject);
 					$email->addTo($to);
-					$email->addContent("text/plain", "Your audition has been sent");
+					$email->addContent("text/plain", "Your submission has been sent");
 					$email->addContent("text/html", $body);
 					$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 					try {
