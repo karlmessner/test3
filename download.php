@@ -38,16 +38,6 @@ $rsSUBS = mysqli_query($db,$sql); echo mysqli_error($db);
 $thisSUB = mysqli_fetch_array($rsSUBS); 
 extract($thisSUB);
 
-$notReady = ($_GET['nr']) ? $_GET['nr'] : (strlen($mc_stitch_file_url)<5);
-if ($notReady){
-	
-	$returnLink = $mc_download_link . "&n=1";
-	$returnLink = urlencode($returnLink);
-	$waitingRoom = "Location:". $_ENV['DOMAIN'] . "/download-not-ready.php?n=1&d=$returnLink";
-	header($waitingRoom);
-	
-}
-
 
 // UPDATE CLICK TABLE
 // don't register click if clicked from submission tracker
@@ -55,6 +45,19 @@ if (!$n){
 $sql =  "UPDATE mc_submissions SET mc_click='$now',mc_ip='$ip', mc_useragent='$user_agent' where mc_id='$s' LIMIT 1";
 mysqli_query($db,$sql);echo mysqli_error($db);
 }
+
+
+// NOT READY YET?
+$notReady = ($_GET['nr']) ? $_GET['nr'] : (strlen($mc_stitch_file_url)<5);
+if ($notReady){
+	
+	$returnLink = $mc_download_link . "&n=1";
+	$returnLink = urlencode($returnLink);
+	$waitingRoom = "Location:". $_ENV['DOMAIN'] . "/download-not-ready.php?n=1&d=$returnLink";
+	header($waitingRoom);
+}
+
+
 
 // MAP VARS
 $Name = $mc_name;
