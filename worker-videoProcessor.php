@@ -11,6 +11,7 @@ require('includes/functions.php');
 //ERROR REPORTING
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+phpinfo();
 
 // INITIALIZE RABBITMQ
 define('AMQP_DEBUG', true);
