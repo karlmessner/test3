@@ -77,6 +77,7 @@ builds the email, sends it through Sendgrid.
 
 // PAYLOAD FROM QUEUE IS THE ID WE NEED TO PULL		
 $id=$payload;				
+if ($debug) {echo "id : " .$id, "\n";}
 		
 // TESTING SETTINGS  	
 $debug 				= TRUE;
