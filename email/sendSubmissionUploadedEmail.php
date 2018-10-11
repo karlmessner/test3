@@ -4,7 +4,7 @@
 		// EMBED SUBMISSION NUMBER
 		
 		// BODY
-			$subject = "🎥 Cut! We're working on your submission.";
+			$subject = "🎥 Cut! We're processing your submission.";
 			$template=file_get_contents("email/templates/Maroon5-email-template.htm");
 			$contents=file_get_contents("email/contents/SubmissionUploadedEmailContents.php");
 			$stylesheet=file_get_contents("media/css/emailcss.css");
