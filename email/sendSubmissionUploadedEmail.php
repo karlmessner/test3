@@ -72,31 +72,29 @@
 		
 		if ($zipFileSize>0){
 			// don't email unless there is a file attached	
-			if ($actuallySendEmail) {
 				if ($debug) {echo "sending email...<BR>";}
 						
 					$email = new \SendGrid\Mail\Mail(); 
 					$email->setFrom($fromEmail, $fromName);
 					$email->setSubject($subject);
 					$email->addTo($to);
-					$email->addContent("text/plain", "Your submission has been sent");
+					$email->addContent("text/plain", "Your submission has been received");
 					$email->addContent("text/html", $body);
 					$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 					try {
 					    $response = $sendgrid->send($email);
 					    if($debug){
-						   echo "<pre>LINE 251:";
-					    print $response->statusCode() . "\n";
-					    print_r($response->headers());
-					    print_r($response->body()) . "\n";
-					    echo "(251)</pre>";
-					    }
+						   echo "<pre>LINE 87:";
+						    print $response->statusCode() . "\n";
+						    print_r($response->headers());
+						    print_r($response->body()) . "\n";
+						    echo "(87)</pre>";
+						    }
 					} catch (Exception $e) {
 					    if ($debug) {echo 'Caught exception: '. $e->getMessage() ."\n";}
 						}	
 										
 				
-			} // if actuallySendEmail
 		} // if zipsize	
 		if ($result){$em_good='1';}
 		if ($debug) echo "TO:$to<BR>";
