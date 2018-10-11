@@ -16,6 +16,7 @@ THIS SCRIPT SHOWS THE DOWNLOAD PAGE. IT USES THE SAME TEMPLATE FROM THE EMAIL
 4) SHOW THE PAGE	
 */	
 
+
 // SHOW ERRORS
 $showerrors = false;
 			if ($showerrors){
@@ -36,6 +37,17 @@ $sql =  "SELECT * from mc_submissions WHERE mc_id='$s'  LIMIT 1";
 $rsSUBS = mysqli_query($db,$sql); echo mysqli_error($db);
 $thisSUB = mysqli_fetch_array($rsSUBS); 
 extract($thisSUB);
+
+$notReady = (strlen($mc_stitch_file_url)<5);
+$notReady = true;
+if ($notReady){
+	
+	$returnLink = $mc_download_link . "&n=1";
+	$returnLink = urlencode($returnLink);
+	$waitingRoom = "Location:". $_ENV['DOMAIN'] . "/download-not-ready.php?n=1&d=$returnLink";
+	header($waitingRoom);
+	
+}
 
 
 // UPDATE CLICK TABLE
