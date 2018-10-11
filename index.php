@@ -95,7 +95,8 @@ $rawPost .= mysqli_real_escape_string($db, print_r($_FILES,true) );
 		$zipFileSize = $_FILES['Zip_file']['size'];
 		$rawAWS = uploadFileFromFieldname('Zip_file',$_ENV['AWSVIDBUCKET'],'');
 		$rawURL = $rawAWS['ObjectURL'];
-	if ($debug) {echo "<BR>RAW ZIP FILE URL: $rawURL <BR>";}
+		if ($debug) {echo "<BR>RAW ZIP FILE URL: $rawURL <BR>";}
+		if ($rawURL) {$file_good = '1';}
 	}	
 
 
