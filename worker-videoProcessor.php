@@ -96,7 +96,11 @@ $goodKey = $_ENV['GOODKEY'];
 
 // PULL RECORD FROM DB
 $sql= "SELECT * from mc_submission WHERE mc_id = '$id'";
+if ($debug) {echo "SQL : " .$sql, "\n";}
+
 $rsSUBS = mysqli_query($db, $sql); 
+if ($debug) {echo mysqli_error($db);}
+
 $thisSUB = mysqli_fetch_array($rsSUBS);
 extract($thisSUB);
 
@@ -226,3 +230,5 @@ while (count($ch->callbacks)) {
 
 $ch->close();
 $conn->close();
+
+?>
