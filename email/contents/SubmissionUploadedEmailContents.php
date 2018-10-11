@@ -9,15 +9,16 @@
 
 <p style="font-size:24px;">🧙‍♂️🧝‍♀️</p>
 
-<p>Our elves are busily packaging it to send to your recipients. That might take a few minutes&emdash; they have tiny hands. When the elves are done, we'll send it to your recipients and send you a second email that it got off successfully.</p>
+<p>Our magical elves are busily packaging your submission. (Might take a few minutes--they have tiny hands). We will send you a second email when your submission is successfully processed.</p>
 
 
-<p>Team Moodcaster</p>
+<p>Break a leg,<br />
+Team Moodcaster</p>
 
 <p class="subhead">Reading for <strong>{{Role}}</strong><br/>in <strong>{{Title}}</strong></p>
 <br />
 
-<p>P.S. This is the <a href="{{downloadLink}}" target="_blank">Link</a> They'll get and you can share with others. Once the elves are done, your video will play there. <strong>We won't send the email to your recipients until the video is done.</strong></p>
+<p>P.S. This is <a href="{{downloadLink}}" target="_blank">the link Casting will see</a>.  <strong>We won't send the email to your recipients until the video is ready.</strong></p>
 
 <p class='bottomspace'>&nbsp;</p> 
 
