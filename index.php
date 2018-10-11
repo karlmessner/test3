@@ -14,7 +14,6 @@ echo "TRYING";
 
 // DEBUG SETTINGS  	
 $debug 				= $_POST['debug'];
-$allowNoFile		= false;
 
 
 // ERROR REPORTING
@@ -91,9 +90,10 @@ $rawPost .= mysqli_real_escape_string($db, print_r($_FILES,true) );
 
 // UPLOAD RAW ZIP FILE TO CLOUD STORAGE
 	if ($debug) {echo "upload raw zip to s3...<BR>";}
-	$uploadedFile = $_FILES['Zip_file']['tmp_name'];
-	if ($uploadedFile){
-		$rawAWS = uploadFile ($uploadedFile,$_ENV['AWSVIDBUCKET'],'');
+	$isUploadedFile = $_FILES['Zip_file']['tmp_name'];
+	if ($isUploadedFile){
+		$zipFileSize = $_FILES['Zip_file']['size'];
+		$rawAWS = uploadFileFromFieldname('Zip_file',$_ENV['AWSVIDBUCKET'],'');
 		$rawURL = $rawAWS['ObjectURL'];
 	if ($debug) {echo "<BR>RAW ZIP FILE URL: $rawURL <BR>";}
 	}	
@@ -119,7 +119,6 @@ $sql .=" mc_email 				= '$Email', \n";
 $sql .=" mc_recipients_emails 	= '$Recipients_emails', \n";
 $sql .=" mc_age_range 			= '$Age_range', \n";
 $sql .=" mc_bio		 			= '$Bio', \n";
-$sql .=" mc_profile_pic			= '$profile_pic', \n";
 $sql .=" mc_zip_file_url		= '$zipURL', \n";
 $sql .=" mc_raw_zip_file_url	= '$rawURL', \n";
 $sql .=" mc_title_card_text		= '$title_card_text', \n";
@@ -129,7 +128,7 @@ $sql .=" mc_rawpost				= '$rawPost', \n";
 $sql .=" mc_pk					= '$pk' \n";
 if ($debug) echo "<BR><BR><pre>$sql</pre><br /><br />";
 // ONLY INSERT INTO DATABASE IF THEY ATTACHED SOMETHING OR allowNoFile=true
-if (($zipFileSize>0)||($allowNoFile)){
+if ($zipFileSize>0){
 if ($debug) {echo "inserting...<BR>";}
 	$result = mysqli_query($db, $sql); 
 	if ($debug) {echo mysqli_error($db);}
