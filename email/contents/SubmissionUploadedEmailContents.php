@@ -4,12 +4,12 @@
 
 <p>Hey, {{Name}},</p>
 
-<p>Your submission has been uploaded to Moodcaster. </p>
+<p>Your submission has been uploaded to Moodcaster. <br />
 
 
-<p style="font-size:36px;">🧙‍♂️🧝‍♀️</p>
+<span style="font-size:48px;">🧙‍♂️🧝‍♀️</span>
 
-<p>Our magical elves are busily packaging your submission. (Might take a few minutes—they have tiny hands). We will send you a second email when your submission is successfully processed.</p>
+<br />Our magical elves are busily packaging your submission. (Might take a few minutes—they have tiny hands). We will send you a second email when your submission is successfully processed.</p>
 
 
 <p>Break a leg,<br />
