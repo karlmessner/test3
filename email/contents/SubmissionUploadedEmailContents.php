@@ -18,7 +18,8 @@ Team Moodcaster</p>
 <p class="subhead">Reading for <strong>{{Role}}</strong><br/>in <strong>{{Title}}</strong></p>
 <br />
 
+<!--
 <p>P.S. This is <a href="{{downloadLink}}" target="_blank">the link that casting will see</a>.  <strong>We won't send the email to your recipients until the video is ready.</strong></p>
-
+-->
 <p class='bottomspace'>&nbsp;</p> 
 
