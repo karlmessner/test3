@@ -13,8 +13,7 @@
 echo "TRYING";
 
 // DEBUG SETTINGS  	
-// $debug 				= $_POST['debug'];
-$debug 				= true;
+$debug 				= $_POST['debug'];
 $allowNoFile		= false;
 
 
@@ -92,8 +91,9 @@ $rawPost .= mysqli_real_escape_string($db, print_r($_FILES,true) );
 
 // UPLOAD RAW ZIP FILE TO CLOUD STORAGE
 	if ($debug) {echo "upload raw zip to s3...<BR>";}
-	if ($tmpFileName){
-		$rawAWS = uploadFile ($tmpFileName,$_ENV['AWSVIDBUCKET'],'');
+	$uploadedFile = $_FILES['Zip_file']['tmp_name'];
+	if ($uploadedFile){
+		$rawAWS = uploadFile ($uploadedFile,$_ENV['AWSVIDBUCKET'],'');
 		$rawURL = $rawAWS['ObjectURL'];
 	if ($debug) {echo "<BR>RAW ZIP FILE URL: $rawURL <BR>";}
 	}	
