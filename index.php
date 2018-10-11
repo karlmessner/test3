@@ -164,6 +164,11 @@ if ($id){
 	$conn->close();
 	}
 
+// EMAIL UPDATE TO USER
+if ($debug) {echo "Sending Submission uploaded email...<BR>";}
+include ('email/sendSubmissionUploadedEmail.php');
+
+
 
 // RESPONSE TO CALLER	
 if ($debug){
