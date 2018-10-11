@@ -33,13 +33,5 @@ echo "$msg_body <BR>";
 }
 
 
-
-
-
-
-
-
-
-
 $ch->close();
 $conn->close();
