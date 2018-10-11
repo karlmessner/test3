@@ -4,9 +4,9 @@
 
 <p>Hey, {{Name}},</p>
 
-<p style="text_tecoration:none; color:#000; cursor:default">{{shortRecipEmail}}  just clicked play. Pass the popcorn—this is gonna be good! 🤩 </p>
+<p style="text_decoration:none; color:#000; cursor:default">{{shortRecipEmail}}  just clicked play. Pass the popcorn—this is gonna be good! 🤩 </p>
 
-<p>Moodcaster Team</p>
+<p>Team Moodcaster</p>
 
 <p class="subhead">Reading for <strong>{{Role}}</strong><br/>in <strong>{{Title}}</strong></p>
 <br />
