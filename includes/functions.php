@@ -82,7 +82,7 @@ function uploadFileFromFieldname ($fieldname,$bucket){
 	$result = '';
 	if(isset($_FILES[$fieldname])){
 		$file_name = $_FILES[$fieldname]['name']; 
-		
+		$file_name = normalizeString ($file_name);
 		//prepend timestamp to avoid overwrite
 		$file_name = time() . "_" . $file_name;
 		$file_name = urlencode($file_name);		  
@@ -118,7 +118,7 @@ function uploadFile ($pathToStitchedFile,$bucket,$folderName){
 		// EXTRACT 	filename.ext from /path/to/filename.ext
 		$path_parts = pathinfo($pathToStitchedFile);
 		$file_name =  $path_parts['basename'] ; 
-		
+		$file_name = normalizeString ($file_name);
 		
 		//prepend timestamp to avoid overwrite
 		$file_name = time() . "_" . $file_name;
