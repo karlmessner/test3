@@ -91,7 +91,9 @@ $id=$payload;
 if ($debug) {echo "id : " .$id, "\n";}
 		
 // TESTING SETTINGS  	
-$debug 				= TRUE;
+$debug 				= true;
+$overRideRecipients	= false;
+$debugBody			= false;
 
 
 // DEFS
@@ -117,11 +119,20 @@ $thisSUB = mysqli_fetch_array($rsSUBS);
 extract($thisSUB);
 
 // ASSIGN VARS
-$Title 			= $mc_title;
-$Role 			= $mc_role;
-$Name 			= $mc_name;
-$auditionDate 	= $mc_creation;
-$Email 			= $mc_email;
+$Title 				= $mc_title;
+$title_card_text	= $mc_title_card_text;
+$Role 				= $mc_role;
+$Name 				= $mc_name;
+$auditionDate 		= $mc_creation;
+$Email 				= $mc_email;
+$shortDownloadLink 	= $mc_download_link;
+$title_card_url		= $mc_title_card_url;
+$Profile_pic_url	= $mc_profile_url;
+$Recipients_emails	=$mc_recipients_emails;
+
+
+
+
 
 // SET NAME OF FINAL DOWNLOADABLE
 $auditionDate = date("m-d-Y g_ia",$now);
@@ -194,7 +205,6 @@ if ($newZipPath){
 	if ($debug) {echo "upload new zip...<BR>";}
 	$zipAWS = uploadFile ($newZipPath,$_ENV['AWSVIDBUCKET'],$downloadableFolderName);
 	$zipURL = $zipAWS['ObjectURL'];
-	$zipFileSize = $_FILES['Zip_file']['size'];
 	$file_good = ($zipAWS);
 	}
 	
