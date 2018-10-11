@@ -112,6 +112,5 @@
 		if ($result){$em_good='1';}
 		if ($debug) echo "TO:$to<BR>";
 		if ($debug) echo "FROM:$fromEmail<BR>";
-		if ($debug) echo "HEADERS:$headers<BR>";
 		if ($debugBody) echo $body;	
 ?>
