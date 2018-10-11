@@ -92,6 +92,7 @@ if ($debug) {echo "id : " .$id, "\n";}
 		
 // TESTING SETTINGS  	
 $debug 				= true;
+$actuallySendEmail	= true;
 $overRideRecipients	= false;
 $debugBody			= false;
 
@@ -126,7 +127,7 @@ $Name 				= $mc_name;
 $auditionDate 		= $mc_creation;
 $Email 				= $mc_email;
 $shortDownloadLink 	= $mc_download_link;
-$title_card_url		= $mc_title_card_url;
+$titleCardUrl		= $mc_title_card_url;
 $Profile_pic_url	= $mc_profile_url;
 $Recipients_emails	= $mc_recipients_emails;
 $zipFileSize		= $mc_zip_file_size;
