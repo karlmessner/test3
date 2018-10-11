@@ -33,7 +33,7 @@ function callback($msg){
 	global $db;
 	global $now;
 
-$debug = true;
+$debug = false;
 if ($debug) {
 	echo "<pre> \n";
 	//phpinfo();
@@ -257,12 +257,10 @@ include ('email/sendSubmissionSentEmail.php');
 $ch->basic_qos(null, 1, null);
 $ch->basic_consume($queue, '', false, false, false, false, 'callback');
 
-/*
 while (count($ch->callbacks)) {
     $ch->wait();
 }
-*/
-    $ch->wait();
+//     $ch->wait();
 
 
 $ch->close();
