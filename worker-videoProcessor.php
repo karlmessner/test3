@@ -26,10 +26,11 @@ $ch->exchange_declare($exchange, 'direct', true, true, false);
 $ch->queue_bind($queue, $exchange);
 
 function callback($msg){
-	global $db;
 	$payload = $msg->body;
 	/****************** APPLICATION CODE ******************************************************************/
 	
+	global $db;
+	global $now;
 
 $debug = true;
 if ($debug) {echo "<pre> \n";}
@@ -111,10 +112,16 @@ if ($debug) {echo mysqli_error($db);}
 $thisSUB = mysqli_fetch_array($rsSUBS);
 extract($thisSUB);
 
+// ASSIGN VARS
+$Title 			= $mc_title;
+$Role 			= $mc_role;
+$Name 			= $mc_name;
+$auditionDate 	= $mc_creation;
+$Email 			= $mc_email;
 
 // SET NAME OF FINAL DOWNLOADABLE
 $auditionDate = date("m-d-Y g_ia",$now);
-$downloadableFolderName = "MOODCASTER-" . $Title . "-" . $Role . "-" . $Name . "-" . $auditionDate;
+$downloadableFolderName = "MOODCASTER-" . $mc_title . "-" . $Role . "-" . $Name . "-" . $auditionDate;
 $downloadableFolderName = str_replace(' ', '_', $downloadableFolderName);
 
 // UNZIP, NORMALIZE VIDEOS, STITCH, RE-ZIP NEW FILES
@@ -128,10 +135,12 @@ $downloadableFolderName = str_replace(' ', '_', $downloadableFolderName);
 		if ($debug) {echo "Downloading zip from Cloud...<BR>";}
 		$bucket = $_ENV['AWSVIDBUCKET'];
 		$keyname =  pathinfo($mc_raw_zip_file_url,PATHINFO_BASENAME);
-		$tmpFileName = $sandbox . '/' . $file_name;
+		$tmpFileName = $sandbox . '/' . $keyname;
 		$awsKey=$_ENV['AWSKEY'];
 		$awsSecret=$_ENV['AWSSECRET'];
 		$result = '';
+		if ($debug) {echo "downloading $keyname to $tmpFileName \n";}
+
 		$s3 = new Aws\S3\S3Client([
 			'region'  => 'us-east-1',
 			'version' => 'latest',
