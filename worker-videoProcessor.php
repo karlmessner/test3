@@ -128,7 +128,8 @@ $Email 				= $mc_email;
 $shortDownloadLink 	= $mc_download_link;
 $title_card_url		= $mc_title_card_url;
 $Profile_pic_url	= $mc_profile_url;
-$Recipients_emails	=$mc_recipients_emails;
+$Recipients_emails	= $mc_recipients_emails;
+$zipFileSize		= $mc_zip_file_size;
 
 
 
