@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href=media/css/download-right-default.css />
 	
 		
-	<meta http-equiv=\"refresh\" content=\"10;URL='<?PHP echo urldecode($_GET['d']);?>'" />"
+	<meta http-equiv="refresh" content="10;URL='<?PHP echo urldecode($_GET['d']);?>'" />
 		
 		
 		
