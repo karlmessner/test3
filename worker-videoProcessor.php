@@ -3,6 +3,10 @@ require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
 
+//ERROR REPORTING
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 
 // LOAD FUNCTIONS
 require('includes/functions.php');
@@ -32,9 +36,6 @@ function callback($msg){
 $debug = true;
 if ($debug) {
 	echo "<pre> \n";
-	//ERROR REPORTING
-	error_reporting(E_ALL);
-	ini_set("display_errors", 1);
 	//phpinfo();
 	}
 
