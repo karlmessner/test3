@@ -125,8 +125,10 @@ $Email 			= $mc_email;
 
 // SET NAME OF FINAL DOWNLOADABLE
 $auditionDate = date("m-d-Y g_ia",$now);
-$downloadableFolderName = "MOODCASTER-" . $mc_title . "-" . $Role . "-" . $Name . "-" . $auditionDate;
+$downloadableFolderName = "MOODCASTER-" . $Title . "-" . $Role . "-" . $Name . "-" . $auditionDate;
 $downloadableFolderName = str_replace(' ', '_', $downloadableFolderName);
+if ($debug) {echo "downloadableFolderName : " .$downloadableFolderName, "\n";}
+
 
 // UNZIP, NORMALIZE VIDEOS, STITCH, RE-ZIP NEW FILES
 	// create a tmp directory with timestamp-email as name
@@ -243,9 +245,11 @@ include ('email/sendSubmissionSentEmail.php');
 $ch->basic_qos(null, 1, null);
 $ch->basic_consume($queue, '', false, false, false, false, 'callback');
 
+/*
 while (count($ch->callbacks)) {
     $ch->wait();
 }
+*/
 
 
 $ch->close();
