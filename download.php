@@ -38,8 +38,7 @@ $rsSUBS = mysqli_query($db,$sql); echo mysqli_error($db);
 $thisSUB = mysqli_fetch_array($rsSUBS); 
 extract($thisSUB);
 
-$notReady = (strlen($mc_stitch_file_url)<5);
-$notReady = true;
+$notReady = ($_GET['nr']) ? $_GET['nr'] : (strlen($mc_stitch_file_url)<5);
 if ($notReady){
 	
 	$returnLink = $mc_download_link . "&n=1";
