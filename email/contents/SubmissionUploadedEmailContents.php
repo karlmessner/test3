@@ -2,17 +2,17 @@
 
 <br />
 
-<p>Hey, {{Name}},</p>
+<p>Hey {{Name}},</p>
 
 <p>Your submission has been uploaded to Moodcaster. </p>
 
 
 <p><span style="font-size:48px;">🧙‍♂️🧝‍♀️</span>
 
-<br />Our magical elves are busily packaging your submission. (Might take a few minutes—they have tiny hands). We will send you a second email when your submission is successfully processed.</p>
+<br />Our magical elves are busy packaging your submission. (This might take a few minutes—they have tiny hands). We will send you a second email when your submission is successfully processed.</p>
 
 
-<p>Break a leg,<br />
+<p>Break a leg!<br />
 Team Moodcaster</p>
 
 <p class="subhead">Reading for <strong>{{Role}}</strong><br/>in <strong>{{Title}}</strong></p>
