@@ -13,6 +13,7 @@
 
 // DEBUG SETTINGS  	
 $debug 				= $_POST['debug'];
+$logging			= true;
 
 
 // ERROR REPORTING
@@ -88,6 +89,13 @@ $rawPost .= mysqli_real_escape_string($db, print_r($_FILES,true) );
 
 
 // UPLOAD RAW ZIP FILE TO CLOUD STORAGE
+
+// LOGGING
+$logMessage = "STARTING to store raw zip to cloud.";
+if ($logging){logStatus($id,$logMessage);}
+
+
+
 	if ($debug) {echo "upload raw zip to s3...<BR>";}
 	$isUploadedFile = $_FILES['Zip_file']['tmp_name'];
 	if ($isUploadedFile){
@@ -97,6 +105,16 @@ $rawPost .= mysqli_real_escape_string($db, print_r($_FILES,true) );
 		if ($debug) {echo "<BR>RAW ZIP FILE URL: $rawURL <BR>";}
 		if ($rawURL) {$file_good = '1';}
 	}	
+	
+	
+// LOGGING
+$logMessage = "DONE storing raw zip to cloud.";
+if ($logging){logStatus($id,$logMessage);}
+
+
+// LOGGING
+$logMessage = "STARTING to store titlecard to cloud.";
+if ($logging){logStatus($id,$logMessage);}
 
 
 // UPLOAD RAW TITLE CARD FILE TO CLOUD STORAGE
@@ -105,6 +123,10 @@ if ($_FILES['Title_card']['size'] >1){
 	$titleCardAWS = uploadFileFromFieldname('Title_card',$_ENV['AWSVIDBUCKET']);
 	$titleCardURL = $titleCardAWS['ObjectURL'];
 	}
+
+// LOGGING
+$logMessage = "DONE storing titlecard to cloud.";
+if ($logging){logStatus($id,$logMessage);}
 
 
 // INSERT INTO DATABASE
@@ -135,6 +157,9 @@ if ($debug) {echo "inserting...<BR>";}
 	$id = mysqli_insert_id($db);
 	}
 
+// LOGGING
+$logMessage = "Inserted Into Database";
+if ($logging){logStatus($id,$logMessage);}
 	
 // CREATE SHORT URL (FROM INSERT ID) TO DOWNLOAD PAGE, STORE IN DB
 if ($debug) {echo "create short url...<BR>";}
@@ -162,12 +187,23 @@ if ($id){
 	if ($debug) echo "<BR><BR>id to be inserted into queue: $id<br /><br />";
 	$ch->close();
 	$conn->close();
+	
+	
+	
+// LOGGING
+$logMessage = "Added to Queue.";
+if ($logging){logStatus($id,$logMessage);}
+	
+	
 	}
 
 // EMAIL UPDATE TO USER
 if ($debug) {echo "Sending Submission uploaded email...<BR>";}
 include ('email/sendSubmissionUploadedEmail.php');
 
+// LOGGING
+$logMessage = "Submission Received Email Sent.";
+if ($logging){logStatus($id,$logMessage);}
 
 
 // RESPONSE TO CALLER	
@@ -188,6 +224,9 @@ if ($debug) {echo "callback to ios...<BR>";}
 	echo "Error. Please try again";	
 	}
 
+// LOGGING
+$logMessage = "Sent link to App.";
+if ($logging){logStatus($id,$logMessage);}
 
 ?>
 
