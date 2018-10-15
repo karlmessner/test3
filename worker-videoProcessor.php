@@ -34,7 +34,7 @@ function callback($msg){
 	global $now;
 
 $debug 	= false;
-$logging = false;
+$logging = true;
 if ($debug) {
 	echo "<pre> \n";
 	//phpinfo();
