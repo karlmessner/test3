@@ -1,0 +1,81 @@
+/* @override http://localhost/test3/media/css/download-resp.css */
+
+@media (max-width: 767px) {
+	
+	
+#wrapper {
+	padding-top: 26px;
+}	
+
+#masthead{
+	height: 43px;
+	min-height: 0;
+}
+
+#masthead #logo{
+	position: relative;
+	left: 14px;
+	top: -0px;
+}
+
+#masthead #toplinks {
+	display: none;
+}
+
+#bgimg img{
+	width: 57%;
+}
+
+#videoDiv, #right {
+	float: none;
+	width: 100%;
+}
+
+#right #rightContainer{
+	padding-right: 0;
+	position: relative;
+	top: 6vw;
+
+}
+
+#vidDiv {
+	width: 100%;
+}
+
+#right {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+}
+#vidbox{
+	max-width: 95%;
+	width: 95vw;
+	height: 53.4375vw;
+		filter: none;	
+
+}
+
+#right #rightContainer  #titleRightBox{
+	font: bold 1em/1.5 "Cinetype";
+}
+
+#copyRightBox P{
+	max-width: 100%;
+}
+
+#downloadAndShareLinks{
+	margin-bottom: 70px;
+}
+
+#downloadSubmissiondiv,
+#Sharedivwrapper{
+display: inline-block;
+width: 148px;
+height: 50px;
+}
+
+#ctaRightBox a {
+margin-right: auto;
+margin-left: auto;}
+	
+	}  /* @media */
