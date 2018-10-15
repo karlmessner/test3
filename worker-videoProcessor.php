@@ -33,7 +33,8 @@ function callback($msg){
 	global $db;
 	global $now;
 
-$debug = false;
+$debug 	= false;
+$logging = false;
 if ($debug) {
 	echo "<pre> \n";
 	//phpinfo();
@@ -109,6 +110,11 @@ $vidSize='';
 $goodKey = $_ENV['GOODKEY'];
 
 
+// LOGGING
+$logMessage = "Worker: Got job from queue.";
+if ($logging){logStatus($id,$logMessage);}
+
+
 // PULL RECORD FROM DB
 $sql= "SELECT * from mc_submissions WHERE mc_id = '$id'";
 if ($debug) {echo "SQL : " .$sql, "\n";}
@@ -133,6 +139,9 @@ $Recipients_emails	= $mc_recipients_emails;
 $zipFileSize		= $mc_zip_file_size;
 
 
+// LOGGING
+$logMessage = "Worker: Pulled record from Database.";
+if ($logging){logStatus($id,$logMessage);}
 
 
 
@@ -151,6 +160,13 @@ if ($debug) {echo "downloadableFolderName : " .$downloadableFolderName, "\n";}
 		if ($debug) {echo "SANDBOX : " .$sandbox, "\n";}
 	
 	// download cloud stored  raw_Zip_file into it
+	
+	
+// LOGGING
+$logMessage = "Worker: STARTING to pull zip from cloud.";
+if ($logging){logStatus($id,$logMessage);}
+
+	
 		if ($debug) {echo "Downloading zip from Cloud...<BR>";}
 		$bucket = $_ENV['AWSVIDBUCKET'];
 		$keyname =  pathinfo($mc_raw_zip_file_url,PATHINFO_BASENAME);
@@ -173,6 +189,15 @@ if ($debug) {echo "downloadableFolderName : " .$downloadableFolderName, "\n";}
 			'Key'    => $keyname,
 			'SaveAs' => $tmpFileName
 		]);
+
+// LOGGING		
+$logMessage = "Worker: DONE pulling zip from cloud.";
+if ($logging){logStatus($id,$logMessage);}
+
+// LOGGING
+$logMessage = "Worker: STARTING to unzip file.";
+if ($logging){logStatus($id,$logMessage);}
+		
 		
 	// unzip file
 		if ($debug) {echo "unzip file $tmpFileName ...<BR>";}
@@ -182,11 +207,31 @@ if ($debug) {echo "downloadableFolderName : " .$downloadableFolderName, "\n";}
 		$zip->extractTo($sandbox);
 		$zip->close();
 		}	
+
+// LOGGING
+$logMessage = "Worker: DONE unzipping file.";
+if ($logging){logStatus($id,$logMessage);}
+
+
+
+// LOGGING
+$logMessage = "Worker: STARTING to Process videos and stitch.";
+if ($logging){logStatus($id,$logMessage);}
+
 				
 	// stitch files
 		if ($debug) {echo "stitch files...<BR>";}
 		$stitchedFilePath = stitchMP4sIn($sandbox);
 		if ($debug) {echo "<BR>STITCHED FILE: $stitchedFilePath <BR>";}
+		
+// LOGGING
+$logMessage = "Worker: DONE processing and stitching.";
+if ($logging){logStatus($id,$logMessage);}
+		
+
+// LOGGING
+$logMessage = "Worker: STARTING to upload stitched file to cloud.";
+if ($logging){logStatus($id,$logMessage);}
 		
 	// upload stitched file
 		if ($debug) {echo "upload stitched file...<BR>";}
@@ -195,12 +240,29 @@ if ($debug) {echo "downloadableFolderName : " .$downloadableFolderName, "\n";}
 			$stitchURL = $stitchAWS['ObjectURL'];
 		if ($debug) {echo "<BR>STITCHED FILE URL: $stitchURL <BR>";}
 		}	
+
+// LOGGING
+$logMessage = "Worker: DONE uploading stitched file to cloud.";
+if ($logging){logStatus($id,$logMessage);}
+
+// LOGGING
+$logMessage = "Worker: STARTING to rezip processed video files.";
+if ($logging){logStatus($id,$logMessage);}
 		
 	// REZIP
 		// CREATES NEW TMP SUBDIR, MOVES FIXED_ VIDEO FILES, TRIMMING FIXED_ FROM FILE, 
 		// MOVE IN STITCHED FILE RENAMED FINAL.MP4
 		if ($debug) {echo "rezip...<BR>";}
 		$newZipPath = rezip($sandbox, $downloadableFolderName );
+
+// LOGGING
+$logMessage = "Worker: DONE rezipping processed video files.";
+if ($logging){logStatus($id,$logMessage);}
+
+// LOGGING
+$logMessage = "Worker: STARTING to upload zip of processed video files.";
+if ($logging){logStatus($id,$logMessage);}
+		
 
 // upload video files
 if ($newZipPath){
@@ -210,6 +272,10 @@ if ($newZipPath){
 	$file_good = ($zipAWS);
 	}
 	
+// LOGGING
+$logMessage = "Worker: updating database with url of final files.";
+if ($logging){logStatus($id,$logMessage);}
+
 
 // INSERT INTO DATABASE
 if ($debug) {echo "Update database...<BR>";}
@@ -228,10 +294,18 @@ if ($debug) {echo "Updating database...<BR>";}
 	if ($debug) {echo mysqli_error($db);}
 	}
 	
+// LOGGING
+$logMessage = "Worker: Sending email to recipients list.";
+if ($logging){logStatus($id,$logMessage);}
 
 // EMAIL SUBMISSION TO RECIPIENTS
 if ($debug) {echo "Sending Submission to recipients...<BR>";}
 include ('email/sendRecipientsEmail.php');
+
+// LOGGING
+$logMessage = "Worker: Sending email to sender that it was send list.";
+if ($logging){logStatus($id,$logMessage);}
+
 
 // EMAIL NOTICE THAT SUBMISSION WAS SENT
 if ($debug) {echo "Notifying Sender...<BR>";}
@@ -240,6 +314,9 @@ include ('email/sendSubmissionSentEmail.php');
 
 
 
+// LOGGING
+$logMessage = "Worker: Done.";
+if ($logging){logStatus($id,$logMessage);}
 
 
 
