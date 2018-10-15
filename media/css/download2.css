@@ -43,7 +43,7 @@ body{
 	width: 100%;
 }
 #bgimg img{
-	width: 40%;
+	width: 37%;
 }
 
 #wrapper {
@@ -63,18 +63,18 @@ body{
 
 #masthead #logo{
 	position: relative;
-	left: 20px;
-	top:10px;
+	left: 28px;
+	top: -55px;
 }
 
 #masthead #logo img{
-	width: 150px;
+	width: 142px;
 }
 
 #masthead #toplinks{
 	position: absolute;
-	right: 44px;
-	top: 0;
+	right: 41px;
+	top: 18px;
 }
 
 #masthead #toplinks ul{
@@ -202,9 +202,30 @@ margin-left: 40px;
 
 #Sharedivhidden{
 	position: absolute;
-	display:none;
 	width: 100%;
 	top: 31px;
+    }
+    
+#Sharedivhidden.invisible{
+	opacity: 0;
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    -o-transition: all 2s;
+    transition:all 2s;
+    top: 40px;
+    }
+
+
+
+#Sharedivhidden.visible
+{
+	opacity: .9;
+	-webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
+    transition:all 1s;
+    top: 31px;
+
 }
 
 #Sharedivhidden input{
@@ -220,22 +241,12 @@ margin-left: 40px;
 	padding-bottom: 8px;
 	outline: none;	
 	border: 0;
-}
-#Sharedivhidden  .copied{
-	display: none;
-	font: 10px "Cinetype", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-	width: 100%;
-	margin-top: 0;
+	background-color: transparent;
 }
 
-
-#Sharedivhidden.visible,
-#Sharedivhidden.visible .copied,
-#Sharedivhidden.visible  #Sharedivhidden input{
-	display: block;
-}
-
-#Sharedivwrapper.current #showshare{
+.copied{
+	font: 14px sans-serif;
+	color: gray;
 }
 
 

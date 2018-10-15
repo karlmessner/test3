@@ -7,7 +7,7 @@
 $( document ).ready(function() {
 	$( "#showshare" ).click(function(e) {
 		e.preventDefault();
-		$( "#Sharedivhidden" ).toggleClass( "visible" );
+		$( "#Sharedivhidden" ).toggleClass( "visible invisible" );
 		/* Get the text field */
 		var copyText = document.getElementById("sharelink");
 		
@@ -16,6 +16,10 @@ $( document ).ready(function() {
 		
 		/* Copy the text inside the text field */
 		document.execCommand("copy");
+		
+		/* deSelect the text field */
+		copyText.blur();
+		
 		
 		/* AJAX TRIGGER THE SHARE TRACKER */
 		
@@ -46,12 +50,12 @@ $( document ).ready(function() {
 		<div id="wrapper">
 			<div id="masthead">
 				<div id="logo">
-					<a href="http://www.moodcaster.com/casting-professional.html" target='_blank'><img src="media/images/moodcaster-red.svg" /></a>
+					<a href="http://www.moodcaster.com/casting-professional.html" target='_blank'><img src="media/images/m-white.svg" /></a>
 				</div><!-- logo-->			
 				<div id="toplinks">
 					<ul>
 						<li><a href="http://www.moodcaster.com/casting-professional.html" target='_blank'>Login</a></li>
-						<li><a href="http://www.moodcaster.com/casting-professional.html" class="current" target='_blank'>Who we are</a></li>
+						<li><a href="http://www.moodcaster.com/casting-professional.html" class="current" target='_blank'>Who We Are</a></li>
 					</ul>
 				</div><!-- toplinks-->
 			</div><!-- masthead-->
@@ -82,7 +86,7 @@ $( document ).ready(function() {
 				</div><!-- shared div wrapper -->
 				
 
-					<div id="Sharedivhidden" >
+					<div id="Sharedivhidden" class="invisible">
 						<input type="text"  value="$shareLink" id='sharelink'/><br />
 						<span class='copied'>(Link copied to clipboard)</span>
 					</div><!-- Sharedivhidden-->

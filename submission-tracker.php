@@ -68,6 +68,12 @@ $s = createShortLink ($mc_id);
 
 $shortDownloadLink = $_ENV['DOMAIN'] . 'download.php?s='.$s;
 $shortDownloadLinkNoTrack = $shortDownloadLink . '&n=1';
+
+$shortDownloadLink2 = $_ENV['DOMAIN'] . 'download2.php?s='.$s;
+$shortDownloadLinkNoTrack2 = $shortDownloadLink2 . '&n=1';
+
+
+
 ?>	 
 			  
 			  <div class="tr">
@@ -76,7 +82,7 @@ $shortDownloadLinkNoTrack = $shortDownloadLink . '&n=1';
 			    <div class="td"><?PHP echo $mc_name;?></div>
 			    <div class="td"><?PHP echo $mc_title;?></div>
 			    <div class="td"><?PHP echo $mc_role;?></div>
-			    <div class="td"><?PHP echo "<a href='$shortDownloadLinkNoTrack' target=_blank >$shortDownloadLink</a>";?></div>
+			    <div class="td"><?PHP echo "<a href='$shortDownloadLinkNoTrack' target=_blank >$shortDownloadLink</a><a href='$shortDownloadLinkNoTrack2' target=_blank >#</a>";?></div>
 			    <div class="td"><?PHP echo ($mc_raw_zip_file_url) ? "<a href='$mc_raw_zip_file_url' target='_blank' style='font-size:18px'>&#x2b07;</a>" : "";?></div>
 			    <div class="td"><?PHP echo $mc_recipients_emails;?></div>
 			    <div class="td"><?PHP if ($mc_creation) echo date('n/d/y g:ia',$mc_creation);?></div>
