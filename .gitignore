@@ -7,3 +7,7 @@ ___htaccess for localDev
 testing/*
 /vendor/
 /learning/
+rabbitSend.php
+receive.php
+rabbitApp.php
+rabbitReceive.php
