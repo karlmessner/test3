@@ -7,4 +7,4 @@ RewriteEngine on
 # works for http://d.moodcaster.com/?s=387&c=1535508260
 
 
-RewriteRule ^(.*)$ /moodcaster/download.php?s=($1) 
+RewriteRule ^(.*)$ /download.php?s=($1) 
