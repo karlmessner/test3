@@ -49,6 +49,7 @@
 }
 #vidbox{
 	max-width: 95%;
+	background-color: transparent;
 	width: 95vw;
 	height: 53.4375vw;
 		filter: none;	
