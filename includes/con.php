@@ -1,5 +1,4 @@
-<?PHP 
-session_start();
+<?PHP session_start();
 
 /*
 error_reporting(E_ALL);
