@@ -2,12 +2,14 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
 	<script>
 $( document ).ready(function() {
 	$( "#showshare" ).click(function(e) {
 		e.preventDefault();
-		$( "#Sharedivhidden" ).toggleClass( "visible invisible" );
+		$( "#Sharedivhidden" ).toggleClass( "visible invisible" ).toggleClass( "visible invisible",5000 );
 		/* Get the text field */
 		var copyText = document.getElementById("sharelink");
 		
@@ -19,6 +21,7 @@ $( document ).ready(function() {
 		
 		/* deSelect the text field */
 		copyText.blur();
+		
 		
 		
 		/* AJAX TRIGGER THE SHARE TRACKER */
