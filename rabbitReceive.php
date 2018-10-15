@@ -24,10 +24,17 @@ $ch->queue_bind($queue, $exchange);
 function callback($msg){
 	global $db;
 	$payload = $msg->body;
+	/* APPLICATION CODE */
+	
 	$sql = "insert into TESTvideoQueue set content = '$payload'";
 	mysqli_query($db, $sql);
+	
+	
+	
+	/* .APPLICATION CODE*/
+	
+	// MARK JOB AS DONE IN QUEUE
 	$msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
-
 	}
 	
 $ch->basic_qos(null, 1, null);
