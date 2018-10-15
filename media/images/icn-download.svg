@@ -1,0 +1,10 @@
+
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Normal-Submission---Desktop" transform="translate(-164.000000, -648.000000)" stroke="#292929" stroke-width="1.25">
+            <path d="M179.103609,658.362107 L179.103609,661.440512 C179.103609,661.849185 178.941327,662.240047 178.652386,662.528987 C178.364435,662.817928 177.972584,662.98021 177.563912,662.98021 L166.789988,662.98021 C166.381315,662.98021 165.989464,662.817928 165.701513,662.528987 C165.412573,662.240047 165.250291,661.849185 165.250291,661.440512 L165.250291,658.362107" id="Path"></path>
+            <polyline id="Path" points="168.328696 654.513853 172.17695 658.362107 176.025204 654.513853"></polyline>
+            <path d="M172.17695,658.362107 L172.17695,649.126892" id="Path"></path>
+        </g>
+    </g>
+</svg>

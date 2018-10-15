@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+	<script>
+$( document ).ready(function() {
+	$( "#showshare" ).click(function(e) {
+		e.preventDefault();
+		$( "#Sharedivhidden" ).toggleClass( "visible" );
+		/* Get the text field */
+		var copyText = document.getElementById("sharelink");
+		
+		/* Select the text field */
+		copyText.select();
+		
+		/* Copy the text inside the text field */
+		document.execCommand("copy");
+		
+		/* AJAX TRIGGER THE SHARE TRACKER */
+		
+		$.ajax({
+			type: "GET",
+			url: "$DOMAINshare.php",
+			async: true,
+			data: "s=$sGetVar&n=$nGetVar"
+			});
+			return false;
+		
+		});
+
+	$("#video").click(function(){
+		$('#video')[0].currentTime = 0;
+	})
+	
+	
+});
+	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href=media/css/download2.css />
+	<link rel="stylesheet" href=media/css/download-right-default2.css />
+	
+  </head>
+  <body>
+	  <div id='bgimg'><img src="media/images/upperleftbg.svg" /></div>
+		<div id="wrapper">
+			<div id="masthead">
+				<div id="logo">
+					<a href="http://www.moodcaster.com/casting-professional.html" target='_blank'><img src="media/images/moodcaster-red.svg" /></a>
+				</div><!-- logo-->			
+				<div id="toplinks">
+					<ul>
+						<li><a href="http://www.moodcaster.com/casting-professional.html" target='_blank'>Login</a></li>
+						<li><a href="http://www.moodcaster.com/casting-professional.html" class="current" target='_blank'>Who we are</a></li>
+					</ul>
+				</div><!-- toplinks-->
+			</div><!-- masthead-->
+			
+			<div id="videoDiv">
+			<div id="vidbox">
+			<video id='video'	
+				controls
+				src="$m4vPath"
+				width="100%"
+			       >
+			    Sorry, your browser doesn't support embedded videos.
+			</video>				
+			</div><!-- vidbox-->
+			
+			
+			<div id="downloadAndShareLinks">
+				
+				<div id="downloadSubmissiondiv">
+					<a href="$downloadLink"><img src="media/images/icn-download.svg" id='dlIcon'/>Download Clips</a>
+				</div><!-- downloadSubmissiondiv-->
+				
+				
+				<div id="Sharedivwrapper" class=''>
+					<div id="Sharediv">
+						<a href="###" id='showshare'><img src="media/images/icn-share.svg" id='shareIcon' />Share Submission</a>
+					</div><!-- Sharediv-->
+				</div><!-- shared div wrapper -->
+				
+
+					<div id="Sharedivhidden" >
+						<input type="text"  value="$shareLink" id='sharelink'/><br />
+						<span class='copied'>(Link copied to clipboard)</span>
+					</div><!-- Sharedivhidden-->
+
+
+				
+			</div><!-- downloadAndShareLinks -->
+			</div><!-- videoDiv-->			
+			
+			<div id="right">
+				
+			<div id="rightContainer">
+
+			<div id="titleRightBox">
+				<h1>Need a simpler way to review submissions?</h1>
+			</div><!-- titleRightBox-->
+			<div id="copyRightBox">
+				<p>Streamline your submissions into a single dashboard designed for collaboration. Share your casting breakdowns anywhere through a simple yet powerful technology we call moodcodes. Suddenly life is a lot easier.</p>
+			</div><!-- copyRightBox-->
+			<div id="ctaRightBox">
+				<a href="http://www.moodcaster.com/casting-professional.html" target='_blank'>Join Now &rarr;</a>
+			</div><!-- ctaRightBox-->
+			</div><!-- rightContainer-->	
+				
+				
+				
+			</div><!-- right-->			
+			
+			
+						
+		</div><!-- wrapper -->
+	</body>
+</html>			
+			
+			
