@@ -373,6 +373,17 @@ function decodeShortLink($code){
 	$id = substr($slug, 2);
 	return $id;
 }
+
+
+
+function logStatus($sub,$msg){
+	global $db;
+	$thisInstant = microtime();
+	$logSQL = "INSERT INTO mc_log SET $ml_microtime='$thisInstant', ml_submissionId='$sub', ml_message='$msg'";
+	mysqli_query($db, $logSQL);
+	
+}
+
 	
 	
 ?>
