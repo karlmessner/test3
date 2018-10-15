@@ -177,11 +177,12 @@ padding: 0px;
 display: inline-block;
 width: 200px;
 height: 50px;
-margin-left: 40px;
-
 }
 
+#Sharedivwrapper{
+	margin-left: 40px;
 
+}
 
 #Sharedivwrapper.current{
 	position: relative;
