@@ -1,50 +1,47 @@
-/* @override 
-	https://www.actorslaunchpad.com/moodcaster/media/css/download-right-default.css
-	http://localhost/test3/media/css/download-right-default2.css
-*/
+/* @override https://www.actorslaunchpad.com/moodcaster/media/css/download-right-default.css */
 
 
-#right #rightContainer{
-	padding-right: 69px;
-	position: relative;
-	top: 6vw;
 
-}
 #right #rightContainer #logoBox img{
 	width: 50px;
 	vertical-align: middle;
 }
 #right #rightContainer #logoBox #logotext{
+	vertical-align: middle;
+	
 	font: 28px "cinetype";
+	
 	margin-left: 10px;
 }
 
 #right #rightContainer  #titleRightBox{
-	color: #000;
-	font: bold 1.1em/1.5 "Cinetype";
+	color: #FF5C5B;
+	font: bold 2.5em/1 "Cinetype";
 }
 #right #rightContainer  #titleRightBox h1{
-	margin-bottom: 20px;
-	margin-top: -9px;
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
 #copyRightBox P{
-	font: 16px/35px "Cinetype";
+	font: 24px/35px "Cinetype";
 	max-width: 550px;
 	margin-top: 0;
 	margin-bottom: 20;
+	
 }
 
 #ctaRightBox a{
-	background-color: #FF5C5C;
+
+	background-color: #44dcf7;
 	font: 14px "cinetype", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 	text-decoration: none;
 	color: white;
-	width: 145px;
+	width: 209px;
 	display: block;
 	text-align: center;
 	height: 20px;
-	border-radius:2px;
+	border-radius:20px;
 	border-style: solid;
 	border-width: 1px;
 	padding-top: 12px;
@@ -54,6 +51,9 @@
 }
 
 
+
+
+
 /* OVERRIDES */
 
 #right #rightContainer #logoBox #logotext,
@@ -61,6 +61,7 @@
 #Sharediv a,
 #Sharedivhidden  .copied,
 #Sharedivhidden input,
+#masthead #toplinks ul li a
 {
-	color:  black;
+	color:  white;
 }
