@@ -175,12 +175,12 @@ padding: 0px;
 #downloadSubmissiondiv,
 #Sharedivwrapper{
 display: inline-block;
-width: 200px;
+width: 178px;
 height: 50px;
 }
 
 #Sharedivwrapper{
-	margin-left: 40px;
+	margin-left: 0px;
 
 }
 
