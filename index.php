@@ -161,6 +161,8 @@ if ($debug) {echo "inserting...<BR>";}
 // LOGGING
 $logMessage = "Inserted Into Database";
 if ($logging){logStatus($id,$logMessage);}
+
+
 	
 // CREATE SHORT URL (FROM INSERT ID) TO DOWNLOAD PAGE, STORE IN DB
 if ($debug) {echo "create short url...<BR>";}
@@ -195,6 +197,8 @@ if ($id){
 $logMessage = "Added to Queue.";
 if ($logging){logStatus($id,$logMessage);}
 	
+// UPDATE PERCENTAGE
+updatePercentage($id,'1');
 	
 	}
 
