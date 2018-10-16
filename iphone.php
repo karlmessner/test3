@@ -1,6 +1,9 @@
 <?PHP
 require './vendor/autoload.php';
 require 'env.php';
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
