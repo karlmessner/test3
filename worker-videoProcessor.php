@@ -6,6 +6,7 @@ include('includes/con.php');
 //ERROR REPORTING
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+$logging = true;
 
 
 // LOAD FUNCTIONS
@@ -32,9 +33,9 @@ function callback($msg){
 	
 	global $db;
 	global $now;
+	global $logging;
 
 $debug 	= false;
-$logging = true;
 if ($debug) {
 	echo "<pre> \n";
 	//phpinfo();
@@ -221,7 +222,7 @@ if ($logging){logStatus($id,$logMessage);}
 				
 	// stitch files
 		if ($debug) {echo "stitch files...<BR>";}
-		$stitchedFilePath = stitchMP4sIn($sandbox);
+		$stitchedFilePath = stitchMP4sIn($id,$sandbox);
 		if ($debug) {echo "<BR>STITCHED FILE: $stitchedFilePath <BR>";}
 		
 // LOGGING
