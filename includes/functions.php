@@ -255,8 +255,18 @@ $logMessage = "WORKER: f:stitchMP4sIn  Looping through $filecount files in dir."
 if ($logging){logStatus($id,$logMessage);}
 
 
+// CALCULATE QUALITATIVE PERCENTAGE INCREMENTS
+// if there are 5 files, each is 20%, so the incremnets of completion are 0,20,40,80,100
+$eachPortion = round(100/$filecount);
+$percentDone = 0;
+// UPDATE PERCENTAGE
+updatePercentage($id,$percentDone);
+
+
+
+
 	foreach ($files1 as $file) {
-		
+
 		if ($debug) {echo "START OF file: $file ...<BR>";}
 		
 		$fileinfo = new SplFileInfo($file);
@@ -292,6 +302,14 @@ if ($logging){logStatus($id,$logMessage);}
 		}	
 		
 		if ($debug) {echo "END OF $file ...<BR><BR>";}
+		
+		
+// UPDATE PERCENTAGE
+$percentDone += $eachPortion;
+updatePercentage($id,$percentDone);
+		
+		
+		
 	}
 
 // LOGGING
@@ -422,6 +440,14 @@ function logStatus($sub,$msg){
 	}
 	
 }
+
+function updatePercentage($id,$percentDone){
+	global $db;
+	$updateSQL = "UPDATE mc_submissions SET mc_status='$percentDone' WHERE mc_id='$id' LIMIT 1";
+	mysqli_query($db, $logSQL);
+
+}
+
 
 	
 	
