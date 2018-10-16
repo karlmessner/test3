@@ -40,8 +40,8 @@ include('includes/functions.php');
 			    <div class="td">Title</div>
 			    <div class="td">Role</div>
 			    <div class="td">Share Link</div>
-			    <div class="td">Raw </div>
-			    <div class="td">Size (MB) </div>
+			    <div class="td">Raw</div>
+			    <div class="td">Size</div>
 			    <div class="td">Status</div>
 			    <div class="td">Recipients</div>
 			    <div class="td">Sent</div>
@@ -91,6 +91,7 @@ $file_size = round($mc_zip_file_size/1000000,2);
 			    <div class="td"><?PHP
 				    
 				     if (($mc_status)&&($mc_status<100)) {echo "$mc_status%";}
+				     if ($mc_status==100) {echo "<center><span style='font-size:18px'>&#x2705;</span></center>";}
 				     
 				     ?></div>
 			    <div class="td"><?PHP echo $mc_recipients_emails;?></div>
