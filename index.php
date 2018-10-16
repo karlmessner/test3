@@ -46,6 +46,7 @@ $auth_good			= 0;
 $file_good			= 0;
 $db_good			= 0;
 $em_good			= 0;
+$id					=0;
 
 
 // PRIVATE KEY
