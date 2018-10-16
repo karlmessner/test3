@@ -41,12 +41,15 @@ include('includes/functions.php');
 			    <div class="td">Role</div>
 			    <div class="td">Share Link</div>
 			    <div class="td">Raw </div>
+			    <div class="td">Size (MB) </div>
+			    <div class="td">Status</div>
 			    <div class="td">Recipients</div>
 			    <div class="td">Sent</div>
 			    <div class="td">Read</div>
 			    <div class="td">Clicked</div>
 			    <div class="td">Downloaded</div>
 			    <div class="td">Shared</div>
+			    <div class="td">Id</div>
 			    <div class="clear"></div>
 			  </div>
 <?PHP
@@ -72,7 +75,7 @@ $shortDownloadLinkNoTrack = $shortDownloadLink . '&n=1';
 $shortDownloadLink2 = $_ENV['DOMAIN'] . 'download2.php?s='.$s;
 $shortDownloadLinkNoTrack2 = $shortDownloadLink2 . '&n=1';
 
-
+$file_size = round($mc_zip_file_size/1000000,2);
 
 ?>	 
 			  
@@ -84,12 +87,19 @@ $shortDownloadLinkNoTrack2 = $shortDownloadLink2 . '&n=1';
 			    <div class="td"><?PHP echo $mc_role;?></div>
 			    <div class="td"><?PHP echo "<a href='$shortDownloadLinkNoTrack' target=_blank >$shortDownloadLink</a>";?></div>
 			    <div class="td"><?PHP echo ($mc_raw_zip_file_url) ? "<a href='$mc_raw_zip_file_url' target='_blank' style='font-size:18px'>&#x2b07;</a>" : "";?></div>
+			    <div class="td"><?PHP echo $file_size;?></div>
+			    <div class="td"><?PHP
+				    
+				     if (($mc_status)&&($mc_status<100)) {echo "$mc_status%";}
+				     
+				     ?></div>
 			    <div class="td"><?PHP echo $mc_recipients_emails;?></div>
 			    <div class="td"><?PHP if ($mc_creation) echo date('n/d/y g:ia',$mc_creation);?></div>
 			    <div class="td"><?PHP if ($mc_read) echo date('n/d/y g:ia',$mc_read);?></div>
 			    <div class="td"><?PHP if ($mc_click) echo date('n/d/y g:ia',$mc_click);?></div>
 			    <div class="td"><?PHP if ($mc_download) echo date('n/d/y g:ia',$mc_download);?></div>
 			    <div class="td"><?PHP if ($mc_share) echo date('n/d/y g:ia',$mc_share);?></div>
+			    <div class="td"><?PHP echo $mc_id;?></div>
 			    <div class="clear"></div>
 			  </div>
 			
