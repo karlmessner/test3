@@ -419,6 +419,7 @@ function logStatus($sub,$msg){
 		echo "*   LOG: $sub - $msg <BR>";
 		echo "****************************************<BR>";
 		echo "<BR>";
+	}
 	
 }
 
