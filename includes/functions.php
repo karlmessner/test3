@@ -287,7 +287,7 @@ if ($logging){logStatus($id,$logMessage);}
 // UPDATE PERCENTAGE
 $i++;
 $message = "processing $i of $filecount";
-updatePercentage($id,$percentDone);
+updatePercentage($id,$message);
 
 
 			
