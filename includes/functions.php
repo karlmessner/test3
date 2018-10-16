@@ -407,9 +407,11 @@ function decodeShortLink($code){
 
 function logStatus($sub,$msg){
 	global $db;
+	global $debug;
 	$thisInstant = microtime();
 	$logSQL = "INSERT INTO mc_log SET ml_microtime='$thisInstant', ml_submissionId='$sub', ml_message='$msg'";
 	mysqli_query($db, $logSQL);
+	if ($debug){echo "<BR>********************<BR>LOG: $sub - $msg <BR>********************<BR>";}
 	
 }
 
