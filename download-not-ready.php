@@ -53,14 +53,6 @@
 			<div id="right">
 				
 			<div id="rightContainer">
-<!--
-			<div id="logoBox">
-				<img src="media/images/logo-white-m-red-square.png" alt="logo-white-m-red-square"  />
-					
-					<span id="logotext">Casting Simplified</span>
-				
-			</div><!-- logoBox-->
--->
 			<div id="titleRightBox">
 				<h1>Need a simpler way to review submissions?</h1>
 			</div><!-- titleRightBox-->
