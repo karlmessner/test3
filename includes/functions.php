@@ -257,14 +257,13 @@ if ($logging){logStatus($id,$logMessage);}
 
 // CALCULATE QUALITATIVE PERCENTAGE INCREMENTS
 // if there are 5 files, each is 20%, so the incremnets of completion are 0,20,40,80,100
-$eachPortion = round(100/$filecount);
+$eachPortion = round(98/$filecount);// so when we're done processsing, we're at 98%
 $percentDone = 0;
 // UPDATE PERCENTAGE
 updatePercentage($id,$percentDone);
 
 
-
-
+// LOOP THROUGH FILES
 	foreach ($files1 as $file) {
 
 		if ($debug) {echo "START OF file: $file ...<BR>";}
@@ -299,14 +298,16 @@ if ($logging){logStatus($id,$logMessage);}
 			fixVideo($pathToFile,$resultFile,$ffmpegPath,$ffprobePath,$targetWidth,$targetHeight,$targetFPS,$targetKeyFramesInterval);	
 			// ADD FILE TO THE text LIST	
 			$textFileContents .= "file '" . $resultFileName . "' \n";
+			
+// UPDATE PERCENTAGE
+updatePercentage($id,$percentDone);
+$percentDone += $eachPortion; // increment afterwards or you'll overrun %100
+			
 		}	
 		
 		if ($debug) {echo "END OF $file ...<BR><BR>";}
 		
 		
-// UPDATE PERCENTAGE
-$percentDone += $eachPortion;
-updatePercentage($id,$percentDone);
 		
 		
 		
