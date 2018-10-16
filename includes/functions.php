@@ -231,6 +231,9 @@ function normalizeString ($str = '')
 // STITCHING
 function stitchMP4sIn($dirPath){
 	global $debug;
+	global $logging;
+	global $id;
+	
 	// CONSTANTS
 	$ffmpegPath = $_ENV['FFMPEGPATH']; 
 	$ffprobePath = $_ENV['FFPROBEPATH']; 
@@ -245,7 +248,14 @@ function stitchMP4sIn($dirPath){
 
 	// READ ALL MP4 FILES IN DIRECTORY AND PROCESS THEM
 	$files1 = scandir($dirPath);
-if ($debug) {echo "(stitchMP4sIn  Looping through dir ...<BR>";}
+	$filecount = count($files1) - 2;
+if ($debug) {echo "f:stitchMP4sIn  Looping through $filecount files in dir ...<BR>";}
+
+// LOGGING
+$logMessage = "WORKER: f:stitchMP4sIn  Looping through $filecount files in dir.";
+if ($logging){logStatus($id,$logMessage);}
+
+
 	foreach ($files1 as $file) {
 		
 		if ($debug) {echo "START OF file: $file ...<BR>";}
@@ -257,6 +267,10 @@ if ($debug) {echo "(stitchMP4sIn  Looping through dir ...<BR>";}
 		if ($extn == 'mp4'){
 			if ($debug) {echo "Trying to fix: $file...<BR>";}
 			
+// LOGGING
+$logMessage = "WORKER: Identified mp4 to process: $file";
+if ($logging){logStatus($id,$logMessage);}
+
 			
 			// NORMALIZE FILENAME
 			// GET BASE FILENAME WITHOUT EXTENSION
@@ -280,6 +294,11 @@ if ($debug) {echo "(stitchMP4sIn  Looping through dir ...<BR>";}
 		
 		if ($debug) {echo "END OF $file ...<BR><BR>";}
 	}
+
+// LOGGING
+$logMessage = "WORKER: Creating text file of videos to stitch.";
+if ($logging){logStatus($id,$logMessage);}
+
 	
 	// CREATE BLANK TEXT FILE
 	if ($debug) {echo "creating text file of movies to stitch...<BR>";}
@@ -288,13 +307,23 @@ if ($debug) {echo "(stitchMP4sIn  Looping through dir ...<BR>";}
 	fwrite($theTextFile, $textFileContents);
 	fclose($theTextFile);
 	
+// LOGGING
+$logMessage = "WORKER: Beginning stitching.";
+if ($logging){logStatus($id,$logMessage);}
+	
+	
 	// STITCH FILES FROM TEXT FILE
 	$stitchedFilePath = $dirPath . $stitchedFileName;
 	$ffmpegCommand = "-ss 00:00:00.5 -f concat -i ".$dirPath . $stitchListFileName." -c copy  " . $stitchedFilePath . ' ' ;
 	if ($debug) {echo "trying to execute:$ffmpegPath $ffmpegCommand<BR>";}
 	$ffmpegExec=shell_exec($ffmpegPath .' '. $ffmpegCommand); 
 	return $stitchedFilePath;
-	}
+	
+// LOGGING
+$logMessage = "WORKER: done stitching.";
+if ($logging){logStatus($id,$logMessage);}
+	
+	} //funtion
 
 // FUNCTION
 function fixVideo($file,$resultFile,$ffmpegPath,$ffprobePath,$targetWidth,$targetHeight,$targetFPS,$targetKeyFramesInterval) {
