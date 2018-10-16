@@ -23,7 +23,8 @@ include('includes/functions.php');
     <meta charset="utf-8">
     <title>Moodcaster Submission Tracker</title>
     <link href="media/css/trackercss.css" media="all" rel="stylesheet" type="text/css" />
-  </head>
+	<meta http-equiv="refresh" content="15">  
+	</head>
   <body>
     <div id='mast'>
 	    <div id="headerLogo"><img src="media/images/m.svg"/></div><!-- headerlogo-->
@@ -90,7 +91,7 @@ $file_size = round($mc_zip_file_size/1000000,2);
 			    <div class="td"><?PHP echo $file_size;?></div>
 			    <div class="td"><?PHP
 				    
-				     if (($mc_status)&&($mc_status<100)) {echo "$mc_status%";}
+				     if (($mc_status)&&($mc_status<100)) {echo "$mc_status";}
 				     if ($mc_status==100) {echo "<center><span style='font-size:18px'>&#x2705;</span></center>";}
 				     
 				     ?></div>
