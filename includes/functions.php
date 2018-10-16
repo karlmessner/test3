@@ -248,7 +248,7 @@ function stitchMP4sIn($id,$dirPath){
 
 	// READ ALL MP4 FILES IN DIRECTORY AND PROCESS THEM
 	$files1 = scandir($dirPath);
-	$filecount = count($files1) - 2;
+	$filecount = count($files1) - 3; // subtract off "." , ".." ,  and the original zip file
 if ($debug) {echo "f:stitchMP4sIn  Looping through $filecount files in dir ...<BR>";}
 
 // LOGGING
