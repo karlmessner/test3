@@ -23,7 +23,7 @@ include('includes/functions.php');
     <meta charset="utf-8">
     <title>Moodcaster Submission Tracker</title>
     <link href="media/css/trackercss.css" media="all" rel="stylesheet" type="text/css" />
-	<meta http-equiv="refresh" content="15">  
+	<meta http-equiv="refresh" content="30">  
 	</head>
   <body>
     <div id='mast'>
