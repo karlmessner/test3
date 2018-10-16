@@ -112,7 +112,7 @@ $goodKey = $_ENV['GOODKEY'];
 
 
 // LOGGING
-$logMessage = "Worker: Got job from queue.";
+$logMessage = "WORKER: Got job from queue.";
 if ($logging){logStatus($id,$logMessage);}
 
 
@@ -141,7 +141,7 @@ $zipFileSize		= $mc_zip_file_size;
 
 
 // LOGGING
-$logMessage = "Worker: Pulled record from Database.";
+$logMessage = "WORKER: Pulled record from Database.";
 if ($logging){logStatus($id,$logMessage);}
 
 
@@ -164,7 +164,7 @@ if ($debug) {echo "downloadableFolderName : " .$downloadableFolderName, "\n";}
 	
 	
 // LOGGING
-$logMessage = "Worker: STARTING to pull zip from cloud.";
+$logMessage = "WORKER: STARTING to pull zip from cloud.";
 if ($logging){logStatus($id,$logMessage);}
 
 	
@@ -192,11 +192,11 @@ if ($logging){logStatus($id,$logMessage);}
 		]);
 
 // LOGGING		
-$logMessage = "Worker: DONE pulling zip from cloud.";
+$logMessage = "WORKER: DONE pulling zip from cloud.";
 if ($logging){logStatus($id,$logMessage);}
 
 // LOGGING
-$logMessage = "Worker: STARTING to unzip file.";
+$logMessage = "WORKER: STARTING to unzip file.";
 if ($logging){logStatus($id,$logMessage);}
 		
 		
@@ -210,13 +210,13 @@ if ($logging){logStatus($id,$logMessage);}
 		}	
 
 // LOGGING
-$logMessage = "Worker: DONE unzipping file.";
+$logMessage = "WORKER: DONE unzipping file.";
 if ($logging){logStatus($id,$logMessage);}
 
 
 
 // LOGGING
-$logMessage = "Worker: STARTING to Process videos and stitch.";
+$logMessage = "WORKER: STARTING to Process videos and stitch.";
 if ($logging){logStatus($id,$logMessage);}
 
 				
@@ -226,12 +226,12 @@ if ($logging){logStatus($id,$logMessage);}
 		if ($debug) {echo "<BR>STITCHED FILE: $stitchedFilePath <BR>";}
 		
 // LOGGING
-$logMessage = "Worker: DONE processing and stitching.";
+$logMessage = "WORKER: DONE processing and stitching.";
 if ($logging){logStatus($id,$logMessage);}
 		
 
 // LOGGING
-$logMessage = "Worker: STARTING to upload stitched file to cloud.";
+$logMessage = "WORKER: STARTING to upload stitched file to cloud.";
 if ($logging){logStatus($id,$logMessage);}
 		
 	// upload stitched file
@@ -243,11 +243,11 @@ if ($logging){logStatus($id,$logMessage);}
 		}	
 
 // LOGGING
-$logMessage = "Worker: DONE uploading stitched file to cloud.";
+$logMessage = "WORKER: DONE uploading stitched file to cloud.";
 if ($logging){logStatus($id,$logMessage);}
 
 // LOGGING
-$logMessage = "Worker: STARTING to rezip processed video files.";
+$logMessage = "WORKER: STARTING to rezip processed video files.";
 if ($logging){logStatus($id,$logMessage);}
 		
 	// REZIP
@@ -257,11 +257,11 @@ if ($logging){logStatus($id,$logMessage);}
 		$newZipPath = rezip($sandbox, $downloadableFolderName );
 
 // LOGGING
-$logMessage = "Worker: DONE rezipping processed video files.";
+$logMessage = "WORKER: DONE rezipping processed video files.";
 if ($logging){logStatus($id,$logMessage);}
 
 // LOGGING
-$logMessage = "Worker: STARTING to upload zip of processed video files.";
+$logMessage = "WORKER: STARTING to upload zip of processed video files.";
 if ($logging){logStatus($id,$logMessage);}
 		
 
@@ -274,7 +274,7 @@ if ($newZipPath){
 	}
 	
 // LOGGING
-$logMessage = "Worker: updating database with url of final files.";
+$logMessage = "WORKER: updating database with url of final files.";
 if ($logging){logStatus($id,$logMessage);}
 
 
@@ -296,7 +296,7 @@ if ($debug) {echo "Updating database...<BR>";}
 	}
 	
 // LOGGING
-$logMessage = "Worker: Sending email to recipients list.";
+$logMessage = "WORKER: Sending email to recipients list.";
 if ($logging){logStatus($id,$logMessage);}
 
 // EMAIL SUBMISSION TO RECIPIENTS
@@ -304,7 +304,7 @@ if ($debug) {echo "Sending Submission to recipients...<BR>";}
 include ('email/sendRecipientsEmail.php');
 
 // LOGGING
-$logMessage = "Worker: Sending email to sender that it was send list.";
+$logMessage = "WORKER: Sending email to sender that it was send list.";
 if ($logging){logStatus($id,$logMessage);}
 
 
@@ -316,7 +316,7 @@ include ('email/sendSubmissionSentEmail.php');
 
 
 // LOGGING
-$logMessage = "Worker: Done.";
+$logMessage = "WORKER: Done.";
 if ($logging){logStatus($id,$logMessage);}
 
 
