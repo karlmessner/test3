@@ -115,6 +115,10 @@ $goodKey = $_ENV['GOODKEY'];
 $logMessage = "WORKER: Got job from queue.";
 if ($logging){logStatus($id,$logMessage);}
 
+// UPDATE PERCENTAGE
+updatePercentage($id,'2');
+
+
 
 // PULL RECORD FROM DB
 $sql= "SELECT * from mc_submissions WHERE mc_id = '$id'";
@@ -194,6 +198,10 @@ if ($logging){logStatus($id,$logMessage);}
 // LOGGING		
 $logMessage = "WORKER: DONE pulling zip from cloud.";
 if ($logging){logStatus($id,$logMessage);}
+
+// UPDATE PERCENTAGE
+updatePercentage($id,'3');
+
 
 // LOGGING
 $logMessage = "WORKER: STARTING to unzip file.";
