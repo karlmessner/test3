@@ -116,7 +116,7 @@ $logMessage = "WORKER: Got job from queue.";
 if ($logging){logStatus($id,$logMessage);}
 
 // UPDATE PERCENTAGE
-updatePercentage($id,'2');
+updatePercentage($id,'Processing');
 
 
 
@@ -198,9 +198,6 @@ if ($logging){logStatus($id,$logMessage);}
 // LOGGING		
 $logMessage = "WORKER: DONE pulling zip from cloud.";
 if ($logging){logStatus($id,$logMessage);}
-
-// UPDATE PERCENTAGE
-updatePercentage($id,'3');
 
 
 // LOGGING
