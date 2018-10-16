@@ -232,6 +232,7 @@ function normalizeString ($str = '')
 function stitchMP4sIn($id,$dirPath){
 	global $debug;
 	global $logging;
+	global $db;
 	
 	// CONSTANTS
 	$ffmpegPath = $_ENV['FFMPEGPATH']; 
