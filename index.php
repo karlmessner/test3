@@ -198,7 +198,7 @@ $logMessage = "Added to Queue.";
 if ($logging){logStatus($id,$logMessage);}
 	
 // UPDATE PERCENTAGE
-updatePercentage($id,'1');
+updatePercentage($id,'in queue');
 	
 	}
 
