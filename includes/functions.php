@@ -340,9 +340,18 @@ if ($logging){logStatus($id,$logMessage);}
 	
 	// STITCH FILES FROM TEXT FILE
 	$stitchedFilePath = $dirPath . $stitchedFileName;
-	$ffmpegCommand = "-ss 00:00:00.5 -f concat -i ".$dirPath . $stitchListFileName." -c copy  " . $stitchedFilePath . ' ' ;
+// 	$ffmpegCommand = "-ss 00:00:00.5 -f concat -i ".$dirPath . $stitchListFileName." -c copy  " . $stitchedFilePath . ' ' ;
+	
+	$ffmpegCommand = " -noaccurate_seek -ss 00:00:00.5 -f concat -i ".$dirPath . $stitchListFileName." -c copy  " . $stitchedFilePath . ' -avoid_negative_ts make_zero' ;
+	
+	
 	if ($debug) {echo "trying to execute:$ffmpegPath $ffmpegCommand<BR>";}
 	$ffmpegExec=shell_exec($ffmpegPath .' '. $ffmpegCommand); 
+
+// LOGGING
+$logMessage = "WORKER: trying to execute:$ffmpegPath $ffmpegCommand";
+if ($logging){logStatus($id,$logMessage);}
+
 	
 // LOGGING
 $logMessage = "WORKER: done stitching.";
