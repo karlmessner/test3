@@ -459,10 +459,16 @@ function logStatus($sub,$msg){
 	
 }
 
-function updatePercentage($id,$percentDone){
+function updatePercentage($id,$statMessage){
 	global $db;
-	$updateSQL = "UPDATE mc_submissions SET mc_status='$percentDone' WHERE mc_id='$id' LIMIT 1";
+	global $logging;
+	
+	$updateSQL = "UPDATE mc_submissions SET mc_status='$statMessage' WHERE mc_id='$id' LIMIT 1";
 	mysqli_query($db, $updateSQL);
+	
+	// LOGGING
+	$logMessage = "STATUS: $statMessage";
+	if ($logging){logStatus($id,$logMessage);}
 
 }
 
