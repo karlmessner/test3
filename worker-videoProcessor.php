@@ -320,8 +320,8 @@ $logMessage = "WORKER: Done.";
 if ($logging){logStatus($id,$logMessage);}
 
 
-
-
+// UPDATE PERCENTAGE
+updatePercentage($id,'100');
 
 
 	
