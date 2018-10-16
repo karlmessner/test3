@@ -316,13 +316,15 @@ if ($logging){logStatus($id,$logMessage);}
 	$ffmpegCommand = "-ss 00:00:00.5 -f concat -i ".$dirPath . $stitchListFileName." -c copy  " . $stitchedFilePath . ' ' ;
 	if ($debug) {echo "trying to execute:$ffmpegPath $ffmpegCommand<BR>";}
 	$ffmpegExec=shell_exec($ffmpegPath .' '. $ffmpegCommand); 
-	return $stitchedFilePath;
 	
 // LOGGING
 $logMessage = "WORKER: done stitching.";
 if ($logging){logStatus($id,$logMessage);}
+
+	return $stitchedFilePath;
+
 	
-	} //funtion
+	} //function
 
 // FUNCTION
 function fixVideo($file,$resultFile,$ffmpegPath,$ffprobePath,$targetWidth,$targetHeight,$targetFPS,$targetKeyFramesInterval) {
@@ -410,7 +412,13 @@ function logStatus($sub,$msg){
 	$thisInstant = microtime();
 	$logSQL = "INSERT INTO mc_log SET ml_microtime='$thisInstant', ml_submissionId='$sub', ml_message='$msg'";
 	mysqli_query($db, $logSQL);
-	if ($debug){echo "<BR>********************<BR>LOG: $sub - $msg <BR>********************<BR>";}
+	if ($debug){
+		echo "<BR>";
+		echo "<BR>";
+		echo "****************************************<BR>";
+		echo "*   LOG: $sub - $msg <BR>";
+		echo "****************************************<BR>";
+		echo "<BR>";
 	
 }
 
