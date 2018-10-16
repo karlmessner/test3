@@ -65,7 +65,7 @@
 		$fromName = "Moodcaster";
 		
 		// OVERRIDE RECIPIENT TO ME
-		if ($overRideRecipients){ $to="karlmessner@gmail.com";}
+// 		if ($overRideRecipients){ $to="karlmessner@gmail.com";}
 		
 		//$bcc="submissions@moodcaster.com";
 		$subject = stripslashes($subject);
@@ -99,5 +99,5 @@
 		if ($result){$em_good='1';}
 		if ($debug) echo "TO:$to<BR>";
 		if ($debug) echo "FROM:$fromEmail<BR>";
-		if ($debugBody) echo $body;	
+// 		if ($debugBody) echo $body;	
 ?>
