@@ -80,7 +80,7 @@ $( document ).ready(function() {
 			<div id="downloadAndShareLinks">
 				
 				<div id="downloadSubmissiondiv">
-					<a href="$downloadLink"><img src="media/images/icn-download.svg" id='dlIcon'/>Download Clips</a>
+					<a href="$downloadLink"><img src="media/images/icn-download.svg" id='dlIcon'/>Download<?PHP if (($mc_alp !=1) ||($mc_alp is null)){echo " Clips"}?></a>
 				</div><!-- downloadSubmissiondiv-->
 				
 				
@@ -106,6 +106,7 @@ $( document ).ready(function() {
 			<div id="rightContainer">
 
 			<div id="titleRightBox">
+				<h1 class='redscore'>Casting directors:</h1>
 				<h1>Need a simpler way to review submissions?</h1>
 			</div><!-- titleRightBox-->
 			<div id="copyRightBox">
