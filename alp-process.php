@@ -189,7 +189,7 @@ if ($debug){
 //IF EVERYTHING WENT SMOOTHLY, REPORT SUCCESS TO APP
 if ($debug) {echo "callback to ios...<BR>";}
  if (($auth_good)&&($file_good)&&($db_good)){
-	//echo "success";
+	echo "Successfully sent $name this link: ";
 	echo $shortDownloadLink;
 	}	else  {
 	echo "Error. Please try again";	
