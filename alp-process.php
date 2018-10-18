@@ -13,6 +13,8 @@
 // DEBUG SETTINGS  	
 $debug 				= $_POST['debug'];
 $logging			= true;
+$overRideRecipients	= false;
+$actuallySendEmail	= true;
 
 
 // ERROR REPORTING
