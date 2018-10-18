@@ -161,6 +161,7 @@ if ($logging){logStatus($id,$logMessage);}
 if ($debug) {echo "create short url...<BR>";}
 $s=createShortLink($id);
 $shortDownloadLink = $_ENV['DOMAIN'] . 'download.php?s='.$s;
+$shortDownloadLink .= "&a=1"; // <= ADD ALP FLAG
 $sql = "UPDATE mc_submissions SET mc_download_link = '$shortDownloadLink' WHERE mc_id ='$id' LIMIT 1";
 mysqli_query($db,$sql);
 if ($result){$db_good='1';}
