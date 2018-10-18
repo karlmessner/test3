@@ -14,17 +14,11 @@
 			// TITLE CARD OR INTRODUCING NAME
 			// IF THEY SUPPLIED TITLE CARD TEXT, SPLIT THAT INTO TWO LINES IF NECESSARY AND CREATE THE TWO LINES.
 			// IF NOT, SEND INTRUDUCING AS FIRST LINE AND THEIR NAME AS SECOND LINE
-			if (strlen($title_card_text) >0){
-				$firstLineText=$title_card_text;
-				$firstLineSize = calc_font_size($title_card_text);
-				$secondLineText = '';
-				$secondLineSize = 1 ;	
-			}else{
-				$firstLineText="Introducing";
-				$firstLineSize = 40;
+
+				$firstLineText="Audition Taping:";
+				$firstLineSize = 24;
 				$secondLineText = $Name;
 				$secondLineSize = calc_font_size($Name) ;
-			}
 			
 			// PROFILE PIC OR TITLE CARD?
 			// IF THEY UPLOADED A TITLE CARD PICTURE, USE THAT, IF NOT, USE THE PROFILE URL THEY SENT
@@ -69,7 +63,7 @@
 		$subject = "Your audition taping: $Role in $Title by $Name (" . date("m.d.y g:ia") . ")";
 		$subject = stripslashes($subject);
 		
-		if ($zipFileSize>0){
+		if ($vidFileSize>0){
 			// don't email unless there is a file attached	
 			if ($actuallySendEmail) {
 				if ($debug) {echo "sending email...<BR>";}
@@ -107,7 +101,7 @@
 				} //foreach	
 				
 			} // if actuallySendEmail
-		} // if zipsize	
+		} // if vidFileSize	
 		if ($result){$em_good='1';}
 		if ($debug) echo "TO:$to<BR>";
 		if ($debug) echo "FROM:$fromEmail<BR>";
