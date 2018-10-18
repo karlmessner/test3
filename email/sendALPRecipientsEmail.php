@@ -2,6 +2,10 @@
 		// CALCULATE FONT SIZE and LINE-HEIGHT OF NAME BASED ON NAME LENGTH
 		require_once 'includes/calcFontSize.php';
 		
+		
+		// CONFIG
+		
+			
 		// VARIABLES
 			$s=$id;
 			$template=file_get_contents("email/templates/Maroon5-email-template.htm");
@@ -36,8 +40,6 @@
 				"Role",
 				"Title",
 				"Profile_shot",
-				"fontSize",
-				"lineHeight",
 				"s",
 				"downloadLink",
 				"trackingPixel"
