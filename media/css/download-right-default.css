@@ -4,12 +4,18 @@
 	http://localhost/test3/media/css/download-right-default.css
 */
 
-#right #rightContainer{
-	padding-right: 69px;
+#right  {
 	position: relative;
 	top: 6vw;
 
 }
+
+#right #rightContainer{
+	padding-right: 69px;
+	position: relative;
+	top: -48px;
+}
+
 #right #rightContainer #logoBox img{
 	width: 50px;
 	vertical-align: middle;
@@ -24,7 +30,6 @@
 	font: bold 1.1em/1.5 "Cinetype";
 }
 #right #rightContainer  #titleRightBox h1{
-	margin-bottom: 20px;
 	margin-top: -9px;
 }
 
@@ -53,6 +58,11 @@
 		
 }
 
+#titleRightBox h2{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 
 /* OVERRIDES */
 
@@ -64,3 +74,17 @@
 {
 	color:  black;
 }
+
+
+h1.redscore {
+	font-size: 18px;
+	display: inline-block;
+    text-decoration: none;
+    position: relative;
+    border-bottom: 3px solid;
+    padding-bottom: 0;
+    border-color: #FF5C5C;
+    left: 4px;
+}
+
+
