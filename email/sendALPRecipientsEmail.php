@@ -78,6 +78,7 @@
 					
 					// APPEND E=EMAILADDRESS FOR EACH DOWNLOAD LINK FOR TRACKING
 					$appendedDownloadLink = $downloadLink . '&e=' . urlencode($eachEmail);
+					$appendedDownloadLink .= "&a=1";
 					$bodyToSend = str_replace($downloadLink, $appendedDownloadLink, $body);
 					
 					$email = new \SendGrid\Mail\Mail(); 
