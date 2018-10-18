@@ -96,7 +96,7 @@ if ($logging){logStatus($id,$logMessage);}
 	if ($isUploadedFile){
 		$vidFileSize = $_FILES['vid_file']['size'];
 		$vidAWS = uploadFileFromFieldname('vid_file',$_ENV['AWSVIDBUCKET'],'');
-		$vidURL = $rawAWS['ObjectURL'];
+		$vidURL = $vidAWS['ObjectURL'];
 		if ($debug) {echo "<BR>VID FILE URL: $vidURL <BR>";}
 		if ($vidURL) {$file_good = '1';}
 	}	
