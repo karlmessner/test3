@@ -6,11 +6,11 @@
 	<p class="subhead">Reading for <strong>{{Role}}</strong><br/>in <strong>{{Title}}</strong></p>
 	<p align="center" class="downloadp"><a class="downloadButton" href="{{downloadLink}}" target="_blank">View Submission</a>
 	<br />
-	<a href="http://www.moodcaster.com/casting-professional.html" class="getMoodcasterLink" target="_blank">Get Moodcaster for casting pro's</a>
+	<a href="http://www.moodcaster.com/talent.html" class="getMoodcasterLink" target="_blank">You should check out <u>Moodcaster &raquo;</u></a>
 	</p>
 	<p class='bottomspace'>&nbsp;</p>
 </td>
 <td class="imgtd">
-	<img src="{{Profile_shot}}" class="thumb" width="200" height="200"/>
+	<img src="{{Profile_shot}}" class="thumb" width="200" />
 </td>
 </tr></table>
