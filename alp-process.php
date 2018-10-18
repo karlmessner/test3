@@ -106,6 +106,24 @@ if ($logging){logStatus($id,$logMessage);}
 $logMessage = "DONE storing vid to cloud.";
 if ($logging){logStatus($id,$logMessage);}
 
+// LOGGING
+$logMessage = "STARTING to store titlecard to cloud.";
+if ($logging){logStatus($id,$logMessage);}
+
+
+// UPLOAD RAW TITLE CARD FILE TO CLOUD STORAGE
+if ($_FILES['Title_card']['size'] >1){
+	if ($debug) {echo "upload title card...<BR>";}
+	$titleCardAWS = uploadFileFromFieldname('Title_card',$_ENV['AWSVIDBUCKET']);
+	$titleCardURL = $titleCardAWS['ObjectURL'];
+	}
+
+// LOGGING
+$logMessage = "DONE storing titlecard to cloud.";
+if ($logging){logStatus($id,$logMessage);}
+
+
+
 
 // INSERT INTO DATABASE
 if ($debug) {echo "insert into database if there's a file...<BR>";}
@@ -118,6 +136,7 @@ $sql .=" mc_title 				= '$Title', \n";
 $sql .=" mc_email 				= '$Email', \n";
 $sql .=" mc_stitch_file_url	= '$vidURL', \n";
 $sql .=" mc_zip_file_size		= '$vidFileSize', \n";
+$sql .=" mc_title_card_url		= '$titleCardURL', \n";
 $sql .=" mc_rawpost				= '$rawPost', \n";
 $sql .=" mc_pk					= '$pk' \n";
 if ($debug) echo "<BR><BR><pre>$sql</pre><br /><br />";
