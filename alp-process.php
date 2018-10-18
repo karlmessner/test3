@@ -14,6 +14,7 @@
 $debug 				= $_POST['debug'];
 $logging			= true;
 $overRideRecipients	= false;
+$debugBody	= false;
 $actuallySendEmail	= true;
 
 
