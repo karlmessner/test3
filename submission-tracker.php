@@ -6,7 +6,9 @@ require 'env.php';
 include('includes/con.php');
 include('includes/functions.php');
 	
-	
+// SANITIZE GET
+
+if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
 ?>
 <?PHP
 /*
@@ -57,7 +59,8 @@ include('includes/functions.php');
 
 
 // PULL DATA
-$sql =  "SELECT * from mc_submissions  ORDER BY mc_creation desc";
+$filter = ($a==1)?" WHERE mc_alp=1 " : "WHERE mc_alp!=1 OR mc_alp NULL ";
+$sql =  "SELECT * from mc_submissions $filter ORDER BY mc_creation desc";
 $rsSUBS = mysqli_query($db,$sql);
 
 while ($thisSUB = mysqli_fetch_array($rsSUBS)){
