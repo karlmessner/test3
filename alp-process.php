@@ -122,7 +122,7 @@ $sql .=" mc_rawpost				= '$rawPost', \n";
 $sql .=" mc_pk					= '$pk' \n";
 if ($debug) echo "<BR><BR><pre>$sql</pre><br /><br />";
 // ONLY INSERT INTO DATABASE IF THEY ATTACHED SOMETHING OR allowNoFile=true
-if ($zipFileSize>0){
+if ($vidFileSize>0){
 if ($debug) {echo "inserting...<BR>";}
 	$result = mysqli_query($db, $sql); 
 	if ($debug) {echo mysqli_error($db);}
