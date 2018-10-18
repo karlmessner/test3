@@ -23,7 +23,13 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Moodcaster Submission Tracker</title>
+    <?PHP
+	    if ($a==1){
+			echo "<title>ALP Audition Tape Tracker</title>";		    
+	    } ELSE {
+			echo "<title>Moodcaster Submission Tracker</title>";		    
+	    }
+	?>
     <link href="media/css/trackercss.css" media="all" rel="stylesheet" type="text/css" />
 	<meta http-equiv="refresh" content="30">  
 	</head>
@@ -33,7 +39,13 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
     </div><!--mast-->
     <div id='body'>
 	    <div id='content'>
-		   <h1>Submissions</h1>
+    <?PHP
+	    if ($a==1){
+			echo "<H1>ALP Audition Tape Tracker</H1>";		    
+	    } ELSE {
+			echo "<H1>Moodcaster Submission Tracker</H1>";		    
+	    }
+	?>
 		   
 		   <div class="table">
 			  <div class="th">
@@ -59,7 +71,7 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
 
 
 // PULL DATA
-$filter = ($a==1)?" WHERE mc_alp=1 " : "WHERE mc_alp!=1 OR mc_alp NULL ";
+$filter = ($a==1)?  " WHERE mc_alp=1 " : "WHERE mc_alp!=1 OR mc_alp is NULL " ;
 $sql =  "SELECT * from mc_submissions $filter ORDER BY mc_creation desc";
 $rsSUBS = mysqli_query($db,$sql);
 
