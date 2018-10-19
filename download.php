@@ -38,7 +38,6 @@ $rsSUBS = mysqli_query($db,$sql); echo mysqli_error($db);
 $thisSUB = mysqli_fetch_array($rsSUBS); 
 extract($thisSUB);
 
-
 // UPDATE CLICK TABLE
 // don't register click if clicked from submission tracker
 if (!$n){
@@ -88,8 +87,14 @@ $stylesheet=file_get_contents("media/css/download.css");
 
 $m4vPath = $mc_stitch_file_url;
 
-// SHARELINK IS PHPSELF
+// SHARELINK IS FROM DATABASE
 $shareLink = $mc_download_link;
+
+// if the're an actor, take off the a=1 from the link so the shared link is the Casting Director version
+if ($mc_alp){
+	$shareLink = str_replace("&a=1", "", $shareLink);
+}
+
 
 //injections
 $downloadLink = "download_file.php?s=$s";
@@ -100,7 +105,15 @@ $downloadLink .= ($n) ? '&n=1':'';
 $sGetVar = $s;
 $nGetVar = $n;
 $DOMAIN = $_ENV['DOMAIN'];
-$variablesToInject = array("stylesheet","Name","Role","Title","Profile_pic","fontSize","lineHeight","shareLink","downloadLink","m4vPath","sGetVar","DOMAIN");
+
+if ($mc_alp) {
+	$rightCopy = file_get_contents("template-download-right-ALP.php");
+	} else {
+	$rightCopy = file_get_contents("template-download-right-cp.php");
+	}
+
+
+$variablesToInject = array("stylesheet","Role","Title","Profile_pic","fontSize","lineHeight","shareLink","downloadLink","m4vPath","sGetVar","DOMAIN","rightCopy","Name");
 foreach ($variablesToInject as $thisVar){
 	$thisVal = $$thisVar;
 	$thisVar = "$".$thisVar;
