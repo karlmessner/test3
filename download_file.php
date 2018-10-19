@@ -33,8 +33,20 @@ mysqli_query($db,$sql);echo mysqli_error($db);
 // IF ALP SUBMISSION, SEND STITCHED FILE, OTHERWISE, GIVE ZIP FILE
 
 if ($mc_alp == 1){
-	$location =  "Location: $mc_stitch_file_url";
-	$file_name = $mc_name . " _Audtion_Taping_" . date($mc_creation, "(m-d-y)") ."mp4";
+	//$location =  "Location: $mc_stitch_file_url";
+	//$file_name = $mc_name . " _Audtion_Taping_" . date($mc_creation, "(m-d-y)") ."mp4";
+	
+	
+	// filenames in db are in form:
+	//	https://mc-vid-submissions.s3.amazonaws.com/1539928608_01_seven-minute-clup.mp4	
+	// so, explode on the / take the last element, then chop off the first 11chars
+	
+	$filenameArr = explode('/', $mc_stitch_file_url);
+	$filenameStub = end($filenameArr);
+	$file_name = substr($filenameStub, 11);
+
+	
+	
 	header('Content-Type: application/octet-stream');
 	header("Content-Transfer-Encoding: Binary"); 
 	header("Content-disposition: attachment; filename=\"".$file_name."\""); 
