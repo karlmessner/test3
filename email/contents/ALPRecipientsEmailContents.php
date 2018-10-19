@@ -4,7 +4,7 @@
 	<br />
 	<img src="https://www.moodcaster.com/font-to-image.php?s={{secondLineSize}}&t={{secondLineText}}" />
 	<p class="subhead">Reading for <strong>{{Role}}</strong><br/>in <strong>{{Title}}</strong></p>
-	<p align="center" class="downloadp"><a class="downloadButton" href="{{downloadLink}}" target="_blank">View Submission</a>
+	<p align="center" class="downloadp"><a class="downloadButton" href="{{downloadLink}}" target="_blank">View Audition</a>
 	<br />
 	<a href="http://www.moodcaster.com/talent.html" class="getMoodcasterLink" target="_blank">You should check out <u>Moodcaster &raquo;</u></a>
 	</p>
