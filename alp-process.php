@@ -191,6 +191,10 @@ if ($debug) {echo "callback to ios...<BR>";}
  if (($auth_good)&&($file_good)&&($db_good)){
 	echo "<BR><BR><BR><CENTER><h1>Successfully sent $Name this link: <BR><BR>";
 	echo $shortDownloadLink;
+	echo "<BR><BR><BR>";
+	echo "<a href='https://www.moodcaster.com/alp/'>Send Another Video</a>";
+	
+	
 	}	else  {
 	echo "Error. Please try again";	
 	}
