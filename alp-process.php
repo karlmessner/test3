@@ -63,7 +63,19 @@ if ($_POST['pk']!=$goodKey){
 	} else {
 		$auth_good='1';}
 
-	
+?>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ALP Audition Sending...</title>
+    <style> *{font-family: sans-serif;}</style>
+  </head>
+  <body>
+    
+
+
+<?PHP	
 // SANITZE POST
 $pk 							= mysqli_real_escape_string($db,$_POST['pk']);
 $Name 							= mysqli_real_escape_string($db,$_POST['Name']);
