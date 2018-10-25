@@ -26,7 +26,6 @@ $showerrors = false;
 
 
 // EXTRACT GET
-
 $s=mysqli_real_escape_string($db,$_GET['s']);
 $e=mysqli_real_escape_string($db,$_GET['e']);
 $s=decodeShortLink($s);
@@ -103,7 +102,7 @@ $downloadLink = "download_file.php?s=$s";
 $downloadLink .= ($n) ? '&n=1':'';
 
 $sGetVar = $s;
-$nGetVar = $n;
+$nGetVar = $n; 
 $DOMAIN = $_ENV['DOMAIN'];
 
 if ($mc_alp) {
@@ -113,7 +112,7 @@ if ($mc_alp) {
 	}
 
 
-$variablesToInject = array("stylesheet","Role","Title","Profile_pic","fontSize","lineHeight","shareLink","downloadLink","m4vPath","sGetVar","DOMAIN","rightCopy","Name");
+$variablesToInject = array("stylesheet","Role","Title","Profile_pic","fontSize","lineHeight","shareLink","downloadLink","m4vPath","sGetVar","nGetVar","DOMAIN","rightCopy","Name");
 foreach ($variablesToInject as $thisVar){
 	$thisVal = $$thisVar;
 	$thisVar = "$".$thisVar;

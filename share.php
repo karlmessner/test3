@@ -13,9 +13,9 @@ $n = mysqli_real_escape_string($db,$_GET['n']);
 
 // check database to see if this submission has already been opened
 
-if (!$n){
+if ((is_null($n)) || ($n<1)){
 	// first time opening	
-	$sql =  "UPDATE mc_submissions SET mc_share = '$now',mc_share_count+1 WHERE mc_id='$s' LIMIT 1"; 
+	$sql =  "UPDATE mc_submissions SET mc_share = '$now',mc_share_count = mc_share_count+1 WHERE mc_id='$s' LIMIT 1"; 
 	mysqli_query($db,$sql);	
 }
 ?>

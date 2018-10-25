@@ -1,5 +1,7 @@
 <?PHP 
-	
+error_reporting(-1);
+ini_set('display_errors', 'true');
+
 //composer, ENV Vars & mysql
 require './vendor/autoload.php';
 require 'env.php';
@@ -112,10 +114,36 @@ $file_size = round($mc_zip_file_size/1000000,2);
 				     ?></div>
 			    <div class="td"><?PHP echo $mc_recipients_emails;?></div>
 			    <div class="td"><?PHP if ($mc_creation) echo date('n/d/y g:ia',$mc_creation);?></div>
-			    <div class="td"><?PHP if ($mc_read) echo "($mc_read_count) " . date('n/d/y g:ia',$mc_read);?></div>
-			    <div class="td"><?PHP if ($mc_click) echo "($mc_click_count) " . date('n/d/y g:ia',$mc_click);?></div>
-			    <div class="td"><?PHP if ($mc_download) echo "($mc_download_count) " . date('n/d/y g:ia',$mc_download);?></div>
-			    <div class="td"><?PHP if ($mc_share) echo "($mc_share_count) " . date('n/d/y g:ia',$mc_share);?></div>
+			    <div class="td" style="text-align: center">
+				    <?PHP 
+					    if ($mc_read) {
+						    echo "($mc_read_count time" .  is_plural($mc_read_count) .  ")<br>LAST: " . date('n/d/y g:ia',$mc_read);
+						    }
+					?>
+				</div>
+				
+			    <div class="td" style="text-align: center">
+				    <?PHP 
+					    if ($mc_click) {
+						    echo "($mc_click_count time" .  is_plural($mc_click_count) .  ")<br>LAST: " . date('n/d/y g:ia',$mc_click);
+						    }
+					?>
+				</div>
+				
+			    <div class="td" style="text-align: center">
+				    <?PHP 
+					    if ($mc_download){
+						    echo "($mc_download_count time" .  is_plural($mc_download_count) .  ")<br>LAST: " . date('n/d/y g:ia',$mc_download);
+						    }
+					?>
+				</div>
+			    <div class="td" style="text-align: center">
+				    <?PHP 
+					    if ($mc_share) {
+						    echo "($mc_share_count time" .  is_plural($mc_share_count) .  ")<br>LAST: " . date('n/d/y g:ia',$mc_share);
+						    }
+					?>
+				</div>
 			    <div class="td"><?PHP echo $mc_id;?></div>
 			    <div class="clear"></div>
 			  </div>

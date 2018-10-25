@@ -1,6 +1,7 @@
 <?PHP
 
 
+
 // REZIP CONTENTS OF SANDBOX
 // include and rename FIXED_ files and stitched file
 function rezip($sandbox){	
@@ -473,6 +474,10 @@ function updatePercentage($id,$statMessage){
 }
 
 
-	
+// ADD S IF PLURAL (WHY ISNT THIS IN PHP ALREADY?
+function is_plural($n){
+    $result = ($n>1) ? "s" : "";
+    return $result;
+}	
 	
 ?>
