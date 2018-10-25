@@ -26,7 +26,7 @@ extract($thisSUB);
 // don't update if from submission tracker
 
 if (!$n){
-$sql =  "UPDATE mc_submissions SET mc_download='$now' where mc_id='$s' LIMIT 1";
+$sql =  "UPDATE mc_submissions SET mc_download='$now', mc_download_count=mc_download_count+1 where mc_id='$s' LIMIT 1";
 mysqli_query($db,$sql);echo mysqli_error($db);
 }
 

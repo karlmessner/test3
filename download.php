@@ -41,7 +41,7 @@ extract($thisSUB);
 // UPDATE CLICK TABLE
 // don't register click if clicked from submission tracker
 if (!$n){
-$sql =  "UPDATE mc_submissions SET mc_click='$now',mc_ip='$ip', mc_useragent='$user_agent' where mc_id='$s' LIMIT 1";
+$sql =  "UPDATE mc_submissions SET mc_click='$now',mc_ip='$ip',mc_click_count=mc_click_count+1, mc_useragent='$user_agent' where mc_id='$s' LIMIT 1";
 mysqli_query($db,$sql);echo mysqli_error($db);
 }
 

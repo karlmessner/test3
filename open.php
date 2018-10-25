@@ -19,7 +19,7 @@ $opened = mysqli_num_rows($rsOPEN);
 
 if ($opened<1){
 	// first time opening	
-	$sql =  "UPDATE mc_submissions SET mc_read = '$now' WHERE mc_id='$s' LIMIT 1";
+	$sql =  "UPDATE mc_submissions SET mc_read = '$now', mc_read_count = mc_read_count+1 WHERE mc_id='$s' LIMIT 1";
 	mysqli_query($db,$sql);	
 }
 //Begin the header output

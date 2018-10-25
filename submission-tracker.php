@@ -112,10 +112,10 @@ $file_size = round($mc_zip_file_size/1000000,2);
 				     ?></div>
 			    <div class="td"><?PHP echo $mc_recipients_emails;?></div>
 			    <div class="td"><?PHP if ($mc_creation) echo date('n/d/y g:ia',$mc_creation);?></div>
-			    <div class="td"><?PHP if ($mc_read) echo date('n/d/y g:ia',$mc_read);?></div>
-			    <div class="td"><?PHP if ($mc_click) echo date('n/d/y g:ia',$mc_click);?></div>
-			    <div class="td"><?PHP if ($mc_download) echo date('n/d/y g:ia',$mc_download);?></div>
-			    <div class="td"><?PHP if ($mc_share) echo date('n/d/y g:ia',$mc_share);?></div>
+			    <div class="td"><?PHP if ($mc_read) echo "($mc_read_count) " . date('n/d/y g:ia',$mc_read);?></div>
+			    <div class="td"><?PHP if ($mc_click) echo "($mc_click_count) " . date('n/d/y g:ia',$mc_click);?></div>
+			    <div class="td"><?PHP if ($mc_download) echo "($mc_download_count) " . date('n/d/y g:ia',$mc_download);?></div>
+			    <div class="td"><?PHP if ($mc_share) echo "($mc_share_count) " . date('n/d/y g:ia',$mc_share);?></div>
 			    <div class="td"><?PHP echo $mc_id;?></div>
 			    <div class="clear"></div>
 			  </div>

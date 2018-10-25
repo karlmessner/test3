@@ -15,7 +15,7 @@ $n = mysqli_real_escape_string($db,$_GET['n']);
 
 if (!$n){
 	// first time opening	
-	$sql =  "UPDATE mc_submissions SET mc_share = '$now' WHERE mc_id='$s' LIMIT 1"; 
+	$sql =  "UPDATE mc_submissions SET mc_share = '$now',mc_share_count+1 WHERE mc_id='$s' LIMIT 1"; 
 	mysqli_query($db,$sql);	
 }
 ?>
