@@ -1,28 +1,14 @@
 <?PHP 
-		// CALCULATE FONT SIZE and LINE-HEIGHT OF NAME BASED ON NAME LENGTH
-		require_once 'includes/calcFontSize.php';
-		
-		
-		// CONFIG
-		
-			
 		// VARIABLES
 			$s=$id;
-			$template=file_get_contents("email/templates/Maroon5-email-template.htm");
+			$template=file_get_contents("email/templates/email-template.htm");
 			$contents=file_get_contents("email/contents/ALPRecipientsEmailContents.php");
-			$stylesheet=file_get_contents("media/css/emailcss.css");
+			$stylesheet=file_get_contents("email/css/emailcss.css");
 			$downloadLink = $shortDownloadLink; 
 			$trackingPixel = $_ENV['DOMAIN'] . "open.php?s=".$s;
 			
 			
 			// TITLE CARD OR INTRODUCING NAME
-			// IF THEY SUPPLIED TITLE CARD TEXT, SPLIT THAT INTO TWO LINES IF NECESSARY AND CREATE THE TWO LINES.
-			// IF NOT, SEND INTRUDUCING AS FIRST LINE AND THEIR NAME AS SECOND LINE
-
-				$firstLineText="Audition Taping:";
-				$firstLineSize = 24;
-				$secondLineText = $Name;
-				$secondLineSize = calc_font_size($Name) ;
 			
 			// PROFILE PIC OR TITLE CARD?
 			// IF THEY UPLOADED A TITLE CARD PICTURE, USE THAT, IF NOT, USE THE PROFILE URL THEY SENT
@@ -33,10 +19,7 @@
 			$body = str_replace("{{content}}", $contents, $template);
 			$variablesToInject = array(
 				"stylesheet",
-				"firstLineText",
-				"firstLineSize",
-				"secondLineText",
-				"secondLineSize",
+				"Name",
 				"Role",
 				"Title",
 				"Profile_shot",

@@ -1,30 +1,14 @@
 <?PHP 
-		// CALCULATE FONT SIZE and LINE-HEIGHT OF NAME BASED ON NAME LENGTH
-		require_once 'includes/calcFontSize.php';
 		
 		// VARIABLES
 			$s=$id;
-			$template=file_get_contents("email/templates/Maroon5-email-template.htm");
+			$template=file_get_contents("email/templates/email-template.htm");
 			$contents=file_get_contents("email/contents/RecipientsEmailContents.php");
-			$stylesheet=file_get_contents("media/css/emailcss.css");
+			$stylesheet=file_get_contents("email/css/emailcss.css");
 			$downloadLink = $shortDownloadLink; 
 			$trackingPixel = $_ENV['DOMAIN'] . "open.php?s=".$s;
 			
 			
-			// TITLE CARD OR INTRODUCING NAME
-			// IF THEY SUPPLIED TITLE CARD TEXT, SPLIT THAT INTO TWO LINES IF NECESSARY AND CREATE THE TWO LINES.
-			// IF NOT, SEND INTRUDUCING AS FIRST LINE AND THEIR NAME AS SECOND LINE
-			if (strlen($title_card_text) >0){
-				$firstLineText=$title_card_text;
-				$firstLineSize = calc_font_size($title_card_text);
-				$secondLineText = '';
-				$secondLineSize = 1 ;	
-			}else{
-				$firstLineText="Introducing";
-				$firstLineSize = 40;
-				$secondLineText = $Name;
-				$secondLineSize = calc_font_size($Name) ;
-			}
 			
 			// PROFILE PIC OR TITLE CARD?
 			// IF THEY UPLOADED A TITLE CARD PICTURE, USE THAT, IF NOT, USE THE PROFILE URL THEY SENT
@@ -35,15 +19,10 @@
 			$body = str_replace("{{content}}", $contents, $template);
 			$variablesToInject = array(
 				"stylesheet",
-				"firstLineText",
-				"firstLineSize",
-				"secondLineText",
-				"secondLineSize",
 				"Role",
 				"Title",
 				"Profile_shot",
-				"fontSize",
-				"lineHeight",
+				"Name",
 				"s",
 				"downloadLink",
 				"trackingPixel"

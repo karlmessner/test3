@@ -5,9 +5,9 @@
 		
 		// BODY
 			$subject = "🎥 Cut! We're processing your submission.";
-			$template=file_get_contents("email/templates/Maroon5-email-template.htm");
+			$template=file_get_contents("email/templates/email-template.htm");
 			$contents=file_get_contents("email/contents/SubmissionUploadedEmailContents.php");
-			$stylesheet=file_get_contents("media/css/emailcss.css");
+			$stylesheet=file_get_contents("email/css/emailcss.css");
 			$downloadLink = $shortDownloadLink; 
 			$s=$id;
 			//$trackingPixel = $_ENV['DOMAIN'] . "open.php?s=".$s;

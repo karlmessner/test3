@@ -1,19 +1,24 @@
-<img src="https://www.moodcaster.com/font-to-image.php?s=28&t=That's a wrap! " />
-
 <br />
+<center>
+<h1>Your submission was successfully<br /> sent via Moodcaster.</h1>
+</center>
+<p>When they watch the video, we’ll drop you another line.</p>
 
-<p>Hey, {{Name}},</p>
+<P>We’re sending good vibes your way👍</p>
 
-<p>Your slate and audition have been sent. When they watch the video, we’ll drop you another line.</p>
+<p>Break a leg!<br />
+Team Moodcaster</p>
 
-<P>We’re sending good vibes your way👍</p
 
-<p>Team Moodcaster</p>
+<center><h2>P.S. check out your submission <a href="{{downloadLink}}" target="_blank">here</a></h2>
+</center>
 
-<p class="subhead">Reading for <strong>{{Role}}</strong><br/>in <strong>{{Title}}</strong></p>
-<br />
 
-<p>P.S. <a href="{{downloadLink}}" target="_blank">Here's what they'll see.</a></p>
 
-<p class='bottomspace'>&nbsp;</p> 
+
+
+
+
+
+
 
