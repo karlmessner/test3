@@ -1,6 +1,6 @@
 <br />
 <center>
-	<img src="{{Profile_shot}}" class="thumb" width="200" height="200"/>
+	<img src="{{Profile_shot}}" class="thumb" width="200" />
 
 <h1>Introducing {{Name}}</h1>
 <p>Reading for {{Role}} in {{Title}}</p>
