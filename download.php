@@ -5,9 +5,7 @@ require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
 include('includes/functions.php');
-
 /*
-	
 
 THIS SCRIPT SHOWS THE DOWNLOAD PAGE. IT USES THE SAME TEMPLATE FROM THE EMAIL
 1) EXTRACT THE GET VAR
@@ -16,14 +14,17 @@ THIS SCRIPT SHOWS THE DOWNLOAD PAGE. IT USES THE SAME TEMPLATE FROM THE EMAIL
 4) SHOW THE PAGE	
 */	
 
-
 // SHOW ERRORS
 $showerrors = false;
-			if ($showerrors){
-			error_reporting(E_ALL);
-			ini_set("display_errors", 1);
-			}
+$sendAllEmails = false; // USES THIS FILE TO TRIGGER SENDING EVERY EMAIL AS A DEBUGGING HACK
 
+
+if ($showerrors){
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+$debugBody =  true;
+$debug =  true;
+}
 
 // EXTRACT GET
 $s=mysqli_real_escape_string($db,$_GET['s']);
@@ -44,7 +45,6 @@ $sql =  "UPDATE mc_submissions SET mc_click='$now',mc_ip='$ip',mc_click_count=mc
 mysqli_query($db,$sql);echo mysqli_error($db);
 }
 
-
 // NOT READY YET?
 $notReady = ($_GET['nr']) ? $_GET['nr'] : (strlen($mc_stitch_file_url)<5);
 if ($notReady){
@@ -55,8 +55,6 @@ if ($notReady){
 	header($waitingRoom);
 }
 
-
-
 // MAP VARS
 $Name = $mc_name;
 $Role = $mc_role;
@@ -64,26 +62,33 @@ $Email = $mc_email;
 $Title= $mc_title;
 $thumb_url=$mc_vid_thumb_url;
 
-
 // SEND EMAIL NOTIFICATION THAT AUDITION IS BEING WATCHED (if by someone else)
 if (!$n){
 	$shortRecipEmail = '';
 	$shortRecipEmail = substr($e, 0,2) . '&hellip;'. substr($e, -8);
 	$shortRecipEmail = (strlen($e)>4) ? $shortRecipEmail : "Someone ";
-	include('email/sendSubmissionClickedEmail.php');
-	}
-
-
-
-
 	
-// CALCULATE FONT SIZE and LINE-HEIGHT OF NAME BASED ON NAME LENGTH
-//require_once 'calcFontSize.php';
-
-// $body=file_get_contents("download-template.htm");
+				// FOR TESTING:
+				// defeat filters:
+				$zipFileSize =1;
+				$vidFileSize =1;
+				$actuallySendEmail=1;
+				$Recipients_emails = "karlmessner@gmail.com";
+				$shortDownloadLink = $mc_download_link; 
+		
+				// SEND ALL EMAILS:
+				if ($sendAllEmails){
+					include('email/sendSubmissionUploadedEmail.php'); // CUT
+					include('email/sendRecipientsEmail.php'); // VIDEO SUBMISSION
+					include('email/sendSubmissionSentEmail.php'); // THATS A WRP
+					include('email/sendALPRecipientsEmail.php');
+					}
+			
+	include('email/sendSubmissionClickedEmail.php'); // WHOOP
+	}
+	
 $body=file_get_contents("template-download.htm");
 $stylesheet=file_get_contents("media/css/download.css");
-
 $m4vPath = $mc_stitch_file_url;
 
 // SHARELINK IS FROM DATABASE
@@ -93,7 +98,6 @@ $shareLink = $mc_download_link;
 if ($mc_alp){
 	$shareLink = str_replace("&a=1", "", $shareLink);
 }
-
 
 //injections
 $downloadLink = "download_file.php?s=$s";
@@ -110,7 +114,6 @@ if ($mc_alp) {
 	} else {
 	$rightCopy = file_get_contents("template-download-right-cp.php");
 	}
-
 
 $variablesToInject = array("stylesheet","Role","Title","Profile_pic","fontSize","lineHeight","shareLink","downloadLink","m4vPath","sGetVar","nGetVar","DOMAIN","rightCopy","Name");
 foreach ($variablesToInject as $thisVar){
