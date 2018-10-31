@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+	<style>{{stylesheet}}</style>
+  </head>
+  <body>
+	<div id="fauxbody">
+		<div id="wrapper">
+			<table>
+				<tr class="body">
+					<td >
+						<center>
+							<img id='emailHeaderLogo' src="http://localhost/test3/media/images/moodcaster-red.png" />		
+						</center>
+						<!-- CONTENT -->		
+							{{content}} 
+						<!-- .CONTENT -->		
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div id="" class="vcard">
+							<div class="org">
+								 Moodcaster
+							</div>
+							 <a class="email" href="mailto:hello@moodcaster.com">hello@moodcaster.com</a>
+							 <div class="adr">
+							  <div class="street-address">281 West 35th Street</div>
+							  <span class="locality">New York</span>, 
+							  <span class="region">NY</span>, 
+							  <span class="postal-code">10001</span>
+							  <span class="country-name">USA</span>
+							 </div>
+							 <br />
+							 <div class="tel">646.403.4053</div>
+						</div>
+					</td>
+				</tr>
+				<!-- spread img td open from below -->
+			</table>  
+			<img src="{{trackingPixel}}" width="10" height="10" border="0" alt="tracker" />
+		</div><!-- wrapper -->
+	</div><!-- fauxbody -->
+	</body>
+</html>
