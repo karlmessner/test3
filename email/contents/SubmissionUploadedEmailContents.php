@@ -8,8 +8,6 @@
 Team Moodcaster</p>
 
 
-<center><h2>P.S. check out your submission <a href="{{downloadLink}}" target="_blank">here</a></h2>
-</center>
 <p class='bottomspace'>&nbsp;</p> 
 
 
