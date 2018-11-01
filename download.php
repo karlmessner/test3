@@ -48,7 +48,6 @@ mysqli_query($db,$sql);echo mysqli_error($db);
 // NOT READY YET?
 $notReady = ($_GET['nr']) ? $_GET['nr'] : (strlen($mc_stitch_file_url)<5);
 if ($notReady){
-	
 	$returnLink = $mc_download_link . "&n=1";
 	$returnLink = urlencode($returnLink);
 	$waitingRoom = "Location:". $_ENV['DOMAIN'] . "/download-not-ready.php?n=1&d=$returnLink";
@@ -63,7 +62,7 @@ $Title= $mc_title;
 $thumb_url=$mc_vid_thumb_url;
 
 // SEND EMAIL NOTIFICATION THAT AUDITION IS BEING WATCHED (if by someone else)
-if (!$n){
+if (!$n){ echo ".";
 	$shortRecipEmail = '';
 	$shortRecipEmail = substr($e, 0,2) . '&hellip;'. substr($e, -8);
 	$shortRecipEmail = (strlen($e)>4) ? $shortRecipEmail : "Someone ";
