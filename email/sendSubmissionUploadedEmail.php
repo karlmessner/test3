@@ -8,7 +8,7 @@
 			$template=file_get_contents("email/templates/email-template.htm");
 			$contents=file_get_contents("email/contents/SubmissionUploadedEmailContents.php");
 			$stylesheet=file_get_contents("email/css/emailcss.css");
-			$downloadLink = $shortDownloadLink; 
+			$downloadLink = $shortDownloadLink . "&n=1"; 
 			$s=$id;
 			//$trackingPixel = $_ENV['DOMAIN'] . "open.php?s=".$s;
 			
