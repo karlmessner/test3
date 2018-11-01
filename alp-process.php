@@ -201,6 +201,10 @@ if ($debug){
 //IF EVERYTHING WENT SMOOTHLY, REPORT SUCCESS TO APP
 if ($debug) {echo "callback to ios...<BR>";}
  if (($auth_good)&&($file_good)&&($db_good)){
+	 
+	// add flag to shortDownloadLink to prevent tracking if clicked by sender on thank you page
+	$shortDownloadLink .= "&n=1";
+	
 	echo "<BR><BR><BR><CENTER><h1>Successfully sent $Name this link: <BR><BR>";
 	echo $shortDownloadLink;
 	echo "<BR><BR><BR>";
