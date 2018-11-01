@@ -62,7 +62,7 @@ $Title= $mc_title;
 $thumb_url=$mc_vid_thumb_url;
 
 // SEND EMAIL NOTIFICATION THAT AUDITION IS BEING WATCHED (if by someone else)
-if (!$n){ echo ".";
+if (!$n){ 
 	$shortRecipEmail = '';
 	$shortRecipEmail = substr($e, 0,2) . '&hellip;'. substr($e, -8);
 	$shortRecipEmail = (strlen($e)>4) ? $shortRecipEmail : "Someone ";
