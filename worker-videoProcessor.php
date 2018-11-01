@@ -56,20 +56,6 @@ if ($debug) {
 
 
 
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
 	
 	
 /*
@@ -314,6 +300,8 @@ if ($logging){logStatus($id,$logMessage);}
 
 
 // EMAIL NOTICE THAT SUBMISSION WAS SENT
+// alter link with no-track flag AFTER it has already been sent to recipients above
+$shortDownloadLink .= "&n=1";
 if ($debug) {echo "Notifying Sender...<BR>";}
 include ('email/sendSubmissionSentEmail.php');
 
