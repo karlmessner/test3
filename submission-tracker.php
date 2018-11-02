@@ -87,11 +87,14 @@ while ($thisSUB = mysqli_fetch_array($rsSUBS)){
 
 $s = createShortLink ($mc_id);
 
-$shortDownloadLink = $_ENV['DOMAIN'] . 'download.php?s='.$s;
+// $shortDownloadLink = $_ENV['DOMAIN'] . 'download.php?s='.$s;
+$shortDownloadLink = $mc_download_link;
 $shortDownloadLinkNoTrack = $shortDownloadLink . '&n=1';
 
+/*
 $shortDownloadLink2 = $_ENV['DOMAIN'] . 'download2.php?s='.$s;
 $shortDownloadLinkNoTrack2 = $shortDownloadLink2 . '&n=1';
+*/
 
 $file_size = round($mc_zip_file_size/1000000,2);
 
