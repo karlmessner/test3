@@ -220,7 +220,7 @@ updatePercentage($id,'FAILED');
 exit();	
 	
 }		
-		
+	
 		
 // LOGGING
 $logMessage = "WORKER: DONE processing and stitching.";
