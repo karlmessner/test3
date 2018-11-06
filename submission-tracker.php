@@ -113,8 +113,9 @@ $file_size = round($mc_zip_file_size/1000000,2);
 			    <div class="td"><?PHP echo $file_size;?></div>
 			    <div class="td"><?PHP
 				    
-				     if (($mc_status)&&($mc_status<100)) {echo "$mc_status";}
+				     if (($mc_status)&&($mc_status<100)&&($mc_status!='FAILED')) {echo "$mc_status";}
 				     if ($mc_status==100) {echo "<center><span style='font-size:18px'>&#x2705;</span></center>";}
+				     if ($mc_status=='FAILED') {echo "<center><span style='font-size:18px'>&#x274c;</span></center>";}
 				     
 				     ?></div>
 			    <div class="td"><?PHP echo $mc_recipients_emails;?></div>
