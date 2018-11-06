@@ -1,6 +1,8 @@
 <?PHP 
+/*
 error_reporting(-1);
 ini_set('display_errors', 'true');
+*/
 
 //composer, ENV Vars & mysql
 require './vendor/autoload.php';
