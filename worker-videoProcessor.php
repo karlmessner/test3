@@ -30,7 +30,6 @@ $ch->queue_bind($queue, $exchange);
 function callback($msg){
 	$payload = $msg->body;
 	/****************** APPLICATION CODE ******************************************************************/
-	
 	global $db;
 	global $now;
 	global $logging;
@@ -41,22 +40,12 @@ if ($debug) {
 	//phpinfo();
 	}
 
-
-
-
-
 /*  TO DO
 	
 	Check to make sure it wasn't already done!
 	
-	
-	*/
+*/
 
-
-
-
-
-	
 	
 /*
 
@@ -73,7 +62,6 @@ records all the info, including the amazon urls into the database,
 builds the email, sends it through Sendgrid.	
 */
 
-
 // PAYLOAD FROM QUEUE IS THE ID WE NEED TO PULL		
 $id=$payload;				
 if ($debug) {echo "id : " .$id, "\n";}
@@ -84,7 +72,6 @@ $actuallySendEmail	= true;
 $overRideRecipients	= false;
 $debugBody			= false;
 
-
 // DEFS
 $mc_file_size = '';
 $title_card_url='';
@@ -92,10 +79,8 @@ $fontSize='';
 $lineHeight='';
 $vidSize='';
 
-
 // PRIVATE KEY
 $goodKey = $_ENV['GOODKEY'];
-
 
 // LOGGING
 $logMessage = "WORKER: Got job from queue.";
@@ -103,8 +88,6 @@ if ($logging){logStatus($id,$logMessage);}
 
 // UPDATE PERCENTAGE
 updatePercentage($id,'Processing');
-
-
 
 // PULL RECORD FROM DB
 $sql= "SELECT * from mc_submissions WHERE mc_id = '$id'";
@@ -215,6 +198,29 @@ if ($logging){logStatus($id,$logMessage);}
 		if ($debug) {echo "stitch files...<BR>";}
 		$stitchedFilePath = stitchMP4sIn($id,$sandbox);
 		if ($debug) {echo "<BR>STITCHED FILE: $stitchedFilePath <BR>";}
+		
+// IF THE STITCHING FAILED, LOG IT, MARK IT FAILED AND EXIT
+if (!file_exists($stitchedFilePath)){
+	
+// LOGGING
+$logMessage = "WORKER: ERROR - STITCHED FILE DOESNT EXIST.";
+if ($logging){logStatus($id,$logMessage);}
+
+// MARK JOB AS DONE IN QUEUE
+$msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
+
+$logMessage = "WORKER: JOB MARKED DONE IN QUEUE.";
+if ($logging){logStatus($id,$logMessage);}
+
+// UPDATE PERCENTAGE
+updatePercentage($id,'FAILED');
+
+
+// EXIT
+exit();	
+	
+}		
+		
 		
 // LOGGING
 $logMessage = "WORKER: DONE processing and stitching.";
