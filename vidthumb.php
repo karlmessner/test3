@@ -3,11 +3,15 @@ require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
 
+$ffmpegPath = $_ENV['FFMPEGPATH']; 
+$ffprobePath = $_ENV['FFPROBEPATH']; 
+
+
 //ERROR REPORTING
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 $logging = true;
-$debug = true;
+$debug = false;
 
 
 // LOAD FUNCTIONS
@@ -41,7 +45,7 @@ $goodKey = $_ENV['GOODKEY'];
 
 if ($p != $goodKey){
 // LOGGING
-$logMessage = "UNAUTHORIZED ATTEMPT: BAD PRIVATE KEY";
+$logMessage = "UNAUTHORIZED ATTEMPT: BAD KEY";
 if ($logging){logStatus($id,$logMessage);}	
 }else{
 	
@@ -67,56 +71,101 @@ if ($logging){logStatus($id,$logMessage);}
 	$rsFILES = mysqli_query($db,$sql); echo mysqli_error($db);
 	while ($thisFILE = mysqli_fetch_array($rsFILES)){
 		extract($thisFILE);
+		
+		
 		$baseFileName = basename($mcf_url);
+		
+		// create thumb name: convert  name.mp4 to name_mp4 then add _THUMB.jpg
+		$thumbBaseSlug = str_replace('.', '_', $baseFileName);
+		$thumbFileName = $thumbBaseSlug . "_THUMB.jpg";
+		
 		$iov = imgOrVid($mcf_url);
 		if ($debug){echo "*****<BR>$mcf_url <BR>$iov <br/>$baseFileName<BR>";}
 		
-		if ($iov == 'img'){
+		if ($iov == 'vid'){
 			
-			// RESIZE TO MAX WIDTH 200
-			$im = file_get_contents($mcf_url);
-			$img = new Imagick();
-			$img -> readImageBlob($im);
-			$img -> thumbnailImage(200,400,true);
-			$img -> setImageFormat('jpeg');
-// 			$img -> setImageCompressionQuality(51);
-			$tempThumbFile = tempnam(sys_get_temp_dir(), "tempfilename");
-			$img -> writeImage($tempThumbFile);
+			// PULL VIDEO FROM S3
+			$tempVidFile = sys_get_temp_dir().$baseFileName;
+			$tempThumbFile = sys_get_temp_dir().$thumbFileName;
+			$bucket = $_ENV['AWSVIDBUCKET'];
+			$keyname =  basename($mcf_url);
+			$awsKey=$_ENV['AWSKEY'];
+			$awsSecret=$_ENV['AWSSECRET'];
+			$result = '';
+			if ($debug) {echo "downloading $keyname to $tempVidFile <BR>";}
+	
+			$s3 = new Aws\S3\S3Client([
+				'region'  => 'us-east-1',
+				'version' => 'latest',
+				'credentials' => [
+					'key'    => "$awsKey",
+					'secret' => "$awsSecret",
+				]
+			]);		
+			$result = $s3->getObject([
+				'Bucket' => $bucket,
+				'Key'    => $keyname,
+				'SaveAs' => $tempVidFile
+			]);
+
+
+
+
+
+
+			// DO WE NEED TO ROTATE
+			// STEP 1: CHECK FOR ROTATION META DATA
+			$ffprobeCommand =  "  -loglevel error -select_streams v:0 -show_entries stream_tags=rotate -of default=nw=1:nk=1 -i ". $tempVidFile ;
+			$rotationCheck1=shell_exec($ffprobePath .  ' '. $ffprobeCommand); 
+			$rotationCheck1 = ($rotationCheck1>0);
 			
-			if ($debug){echo "<img src='$tempThumbFile' /><BR>";}
-		
-/*
-		$s3 = new Aws\S3\S3Client([
-			'region'  => 'us-east-1',
-			'version' => 'latest',
-			'credentials' => [
-				'key'    => "$AWSKEY",
-				'secret' => "$AWSSECRET",
-			]
-		]);		
-		$result = $s3->putObject([
-			'Bucket' => $AWSVIDBUCKET,
-			'Key'    => $file_name,
-			'SourceFile' => $tempThumbFile,
-			'ACL' => 'public-read'		
-		]);
-*/
-
-
-
-
-
-
-
+			// STEP 2: CHECK FOR NEGATIVE CENTER SQUARE IN DISPLAY MATRIX
+			// not sure why this works, but it solved the selfie-camera issue	
+			// hypothesis: if center square is negative, flip it if not flipped by Step 1
 			
-		} //image
-		if ($iov == 'vid'){}
+			// CHECK FOR DISPLAYMATRIX
+			$ffprobeCommand =  " -loglevel error -select_streams v:0 -show_entries side_data=displaymatrix -of default=nw=1:nk=1 ". $tempVidFile ;
+			$rotation2=shell_exec($ffprobePath .  ' '. $ffprobeCommand); 
 			
-		
-		
-		
-		
-		
+			// EXTRACT DISPLAYMATRIX INTO ARRAY, ASSIGN TO STRING, REPLACE SPACE WITH UNDERSCORE, EXPLODE ON UNDERSCORE AND FIND 7TH ELEMENT
+			$dm = print_r($rotation2,true);
+			// REPLACE ANY WHITESPACE WITH UNDERSCORE
+			$dm = preg_replace('/\s+/', '_', trim($dm));
+			$dmArr = explode('_', $dm);
+			$centerSquare = $dmArr[6];
+			$rotationCheck2 = ($centerSquare<0);
+			
+			// IF EITHER CHECK BUT NOT BOTH IS TRUE, ADD ROTATION COMPONENT TO COMMAND
+			$needRotation = ( ($rotationCheck1>0) xor ($rotationCheck2) ) ? 1:0;
+			$rotationCmd = ($needRotation) ?" -vf hflip,vflip " : "";		
+			
+			if ($debug) {echo ($needRotation) ?"** NEED ROTATION **<BR>" :"** no rotation needed **<BR>";}
+			
+			
+			// ASSEMBLE FFMPEG COMMAND
+			$ffmpegCommand = " -i $tempVidFile $rotationCmd $tempThumbFile";
+			if ($debug) {echo "$ffmpegPath  $ffmpegCommand<BR>";}
+			
+			// EXECUTE COMMAND
+			$ffmpegExec=shell_exec($ffmpegPath .' '. $ffmpegCommand); 
+			
+			
+			// UPLOAD THUMB TO S3
+				$thumbResult = $s3->putObject([
+					'Bucket' => $bucket,
+					'Key'    => $thumbFileName,
+					'SourceFile' => $tempThumbFile,
+					'ACL' => 'public-read'		
+				]);
+			
+			// UPDATE DATABASE
+			$thumbURL = $thumbResult['ObjectURL'];
+			if ($debug) {echo "RESULTING THUMB: $thumbURL <br><img src='$thumbURL' /><BR>";}
+
+			$sql = "UPDATE mc_files SET mcf_thumb_url ='$thumbURL' WHERE mcf_id='$mcf_id' LIMIT 1";
+			mysqli_query($db, $sql);
+
+		} //iov=vid
 		
 	}// while
 } // IF GOODKEY
