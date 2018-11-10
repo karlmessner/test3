@@ -98,8 +98,15 @@ if ($logging){logStatus($id,$logMessage);}
 		
 			
 			// PULL VIDEO FROM S3
-			$tempVidFile = sys_get_temp_dir().$baseFileName;
-			$tempThumbFile = sys_get_temp_dir().$thumbFileName;
+			
+			$sandbox = tempdir();
+
+			
+			$tempVidFile = $sandbox.'/'.$baseFileName;
+			$tempThumbFile = $sandbox.'/'.$thumbFileName;
+			
+			
+			
 			$bucket = $_ENV['AWSVIDBUCKET'];
 			$keyname =  basename($mcf_url);
 			$awsKey=$_ENV['AWSKEY'];
