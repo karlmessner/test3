@@ -3,13 +3,31 @@ require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
 
+
+// THUMB CREATOR FOR UPLOADER
+// THIS SCRIPT ACCEPTS A SUBMISSION ID, AND A PK
+// PULLS THE LIST OF FILES ASSOCIATED WITH IT
+// LOOP THROUGH THEM. IF A VID FILE"
+// PULL THE FILE DOWN FROM S3
+// CHECK TO SEE IF THEY ARE ROTATED
+// EXTRACT A THUMBNAIL
+// ROTATE IT IF NECESSARY
+// UPLOAD TO S3
+// UPDATE DATABASE THAT THE FILE IS IS UPLOADED
+// UPDATE LOG DATABASE THAT IT'S DONE
+
+
+
+
 $ffmpegPath = $_ENV['FFMPEGPATH']; 
 $ffprobePath = $_ENV['FFPROBEPATH']; 
 
 
 //ERROR REPORTING
+/*
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+*/
 $logging = true;
 $debug = false;
 
@@ -19,26 +37,11 @@ require('includes/functions.php');
 
 // INIT VARS
 $p=''; // private key
-$s=''; // submission id
-$o=''; // override flag to re process over existing thumbs (overwrites the database, doesn't delete the files)
-	
-// THUMB CREATOR FOR UPLOADER
-// THIS SCRIPT ACCEPTS A SUBMISSION ID, AND A PK
-// PULLS THE LIST OF FILES ASSOCIATED WITH IT
-// LOOP THROUGH THEM:
-// PULL THE FILE DOWN FROM S3
-// IF IT'S A JPG, CREATE SMALL IMAGE
-// CHECK TO SEE IF THEY ARE ROTATED
-// EXTRACT A THUMBNAIL
-// ROTATE IT IF NECESSARY
-// UPLOAD TO S3
-// UPDATE DATABASE THAT THE FILE IS IS UPLOADED
-// UPDATE LOG DATABASE THAT IT'S DONE
+$s=''; // submission id	
 	
 // SANITIZE INPUT
 if (isset($_GET['s'])) {$s = mysqli_real_escape_string($db, $_GET['s']);}
 if (isset($_GET['p'])) {$p = mysqli_real_escape_string($db, $_GET['p']);}
-if (isset($_GET['o'])) {$o = mysqli_real_escape_string($db, $_GET['o']);}
 
 // PRIVATE KEY
 $goodKey = $_ENV['GOODKEY'];
@@ -48,6 +51,8 @@ if ($p != $goodKey){
 $logMessage = "UNAUTHORIZED ATTEMPT: BAD KEY";
 if ($logging){logStatus($id,$logMessage);}	
 }else{
+$logMessage = "vidthumb.php: Starting sub# $s";
+if ($logging){logStatus($id,$logMessage);}	
 	
 	function imgOrVid($fn){
 	// if it's a video, and the first one make it the poster
@@ -168,4 +173,8 @@ if ($logging){logStatus($id,$logMessage);}
 		} //iov=vid
 		
 	}// while
+	
+$logMessage = "vidthumb.php: DONE: sub# $s";
+if ($logging){logStatus($id,$logMessage);}	
+
 } // IF GOODKEY
