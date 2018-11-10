@@ -77,6 +77,10 @@ if ($logging){logStatus($id,$logMessage);}
 	while ($thisFILE = mysqli_fetch_array($rsFILES)){
 		extract($thisFILE);
 		
+/*********  LOG *********/		
+$logMessage = "vidthumb.php: looking at: $mcf_url";
+if ($logging){logStatus($id,$logMessage);}	
+/*********  LOG *********/		
 		
 		$baseFileName = basename($mcf_url);
 		
@@ -88,6 +92,12 @@ if ($logging){logStatus($id,$logMessage);}
 		if ($debug){echo "*****<BR>$mcf_url <BR>$iov <br/>$baseFileName<BR>";}
 		
 		if ($iov == 'vid'){
+		
+/*********  LOG *********/		
+$logMessage = "vidthumb.php: PROCESSING: $mcf_url";
+if ($logging){logStatus($id,$logMessage);}	
+/*********  LOG *********/		
+		
 			
 			// PULL VIDEO FROM S3
 			$tempVidFile = sys_get_temp_dir().$baseFileName;
@@ -153,6 +163,14 @@ if ($logging){logStatus($id,$logMessage);}
 			
 			// EXECUTE COMMAND
 			$ffmpegExec=shell_exec($ffmpegPath .' '. $ffmpegCommand); 
+
+		
+/*********  LOG *********/		
+$logMessage = "vidthumb.php: ffmpeg: $ffmpegExec";
+if ($logging){logStatus($id,$logMessage);}	
+/*********  LOG *********/		
+		
+
 			
 			
 			// UPLOAD THUMB TO S3
