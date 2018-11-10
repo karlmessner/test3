@@ -24,8 +24,12 @@ $ffprobePath = $_ENV['FFPROBEPATH'];
 
 
 //ERROR REPORTING
+/*
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+*/
+
+
 $logging = true;
 $debug = false;
 
@@ -40,6 +44,8 @@ $s=''; // submission id
 // SANITIZE INPUT
 if (isset($_GET['s'])) {$s = mysqli_real_escape_string($db, $_GET['s']);}
 if (isset($_GET['p'])) {$p = mysqli_real_escape_string($db, $_GET['p']);}
+
+$id=$s; // for logging
 
 // PRIVATE KEY
 $goodKey = $_ENV['GOODKEY'];
@@ -199,5 +205,5 @@ if ($logging){logStatus($id,$logMessage);}
 	
 $logMessage = "vidthumb.php: DONE: sub# $s";
 if ($logging){logStatus($id,$logMessage);}	
-
+echo "Done.";
 } // IF GOODKEY
