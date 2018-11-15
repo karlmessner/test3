@@ -75,7 +75,31 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
 
 
 // PULL DATA
+
+
 $filter = ($a==1)?  " WHERE mc_alp=1 " : "WHERE mc_alp!=1 OR mc_alp is NULL " ;
+
+// FILTER OUT EMPTY RECORDS
+$filter .= "
+
+	AND
+		(
+		mc_name != ''
+		OR
+		mc_title != ''
+		OR
+		mc_email != ''
+		OR
+		mc_recipients_emails != ''
+
+		)
+
+
+
+";
+
+
+
 $sql =  "SELECT * from mc_submissions $filter ORDER BY mc_creation desc";
 $rsSUBS = mysqli_query($db,$sql);
 
