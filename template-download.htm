@@ -9,7 +9,7 @@
 $( document ).ready(function() {
 	$( "#showshare" ).click(function(e) {
 		e.preventDefault();
-// 		$( "#Sharedivhidden" ).toggleClass( "visible invisible" ).toggleClass( "visible invisible",5000 );
+		$( "#Sharedivhidden" ).toggleClass( "visible invisible" ).toggleClass( "visible invisible",5000 );
 		/* Get the text field */
 		var copyText = document.getElementById("sharelink");
 		
@@ -97,7 +97,7 @@ $( document ).ready(function() {
 				</div><!-- shared div wrapper -->
 				
 
-					<div id="Sharedivhidden" class="visible">
+					<div id="Sharedivhidden" class="invisible">
 						<form><input type="text"  value="$shareLink" id='sharelink' contenteditable="true"/></form><br />
 						<span class='copied'>(Link copied to clipboard)</span>
 					</div><!-- Sharedivhidden-->
