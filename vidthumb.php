@@ -166,6 +166,7 @@ if ($logging){logStatus($id,$logMessage);}
 			// IF EITHER CHECK BUT NOT BOTH IS TRUE, ADD ROTATION COMPONENT TO COMMAND
 			$needRotation = ( ($rotationCheck1>0) xor ($rotationCheck2) ) ? 1:0;
 			$rotationCmd = ($needRotation) ?" -vf hflip,vflip " : "";		
+			$rotationPart = ($needRotation) ?" hflip,vflip " : ""; // for preview gif
 			
 			if ($debug) {echo ($needRotation) ?"** NEED ROTATION **<BR>" :"** no rotation needed **<BR>";}
 			
@@ -179,7 +180,7 @@ if ($logging){logStatus($id,$logMessage);}
 
 		
 /*********  LOG *********/		
-$logMessage = "vidthumb.php: ffmpeg: $ffmpegExec";
+$logMessage = "vidthumb.php: ffmpeg: $ffmpegCommand";
 if ($logging){logStatus($id,$logMessage);}	
 /*********  LOG *********/		
 		
@@ -201,7 +202,7 @@ if ($logging){logStatus($id,$logMessage);}
 
 				
 			// ASSEMBLE FFMPEG GIF PREVIEW COMMAND
-			$ffmpegCommand = " -i $tempVidFile  -r 10 -ss 0 -t 5 -vf scale=-1:63 $tempGIFFile -hide_banner";
+			$ffmpegCommand = " -i $tempThumbFile  -r 10 -ss 0 -t 5 -vf $rotationPart scale=-1:63 $tempGIFFile -hide_banner";
 			if ($debug) {echo "$ffmpegPath  $ffmpegCommand<BR>";}
 			
 			// EXECUTE COMMAND
@@ -209,7 +210,7 @@ if ($logging){logStatus($id,$logMessage);}
 
 		
 /*********  LOG *********/		
-$logMessage = "vidthumb.php: ffmpeg: $ffmpegExec";
+$logMessage = "vidthumb.php: ffmpeg: $ffmpegCommand";
 if ($logging){logStatus($id,$logMessage);}	
 /*********  LOG *********/		
 		
