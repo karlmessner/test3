@@ -10,7 +10,7 @@ include('includes/con.php');
 // LOOP THROUGH THEM. IF A VID FILE"
 // PULL THE FILE DOWN FROM S3
 // CHECK TO SEE IF THEY ARE ROTATED
-// EXTRACT A THUMBNAIL
+// EXTRACT A THUMBNAIL AND A GIF PREV
 // ROTATE IT IF NECESSARY
 // UPLOAD TO S3
 // UPDATE DATABASE THAT THE FILE IS IS UPLOADED
@@ -91,6 +91,7 @@ if ($logging){logStatus($id,$logMessage);}
 		// create thumb name: convert  name.mp4 to name_mp4 then add _THUMB.jpg
 		$thumbBaseSlug = str_replace('.', '_', $baseFileName);
 		$thumbFileName = $thumbBaseSlug . "_THUMB.jpg";
+		$GIFFileName = $thumbBaseSlug . "_PREV.gif";
 		
 		$iov = imgOrVid($mcf_url);
 		if ($debug){echo "*****<BR>$mcf_url <BR>$iov <br/>$baseFileName<BR>";}
@@ -110,6 +111,7 @@ if ($logging){logStatus($id,$logMessage);}
 			
 			$tempVidFile = $sandbox.'/'.$baseFileName;
 			$tempThumbFile = $sandbox.'/'.$thumbFileName;
+			$tempGIFFile = $sandbox.'/'.$GIFFileName;
 			
 			
 			
@@ -168,7 +170,7 @@ if ($logging){logStatus($id,$logMessage);}
 			if ($debug) {echo ($needRotation) ?"** NEED ROTATION **<BR>" :"** no rotation needed **<BR>";}
 			
 			
-			// ASSEMBLE FFMPEG COMMAND
+			// ASSEMBLE FFMPEG THUMBNAIL COMMAND
 			$ffmpegCommand = " -i $tempVidFile $rotationCmd $tempThumbFile";
 			if ($debug) {echo "$ffmpegPath  $ffmpegCommand<BR>";}
 			
@@ -181,8 +183,6 @@ $logMessage = "vidthumb.php: ffmpeg: $ffmpegExec";
 if ($logging){logStatus($id,$logMessage);}	
 /*********  LOG *********/		
 		
-
-			
 			
 			// UPLOAD THUMB TO S3
 				$thumbResult = $s3->putObject([
@@ -191,12 +191,60 @@ if ($logging){logStatus($id,$logMessage);}
 					'SourceFile' => $tempThumbFile,
 					'ACL' => 'public-read'		
 				]);
+				
+				
+				
+				
+
+
+
+
+				
+			// ASSEMBLE FFMPEG GIF PREVIEW COMMAND
+			$ffmpegCommand = " -i $tempVidFile  -r 10 -ss 0 -t 5 -vf scale=-1:63 $tempGIFFile -hide_banner";
+			if ($debug) {echo "$ffmpegPath  $ffmpegCommand<BR>";}
+			
+			// EXECUTE COMMAND
+			$ffmpegExec=shell_exec($ffmpegPath .' '. $ffmpegCommand); 
+
+		
+/*********  LOG *********/		
+$logMessage = "vidthumb.php: ffmpeg: $ffmpegExec";
+if ($logging){logStatus($id,$logMessage);}	
+/*********  LOG *********/		
+		
+			
+			// UPLOAD THUMB TO S3
+				$GIFResult = $s3->putObject([
+					'Bucket' => $bucket,
+					'Key'    => $GIFFileName,
+					'SourceFile' => $tempGIFFile,
+					'ACL' => 'public-read'		
+				]);
+
+
+
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			
 			// UPDATE DATABASE
 			$thumbURL = $thumbResult['ObjectURL'];
 			if ($debug) {echo "RESULTING THUMB: $thumbURL <br><img src='$thumbURL' /><BR>";}
 
-			$sql = "UPDATE mc_files SET mcf_thumb_url ='$thumbURL' WHERE mcf_id='$mcf_id' LIMIT 1";
+			$GIFURL = $GIFResult['ObjectURL'];
+			if ($debug) {echo "RESULTING GIF: $GIFURL <br><img src='$GIFURL' /><BR>";}
+
+			$sql = "UPDATE mc_files SET mcf_thumb_url ='$thumbURL', mcf_gif_url ='$GIFURL' WHERE mcf_id='$mcf_id' LIMIT 1";
 			mysqli_query($db, $sql);
 
 		} //iov=vid
