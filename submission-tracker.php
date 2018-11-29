@@ -66,6 +66,14 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
 			    <div class="td">Sent</div>
 			    <div class="td">Read</div>
 			    <div class="td">Clicked</div>
+			    
+    <?PHP
+	    if ($a==1){
+			echo "<div class='td'>Feedback</div>";		    
+	    } 
+	?>
+			    
+			    
 			    <div class="td">Downloaded</div>
 			    <div class="td">Shared</div>
 			    <div class="td">Id</div>
@@ -93,9 +101,16 @@ $filter .= "
 		mc_recipients_emails != ''
 
 		)
+";
 
+// LIMIT THE TIME TO LAST 30 DAYS
+$lookBackDays = 30;
 
+$timePeriod = $now - ($lookBackDays * 24*60*60);
+$filter .="
 
+	AND mc_creation > '$timePeriod'
+	
 ";
 
 
@@ -160,6 +175,41 @@ $file_size = round($mc_zip_file_size/1000000,2);
 					?>
 				</div>
 				
+				
+				
+    <?PHP
+	    if ($a==1){
+?>
+			    <div class="td" style="text-align: center">
+				    <?PHP 
+					    
+					    $sqlFeedback = "SELECT count(mcfb_id) as numFB, max(mcfb_creationdate) as lastFB  from mc_feedback WHERE mcfb_sub ='$mc_id'";
+					    $rsFB = mysqli_query($db, $sqlFeedback);
+					    $thisFB = mysqli_fetch_array($rsFB);
+					    extract($thisFB);
+					    
+					    
+					    
+					    
+					    
+					    
+					    
+					    if ($numFB){
+						    echo "<a href='submission-tracker-feedback.php?s=$mc_id'>($numFB time" .  is_plural($numFB) .  ")<br>LAST: " . date('n/d/y g:ia',$lastFB) . "</a>";
+						    }
+					?>
+				</div>
+<?PHP
+
+	    } 
+	?>
+				
+				
+				
+				
+				
+				
+				
 			    <div class="td" style="text-align: center">
 				    <?PHP 
 					    if ($mc_download){
@@ -167,6 +217,9 @@ $file_size = round($mc_zip_file_size/1000000,2);
 						    }
 					?>
 				</div>
+				
+				
+				
 			    <div class="td" style="text-align: center">
 				    <?PHP 
 					    if ($mc_share) {
