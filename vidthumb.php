@@ -202,7 +202,7 @@ if ($logging){logStatus($id,$logMessage);}
 
 				
 			// ASSEMBLE FFMPEG GIF PREVIEW COMMAND
-			$ffmpegCommand = " -i $tempThumbFile  -r 10 -ss 0 -t 5 -vf $rotationPart scale=-1:63 $tempGIFFile -hide_banner";
+			$ffmpegCommand = " -i $tempVidFile  -r 10 -ss 0 -t 5 -vf $rotationPart scale=-1:63 $tempGIFFile -hide_banner";
 			if ($debug) {echo "$ffmpegPath  $ffmpegCommand<BR>";}
 			
 			// EXECUTE COMMAND
