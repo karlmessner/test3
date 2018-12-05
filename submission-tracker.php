@@ -29,7 +29,7 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
     <meta charset="utf-8">
     <?PHP
 	    if ($a==1){
-			echo "<title>ALP Audition Tape Tracker</title>";		    
+			echo "<title>Uploader Tracker</title>";		    
 	    } ELSE {
 			echo "<title>Moodcaster Submission Tracker</title>";		    
 	    }
@@ -41,6 +41,14 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
     <div id='mast'>
 	    <div id="headerLogo"><img src="media/images/m.svg"/></div><!-- headerlogo-->
     </div><!--mast-->
+    
+    <div id='navtabs'>
+	    <a href="submission-tracker.php"  <?PHP if ($a!=1){echo " class='current'";}?>>APP</a>
+	    
+	    
+	    <a href="submission-tracker.php?a=1" <?PHP if ($a==1){echo " class='current'";}?>>Uploader</a>
+	    
+    </div>
     <div id='body'>
 	    <div id='content'>
     <?PHP
