@@ -53,7 +53,7 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
 	    <div id='content'>
     <?PHP
 	    if ($a==1){
-			echo "<H1>ALP Audition Tape Tracker</H1>";		    
+			echo "<H1>Uploader Tracker</H1>";		    
 	    } ELSE {
 			echo "<H1>Moodcaster Submission Tracker</H1>";		    
 	    }
