@@ -63,6 +63,7 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
 			  <div class="th">
 <!-- 			    <div class="td"></div> -->
 			    <div class="td">Date</div>
+			    <?PHP if ($a==1){ echo '<div class="td">Moodcode</div>';}?>
 			    <div class="td">Name</div>
 			    <div class="td">Title</div>
 			    <div class="td">Role</div>
@@ -152,6 +153,10 @@ $file_size = round($mc_zip_file_size/1000000,2);
 			  <div class="tr">
 <!-- 			    <div class="td"><a href="<?PHP echo $mc_file_url;?>" target="_blank"><img class='thumb' src="<?PHP echo $mc_vid_thumb_url;?>"/></a></div> -->
 			    <div class="td"><?PHP echo date('n/d/y g:ia',$mc_creation);?></div>
+			    <?PHP if ($a==1){
+				    echo " <div class='td'>"; 
+				    if ($mc_moodcode){ echo "m-$mc_moodcode";}
+				    echo "</div>";}?>
 			    <div class="td"><?PHP echo $mc_name;?></div>
 			    <div class="td"><?PHP echo $mc_title;?></div>
 			    <div class="td"><?PHP echo $mc_role;?></div>
@@ -160,7 +165,9 @@ $file_size = round($mc_zip_file_size/1000000,2);
 			    <div class="td"><?PHP echo $file_size;?></div>
 			    <div class="td"><?PHP
 				    
-				     if (($mc_status)&&($mc_status<100)&&($mc_status!='FAILED')) {echo "$mc_status";}
+				     if (($mc_status)&&($mc_status<100)&&($mc_status!='FAILED')) {
+					     echo "<a title='$mc_app_response'>$mc_status:</a>";
+					     }
 				     if ($mc_status==100) {echo "<center><span style='font-size:18px'>&#x2705;</span></center>";}
 				     if ($mc_status=='FAILED') {echo "<center><span style='font-size:18px'>&#x274c;</span></center>";}
 				     
