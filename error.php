@@ -1,1 +1,1 @@
-<?PHP echo "ERROR"; ?>
+<?PHP echo "ERROR!"; ?>
