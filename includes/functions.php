@@ -244,6 +244,7 @@ function stitchMP4sIn($id,$dirPath){
 	$targetHeight = 540;
 	$targetFPS = 30;
 	$targetKeyFramesInterval = 15;
+	$targetKeyFramesInterval = 300;
 	$dirPath .= '/';
 	$textFileContents = '';
 
@@ -353,6 +354,31 @@ if ($logging){logStatus($id,$logMessage);}
 $logMessage = "WORKER: trying to execute:$ffmpegPath $ffmpegCommand";
 if ($logging){logStatus($id,$logMessage);}
 
+
+/********* RECOMPRESS TO FIX CHROME PROBLEM  **********/
+
+// RECOMPRESS TO LOWER FILE SIZE
+	// rename, recompress, rename
+	
+	$tempFile = $dirPath . $now . "temp.mp4";
+	
+	rename($stitchedFilePath , $tempFile);
+	
+	$ffmpegCommand = "-ss 0:0:0  -i $tempFile -c:a copy -g 300  $stitchedFilePath";
+
+	if ($debug) {echo "trying to execute:$ffmpegPath $ffmpegCommand<BR>";}
+	$ffmpegExec=shell_exec($ffmpegPath .' '. $ffmpegCommand); 
+
+// LOGGING
+$logMessage = "WORKER: re-encoding. trying to execute:$ffmpegPath $ffmpegCommand";
+if ($logging){logStatus($id,$logMessage);}
+
+
+/********* .RECOMPRESS TO FIX CHROME PROBLEM  **********/
+
+
+
+
 	
 // LOGGING
 $logMessage = "WORKER: done stitching.";
@@ -368,13 +394,6 @@ function fixVideo($file,$resultFile,$ffmpegPath,$ffprobePath,$targetWidth,$targe
 	global $debug;
 	
 	
-	
-	
-	
-	
-	
-	
-
 	// DO WE NEED TO ROTATE
 	// STEP 1: CHECK FOR ROTATION META DATA
 	$ffprobeCommand =  "  -loglevel error -select_streams v:0 -show_entries stream_tags=rotate -of default=nw=1:nk=1 -i ". $file ;
