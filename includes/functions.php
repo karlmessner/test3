@@ -243,7 +243,7 @@ function stitchMP4sIn($id,$dirPath){
 	$targetWidth = 960;
 	$targetHeight = 540;
 	$targetFPS = 30;
-	$targetKeyFramesInterval = 15;
+	$targetKeyFramesInterval = 5;
 	$dirPath .= '/';
 	$textFileContents = '';
 
