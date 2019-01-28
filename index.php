@@ -74,7 +74,8 @@ $Recipients_emails 				= mysqli_real_escape_string($db,$_POST['Recipients_emails
 $Age_range 						= mysqli_real_escape_string($db,$_POST['Age_range']);
 $Bio 							= mysqli_real_escape_string($db,$_POST['Bio']);
 $Profile_pic_url 				= mysqli_real_escape_string($db,$_POST['Profile_pic_url']);
-
+$target_width 					= mysqli_real_escape_string($db,$_POST['w']);
+$target_height 					= mysqli_real_escape_string($db,$_POST['h']);
 
 // DEBUGGING	
 if ($debug) {echo "<pre>";}
@@ -148,6 +149,8 @@ $sql .=" mc_title_card_text		= '$title_card_text', \n";
 $sql .=" mc_title_card_url		= '$titleCardURL', \n";
 $sql .=" mc_profile_url			= '$Profile_pic_url', \n";
 $sql .=" mc_rawpost				= '$rawPost', \n";
+$sql .=" mc_target_width		= '$target_width', \n";
+$sql .=" mc_target_height		= '$target_height', \n";
 $sql .=" mc_pk					= '$pk' \n";
 if ($debug) echo "<BR><BR><pre>$sql</pre><br /><br />";
 // ONLY INSERT INTO DATABASE IF THEY ATTACHED SOMETHING OR allowNoFile=true
