@@ -230,7 +230,7 @@ function normalizeString ($str = '')
 
 
 // STITCHING
-function stitchMP4sIn($id,$sandbox,$target_width,$target_height){
+function stitchMP4sIn($id,$dirPath,$target_width,$target_height){
 	global $debug;
 	global $logging;
 	global $db;
