@@ -115,7 +115,7 @@ $target_width		= $mc_target_width;
 $target_height		= $mc_target_height;
 
 // LOGGING
-$logMessage = "WORKER: Pulled record from Database.";
+$logMessage = "WORKER: Pulled record from Database. $Title $Role $Name $Email";
 if ($logging){logStatus($id,$logMessage);}
 
 
@@ -133,6 +133,13 @@ if ($debug) {echo "downloadableFolderName : " .$downloadableFolderName, "\n";}
 		$emailWithoutSymbols = preg_replace("/[^A-Za-z0-9 ]/", '', $Email);
 		$sandbox = tempdir(null, $emailWithoutSymbols);
 		if ($debug) {echo "SANDBOX : " .$sandbox, "\n";}
+
+
+// LOGGING
+$logMessage = "WORKER: SANDBOX : $sandbox";
+if ($logging){logStatus($id,$logMessage);}
+
+
 	
 	// download cloud stored  raw_Zip_file into it
 	
