@@ -164,8 +164,8 @@ if ($debug) {echo "inserting...<BR>";}
 	}
 
 // LOGGING
-$cleanSQL= mysqli_real_escape_string($db, $sql)
-$logMessage = "Inserted Into Database: id: $id    $cleanSQL  ERROR: $sqlError";
+$cleanSQL= mysqli_real_escape_string($db, $sql);
+$logMessage = "Inserted Into Database: id: $id $cleanSQL  ERROR: $sqlError";
 if ($logging){logStatus($id,$logMessage);}
 
 
