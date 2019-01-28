@@ -230,7 +230,7 @@ function normalizeString ($str = '')
 
 
 // STITCHING
-function stitchMP4sIn($id,$dirPath){
+function stitchMP4sIn($id,$sandbox,$target_width,$target_height){
 	global $debug;
 	global $logging;
 	global $db;
@@ -244,8 +244,11 @@ function stitchMP4sIn($id,$dirPath){
 	$targetWidth = 960;
 	$targetHeight = 540;
 */
-	$targetWidth = 960;
-	$targetHeight = 540;
+
+
+	// if a target height and width are in the database, use that, otherwise use the defaults
+	$targetWidth = ($target_width) ? $target_wideth : 960;
+	$targetHeight = ($target_height) ? $target_height) : 540;
 	
 	
 	$targetFPS = 30;
