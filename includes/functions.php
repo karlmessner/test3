@@ -248,6 +248,11 @@ function stitchMP4sIn($id,$sandbox,$target_width,$target_height){
 	// if a target height and width are in the database, use that, otherwise use the defaults
 	$targetWidth = ($target_width) ? $target_width : $defaultWidth;
 	$targetHeight = ($target_height) ? $target_height : $defaultHeight;
+
+
+// LOGGING
+$logMessage = "WORKER: f:stitchMP4sIn   w: $targetWidth  h:$targetHeight ";
+if ($logging){logStatus($id,$logMessage);}
 	
 	
 	$targetFPS = 30;
@@ -388,7 +393,7 @@ if ($logging){logStatus($id,$logMessage);}
 
 	
 // LOGGING
-$logMessage = "WORKER: done stitching.";
+$logMessage = "WORKER: done stitching. $stitchedFilePath";
 if ($logging){logStatus($id,$logMessage);}
 
 	return $stitchedFilePath;
