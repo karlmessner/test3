@@ -244,8 +244,8 @@ function stitchMP4sIn($id,$dirPath){
 	$targetWidth = 960;
 	$targetHeight = 540;
 */
-	$targetWidth = 568;
-	$targetHeight = 320;
+	$targetWidth = 640;
+	$targetHeight = 480;
 	
 	
 	$targetFPS = 30;
