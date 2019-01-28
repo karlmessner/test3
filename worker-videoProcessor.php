@@ -204,7 +204,7 @@ if ($logging){logStatus($id,$logMessage);}
 if (!file_exists($stitchedFilePath)){
 	
 // LOGGING
-$logMessage = "WORKER: ERROR - STITCHED FILE DOESNT EXIST.";
+$logMessage = "WORKER: ERROR - STITCHED FILE DOESNT EXIST. $stitchedFilePath";
 if ($logging){logStatus($id,$logMessage);}
 
 // MARK JOB AS DONE IN QUEUE
