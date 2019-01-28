@@ -111,7 +111,8 @@ $titleCardURL		= $mc_title_card_url;
 $Profile_pic_url	= $mc_profile_url;
 $Recipients_emails	= $mc_recipients_emails;
 $zipFileSize		= $mc_zip_file_size;
-
+$target_width		= $mc_target_width;
+$target_height		= $mc_target_height;
 
 // LOGGING
 $logMessage = "WORKER: Pulled record from Database.";
@@ -196,7 +197,7 @@ if ($logging){logStatus($id,$logMessage);}
 				
 	// stitch files
 		if ($debug) {echo "stitch files...<BR>";}
-		$stitchedFilePath = stitchMP4sIn($id,$sandbox);
+		$stitchedFilePath = stitchMP4sIn($id,$sandbox,$target_width,$target_height);
 		if ($debug) {echo "<BR>STITCHED FILE: $stitchedFilePath <BR>";}
 		
 // IF THE STITCHING FAILED, LOG IT, MARK IT FAILED AND EXIT
