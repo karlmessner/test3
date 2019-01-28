@@ -45,7 +45,6 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
     <div id='navtabs'>
 	    <a href="submission-tracker.php"  <?PHP if ($a!=1){echo " class='current'";}?>>APP</a>
 	    
-	    
 	    <a href="submission-tracker.php?a=1" <?PHP if ($a==1){echo " class='current'";}?>>Uploader</a>
 	    
     </div>
@@ -58,10 +57,8 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
 			echo "<H1>Moodcaster Submission Tracker</H1>";		    
 	    }
 	?>
-		   
 		   <div class="table">
 			  <div class="th">
-<!-- 			    <div class="td"></div> -->
 			    <div class="td">Date</div>
 			    <?PHP if ($a==1){ echo '<div class="td">Moodcode</div>';}?>
 			    <div class="td">Name</div>
@@ -76,14 +73,11 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
 			    <div class="td">Sent</div>
 			    <div class="td">Read</div>
 			    <div class="td">Clicked</div>
-			    
     <?PHP
 	    if ($a==1){
 			echo "<div class='td'>Feedback</div>";		    
 	    } 
 	?>
-			    
-			    
 			    <div class="td">Downloaded</div>
 			    <div class="td">Shared</div>
 			    <div class="td">Id</div>
@@ -91,15 +85,11 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
 			  </div>
 <?PHP
 
-
 // PULL DATA
-
-
-$filter = ($a==1)?  " WHERE mc_alp=1 " : "WHERE mc_alp!=1 OR mc_alp is NULL " ;
+$filter = ($a==1) ?  " WHERE mc_alp=1 " : "WHERE mc_alp!=1 OR mc_alp is NULL " ;
 
 // FILTER OUT EMPTY RECORDS
 $filter .= "
-
 	AND
 		(
 		mc_name != ''
@@ -109,7 +99,6 @@ $filter .= "
 		mc_email != ''
 		OR
 		mc_recipients_emails != ''
-
 		)
 ";
 
@@ -123,8 +112,6 @@ $filter .="
 	
 ";
 
-
-
 $sql =  "SELECT * from mc_submissions $filter ORDER BY mc_creation desc";
 $rsSUBS = mysqli_query($db,$sql);
 
@@ -132,9 +119,6 @@ while ($thisSUB = mysqli_fetch_array($rsSUBS)){
 	extract($thisSUB);
 	
 // CREATE SHORT URL TO DOWNLOAD PAGE, flag n=1 to tell downstream pages to not track 
-
-
-
 
 $s = createShortLink ($mc_id);
 
@@ -204,13 +188,7 @@ $file_size = round($mc_zip_file_size/1000000,2);
 					    $rsFB = mysqli_query($db, $sqlFeedback);
 					    $thisFB = mysqli_fetch_array($rsFB);
 					    extract($thisFB);
-					    
-					    
-					    
-					    
-					    
-					    
-					    
+					    					    
 					    if ($numFB){
 						    echo "<a href='submission-tracker-feedback.php?s=$mc_id'>($numFB time" .  is_plural($numFB) .  ")<br>LAST: " . date('n/d/y g:ia',$lastFB) . "</a>";
 						    }
@@ -220,11 +198,6 @@ $file_size = round($mc_zip_file_size/1000000,2);
 
 	    } 
 	?>
-				
-				
-				
-				
-				
 				
 				
 			    <div class="td" style="text-align: center">
@@ -250,17 +223,7 @@ $file_size = round($mc_zip_file_size/1000000,2);
 			
 <?PHP } ?>			  
 			
-			
-			
-			
-		    
 	    </div><!--content-->
     </div><!--body-->
   </body>
 </html>
-
-
-
-
-
-
