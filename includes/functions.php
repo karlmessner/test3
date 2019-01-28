@@ -240,8 +240,14 @@ function stitchMP4sIn($id,$dirPath){
 	$ffprobePath = $_ENV['FFPROBEPATH']; 
 	$stitchListFileName = "stitch.txt";
 	$stitchedFileName = "stitched.mp4";
+/*
 	$targetWidth = 960;
 	$targetHeight = 540;
+*/
+	$targetWidth = 568;
+	$targetHeight = 320;
+	
+	
 	$targetFPS = 30;
 	$targetKeyFramesInterval = 5;
 	$dirPath .= '/';
