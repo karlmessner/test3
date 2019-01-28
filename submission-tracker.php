@@ -65,9 +65,9 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
 			    <div class="td">Title</div>
 			    <div class="td">Role</div>
 			    <div class="td">Share Link</div>
-			    <div class="td">Raw</div>
+			    <?PHP if ($a!=1){ echo '<div class="td">Raw</div>';}?>
 			    <div class="td">Size</div>
-			    <div class="td">W&nbsp;X&nbsp;H</div>
+			    <?PHP if ($a!=1){ echo '<div class="td">W&nbsp;X&nbsp;H</div>';}?>
 			    <div class="td">Status</div>
 			    <div class="td">Recipients</div>
 			    <div class="td">Sent</div>
@@ -146,9 +146,17 @@ $file_size = round($mc_zip_file_size/1000000,2);
 			    <div class="td"><?PHP echo $mc_title;?></div>
 			    <div class="td"><?PHP echo $mc_role;?></div>
 			    <div class="td"><?PHP echo "<a href='$shortDownloadLinkNoTrack' target=_blank >$shortDownloadLink</a>";?></div>
+			    
+			    
+			    <?PHP if ($a!=1){ ?>
 			    <div class="td"><?PHP echo ($mc_raw_zip_file_url) ? "<a href='$mc_raw_zip_file_url' target='_blank' style='font-size:18px'>&#x2b07;</a>" : "";?></div>
+			    <?PHP } ?>
 			    <div class="td"><?PHP echo $file_size;?></div>
+			    
+			    <?PHP if ($a!=1){ ?>
 			    <div class="td"><?PHP echo ($mc_target_width * $mc_target_height) ? "$mc_target_width x $mc_target_height" :"";?></div>
+			    <?PHP } ?>
+			    
 			    <div class="td"><?PHP
 				    
 				     if (($mc_status)&&($mc_status<100)&&($mc_status!='FAILED')) {
