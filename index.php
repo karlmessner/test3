@@ -157,12 +157,14 @@ if ($debug) echo "<BR><BR><pre>$sql</pre><br /><br />";
 if ($zipFileSize>0){
 if ($debug) {echo "inserting...<BR>";}
 	$result = mysqli_query($db, $sql); 
+	$sqlError = mysqli_error($db);
+	
 	if ($debug) {echo mysqli_error($db);}
 	$id = mysqli_insert_id($db);
 	}
 
 // LOGGING
-$logMessage = "Inserted Into Database";
+$logMessage = "Inserted Into Database $sql  ERROR: $sqlError";
 if ($logging){logStatus($id,$logMessage);}
 
 
