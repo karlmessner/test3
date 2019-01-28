@@ -240,15 +240,14 @@ function stitchMP4sIn($id,$sandbox,$target_width,$target_height){
 	$ffprobePath = $_ENV['FFPROBEPATH']; 
 	$stitchListFileName = "stitch.txt";
 	$stitchedFileName = "stitched.mp4";
-/*
-	$targetWidth = 960;
-	$targetHeight = 540;
-*/
+
+	$defaultWidth = 960;
+	$defaultHeight = 540;
 
 
 	// if a target height and width are in the database, use that, otherwise use the defaults
-	$targetWidth = ($target_width) ? $target_wideth : 960;
-	$targetHeight = ($target_height) ? $target_height : 540;
+	$targetWidth = ($target_width) ? $target_width : $defaultWidth;
+	$targetHeight = ($target_height) ? $target_height : $defaultHeight;
 	
 	
 	$targetFPS = 30;
