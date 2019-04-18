@@ -9,7 +9,7 @@ ini_set("display_errors", 1);
 
 // PREFERENCES
 $logging = true;
-$sendEmailToRecipients = false;// also need to change in index.php
+$sendEmailToRecipients = true;// also need to change in index.php
 
 
 // LOAD FUNCTIONS
