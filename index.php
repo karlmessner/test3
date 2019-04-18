@@ -12,8 +12,9 @@
 
 
 // DEBUG SETTINGS  	
-$debug 				= $_POST['debug'];
-$logging			= true;
+$debug 						= $_POST['debug'];
+$logging						= true;
+$sendTheNotificationEmail 	= false; // also need to change in worker-videoProcessor.php
 
 
 // ERROR REPORTING
@@ -212,7 +213,9 @@ updatePercentage($id,'in queue');
 
 // EMAIL UPDATE TO USER
 if ($debug) {echo "Sending Submission uploaded email...<BR>";}
+if ($sendTheNotificationEmail){
 include ('email/sendSubmissionUploadedEmail.php');
+}
 
 // LOGGING
 $logMessage = "Submission Received Email Sent.";
