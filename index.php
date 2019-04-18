@@ -14,7 +14,7 @@
 // DEBUG SETTINGS  	
 $debug 						= $_POST['debug'];
 $logging						= true;
-$sendTheNotificationEmail 	= false; // also need to change in worker-videoProcessor.php
+$sendTheNotificationEmail 	= true; // also need to change in worker-videoProcessor.php
 
 
 // ERROR REPORTING
