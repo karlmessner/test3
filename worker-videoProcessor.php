@@ -6,7 +6,10 @@ include('includes/con.php');
 //ERROR REPORTING
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+
+// PREFERENCES
 $logging = true;
+$sendEmailToRecipients = false;// also need to change in index.php
 
 
 // LOAD FUNCTIONS
@@ -306,7 +309,9 @@ if ($logging){logStatus($id,$logMessage);}
 
 // EMAIL SUBMISSION TO RECIPIENTS
 if ($debug) {echo "Sending Submission to recipients...<BR>";}
+if ($sendEmailToRecipients){
 include ('email/sendRecipientsEmail.php');
+}
 
 // LOGGING
 $logMessage = "WORKER: Sending email to sender that it was send list.";
