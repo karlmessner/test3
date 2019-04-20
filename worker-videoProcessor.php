@@ -9,7 +9,6 @@ ini_set("display_errors", 1);
 
 // PREFERENCES
 $logging = true;
-$sendEmailToRecipients = true;// also need to change in index.php
 
 
 // LOAD FUNCTIONS
@@ -302,6 +301,7 @@ if ($debug) {echo "Updating database...<BR>";}
 	$result = mysqli_query($db, $sql); 
 	if ($debug) {echo mysqli_error($db);}
 	}
+
 	
 // LOGGING
 $logMessage = "WORKER: Sending email to recipients list.";
@@ -309,9 +309,7 @@ if ($logging){logStatus($id,$logMessage);}
 
 // EMAIL SUBMISSION TO RECIPIENTS
 if ($debug) {echo "Sending Submission to recipients...<BR>";}
-if ($sendEmailToRecipients){
 include ('email/sendRecipientsEmail.php');
-}
 
 // LOGGING
 $logMessage = "WORKER: Sending email to sender that it was send list.";
