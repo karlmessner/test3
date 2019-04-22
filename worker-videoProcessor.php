@@ -333,6 +333,22 @@ if ($logging){logStatus($id,$logMessage);}
 // UPDATE PERCENTAGE
 updatePercentage($id,'100');
 
+// TRIGGER THUMBNAIL CREATOR
+
+// LOGGING
+$logMessage = "WORKER: Triggering Thumbnail Creator.";
+if ($logging){logStatus($id,$logMessage);}
+
+
+
+$vidThumbUrl = "https://video.moodcaster.com/vidthumb.php?p=Wa6-abf-oDM4-rgEn&s=$id";
+$ch = curl_init($vidThumbUrl);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0); 
+curl_setopt($ch, CURLOPT_TIMEOUT, 1); //timeout in seconds
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  // return data instead of 'success' 
+$response = curl_exec($ch);
+curl_close($ch);
 
 	
 	
