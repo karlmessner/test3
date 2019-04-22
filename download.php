@@ -33,7 +33,7 @@ $s=decodeShortLink($s);
 $n=mysqli_real_escape_string($db,$_GET['n']);
 
 // PULL RECORD
-$sql =  "SELECT * from mc_submissions WHERE mc_id='$s'  LIMIT 1";
+$sql =  "SELECT * from mc_submissions LEFT JOIN mc_files ON mc_id = mcf_sub WHERE mc_id='$s'  LIMIT 1";
 $rsSUBS = mysqli_query($db,$sql); echo mysqli_error($db);
 $thisSUB = mysqli_fetch_array($rsSUBS); 
 extract($thisSUB);
@@ -60,6 +60,10 @@ $Role = $mc_role;
 $Email = $mc_email;
 $Title= $mc_title;
 $thumb_url=$mc_vid_thumb_url;
+
+// SET OG INFO FOR SHARING ON FACEBOOK OR IOS
+$OG_title = "moodcaster: $mc_title";
+$OG_image = "https://video.Moodcaster.com/media/images/moodcaster-red.png";
 
 // SEND EMAIL NOTIFICATION THAT AUDITION IS BEING WATCHED (if by someone else)
 if (!$n){ 
@@ -114,7 +118,7 @@ if ($mc_alp) {
 	$rightCopy = file_get_contents("template-download-right-cp.php");
 	}
 
-$variablesToInject = array("stylesheet","Role","Title","Profile_pic","fontSize","lineHeight","shareLink","downloadLink","m4vPath","sGetVar","nGetVar","DOMAIN","rightCopy","Name");
+$variablesToInject = array("stylesheet","Role","Title","Profile_pic","fontSize","lineHeight","shareLink","downloadLink","m4vPath","sGetVar","nGetVar","DOMAIN","rightCopy","Name","OG_title","OG_image");
 foreach ($variablesToInject as $thisVar){
 	$thisVal = $$thisVar;
 	$thisVar = "$".$thisVar;
