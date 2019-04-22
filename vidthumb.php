@@ -17,8 +17,6 @@ include('includes/con.php');
 // UPDATE LOG DATABASE THAT IT'S DONE
 
 
-
-
 $ffmpegPath = $_ENV['FFMPEGPATH']; 
 $ffprobePath = $_ENV['FFPROBEPATH']; 
 
