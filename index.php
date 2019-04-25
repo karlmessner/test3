@@ -48,6 +48,7 @@ $file_good			= 0;
 $db_good			= 0;
 $em_good			= 0;
 $id					=0;
+$standbyVideoUrl	= 'http://www.moodcaster.com/send/media/video/Standby.mp4';
 
 
 // PRIVATE KEY
@@ -146,12 +147,20 @@ $sql .=" mc_age_range 			= '$Age_range', \n";
 $sql .=" mc_bio		 			= '$Bio', \n";
 $sql .=" mc_raw_zip_file_url	= '$rawURL', \n";
 $sql .=" mc_zip_file_size		= '$zipFileSize', \n";
+$sql .=" mc_stitch_file_url		= '$standbyVideoUrl', \n";
 $sql .=" mc_title_card_text		= '$title_card_text', \n";
 $sql .=" mc_title_card_url		= '$titleCardURL', \n";
 $sql .=" mc_profile_url			= '$Profile_pic_url', \n";
 $sql .=" mc_rawpost				= '$rawPost', \n";
 $sql .=" mc_target_width		= '$target_width', \n";
 $sql .=" mc_target_height		= '$target_height', \n";
+
+
+
+
+
+
+
 $sql .=" mc_pk					= '$pk' \n";
 if ($debug) echo "<BR><BR><pre>$sql</pre><br /><br />";
 // ONLY INSERT INTO DATABASE IF THEY ATTACHED SOMETHING OR allowNoFile=true
