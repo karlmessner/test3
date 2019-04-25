@@ -176,7 +176,7 @@ if ($debug) {echo "create short url...<BR>";}
 $s=createShortLink($id);
 $shortDownloadLink = $_ENV['DOMAIN'] . 'download.php?s='.$s;
 $shortDownloadLink = "https://www.Moodcaster.com/send/download.php?s=".$s;
-$shortDownloadLink = "https:Moodcaster.com/share/".$s;
+$shortDownloadLink = "https://moodcaster.com/share/".$s;
 
 $sql = "UPDATE mc_submissions SET mc_download_link = '$shortDownloadLink' WHERE mc_id ='$id' LIMIT 1";
 mysqli_query($db,$sql);
