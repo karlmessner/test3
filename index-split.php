@@ -198,7 +198,7 @@ if ($debug) {echo "callback to ios...<BR>";}
     "preSignedUrl" => "$presignedUrl",
     "completedUrl" => "$completedUrl"
 );
-	$response = json_encode($responseARR,JSON_UNESCAPED_SLASHES);
+	$response = json_encode($responseARR,JSON_PRETTY_PRINT);
 	echo $response; 
 	}	else  {
 	echo "Error. Please try again";	
