@@ -69,6 +69,7 @@ if (isset($_GET['a'])){$a=$_GET['a'];}	// if a=1 just show alp subs
 			    <div class="td">Size</div>
 			    <?PHP if ($a!=1){ echo '<div class="td">W&nbsp;X&nbsp;H</div>';}?>
 			    <div class="td">Status</div>
+			    <?PHP if ($a!=1){ echo '<div class="td">Processing Time</div>';}?>
 			    <div class="td">Recipients</div>
 			    <div class="td">Sent</div>
 			    <div class="td">Read</div>
@@ -166,6 +167,40 @@ $file_size = round($mc_zip_file_size/1000000,2);
 				     if ($mc_status=='FAILED') {echo "<center><span style='font-size:18px'>&#x274c;</span></center>";}
 				     
 				     ?></div>
+				     
+				     
+			    <?PHP if ($a!=1){ ?>
+			    <div class="td">
+				    <?PHP  
+					  $elapsedTime = '';
+					  
+					  if ($mc_readyTime > 0){						  
+						  $elapsedTime = $mc_readyTime - $mc_creation;
+						  $elapsedTime .= "s";
+					  } else {
+						  if ($mc_status !='100') {
+						  $elapsedTime = $now - $mc_creation;
+						  $elapsedTime .= "s so far";
+						  } else {
+							  
+							  
+							  
+						  }
+					  } 
+					    
+					    
+					    echo $elapsedTime;
+					    
+					    
+					    
+					    
+				    ?>
+				    </div>
+			    <?PHP } ?>
+
+				     
+				     
+				     
 			    <div class="td"><?PHP echo $mc_recipients_emails;?></div>
 			    <div class="td"><?PHP if ($mc_creation) echo date('n/d/y g:ia',$mc_creation);?></div>
 			    <div class="td" style="text-align: center">
