@@ -173,7 +173,7 @@ $presignedUrl = (string)$request->getUri();
 $rawUrl = $s3Client->getObjectUrl($AWSVIDBUCKET,$s3Key);
 
 // UPDATE DATABASE WITH DOWNLOAD LINK, (EVENTUAL) URL TO S3 OBJECT
-$sql = "UPDATE mc_submissions SET mc_download_link = '$shortDownloadLink', mc_raw_zip_file_url	= '$rawURL'
+$sql = "UPDATE mc_submissions SET mc_download_link = '$shortDownloadLink', mc_raw_zip_file_url	= '$rawUrl'
  WHERE mc_id ='$id' LIMIT 1";
 mysqli_query($db,$sql);
 if ($result){$db_good='1';}
