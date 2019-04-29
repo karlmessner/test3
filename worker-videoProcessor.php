@@ -331,8 +331,7 @@ $logMessage = "WORKER: Done.";
 if ($logging){logStatus($id,$logMessage);}
 
 
-// UPDATE PERCENTAGE
-updatePercentage($id,'100');
+
 
 // TRIGGER THUMBNAIL CREATOR
 
@@ -352,7 +351,8 @@ $response = curl_exec($ch);
 curl_close($ch);
 
 	
-	
+// UPDATE PERCENTAGE
+updatePercentage($id,'100');	
 	
 	/****************** .APPLICATION CODE ******************************************************************/
 	// MARK JOB AS DONE IN QUEUE
