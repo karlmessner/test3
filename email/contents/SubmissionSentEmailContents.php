@@ -1,8 +1,12 @@
 <br />
 <center>
-<h1>Your submission was successfully<br /> sent via Moodcaster.</h1>
+<h1>Your submission is available to <br />view on  Moodcaster.</h1>
+
+{{downloadLink}}
+
+
 </center>
-<p>When they watch the video, we’ll drop you another line.</p>
+<p>When anyone watches, we’ll drop you a line.</p>
 
 <P>We’re sending good vibes your way👍</p>
 
