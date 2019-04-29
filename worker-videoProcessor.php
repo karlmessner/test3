@@ -350,6 +350,18 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  // return data instead of 'succ
 $response = curl_exec($ch);
 curl_close($ch);
 
+
+// UPDATE DATABASE WITH FINISH TIME
+if ($debug) {echo "Update database with finish time...<BR>";}
+$sql = "UPDATE mc_submissions SET \n";
+$sql .= " mc_readyTime		= '" . time() . "' "; 
+$sql .= "WHERE mc_id ='$id' LIMIT 1";
+if ($debug) echo "<BR><BR><pre>$sql</pre><br /><br />";
+$result = mysqli_query($db, $sql); 
+if ($debug) {echo mysqli_error($db);}
+
+
+
 	
 // UPDATE PERCENTAGE
 updatePercentage($id,'100');	
