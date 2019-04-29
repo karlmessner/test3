@@ -310,7 +310,10 @@ if ($logging){logStatus($id,$logMessage);}
 
 // EMAIL SUBMISSION TO RECIPIENTS
 if ($debug) {echo "Sending Submission to recipients...<BR>";}
-include ('email/sendRecipientsEmail.php');
+
+if (strlen($Recipients_emails > 5){
+	include ('email/sendRecipientsEmail.php');
+}
 
 // LOGGING
 $logMessage = "WORKER: Sending email to sender that it was send list.";
