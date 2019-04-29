@@ -36,7 +36,13 @@ function callback($msg){
 	global $now;
 	global $logging;
 
-$debug 	= false;
+// TESTING SETTINGS  	
+$debug 				= true;
+$actuallySendEmail	= true;
+$overRideRecipients	= false;
+$debugBody			= false;
+
+
 if ($debug) {
 	echo "<pre> \n";
 	//phpinfo();
@@ -68,11 +74,6 @@ builds the email, sends it through Sendgrid.
 $id=$payload;				
 if ($debug) {echo "id : " .$id, "\n";}
 		
-// TESTING SETTINGS  	
-$debug 				= true;
-$actuallySendEmail	= true;
-$overRideRecipients	= false;
-$debugBody			= false;
 
 // DEFS
 $mc_file_size = '';
