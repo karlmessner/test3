@@ -34,6 +34,11 @@ require './vendor/autoload.php';
 require 'env.php';
 include('includes/con.php');
 
+
+
+
+
+
 // INIT VARS
 $mc_file_size 		= '';
 $title_card_url		= '';
@@ -138,6 +143,12 @@ $shortDownloadLink = "https://moodcaster.com/share/".$s;
 // CREATE S3 FILENAME (KEY) TIMESTAMP_ID
 $s3Key = $now ."_".$id;
 
+
+// EXTRACT ENVIRONMENT VARIABLES
+extract($_ENV);
+
+
+
 // GET PRESIGNED URL FOR ZIP FILE
 $s3Client = new Aws\S3\S3Client([
 			'region'  => 'us-east-1',
@@ -181,13 +192,13 @@ if ($debug){
 
 //IF EVERYTHING WENT SMOOTHLY, REPORT SUCCESS TO APP
 if ($debug) {echo "callback to ios...<BR>";}
- if (($auth_good)&&($file_good)&&($db_good)){
+ if (1){
 	$responseARR = array(
     "shortDownloadLink" => "$shortDownloadLink",
     "preSignedUrl" => "$presignedUrl",
     "completedUrl" => "$completedUrl"
 );
-	$response = json_encode($responseARR,JSON_PRETTY_PRINT);
+	$response = json_encode($responseARR,JSON_UNESCAPED_SLASHES);
 	echo $response; 
 	}	else  {
 	echo "Error. Please try again";	
