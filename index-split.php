@@ -117,6 +117,7 @@ $sql .=" mc_bio		 			= '$Bio', \n";
 $sql .=" mc_title_card_text		= '$title_card_text', \n";
 $sql .=" mc_title_card_url		= '$titleCardURL', \n";
 $sql .=" mc_profile_url			= '$Profile_pic_url', \n";
+$sql .=" mc_stitch_file_url			= '$standbyVideoUrl', \n";
 $sql .=" mc_rawpost				= '$rawPost', \n";
 $sql .=" mc_target_width		= '$target_width', \n";
 $sql .=" mc_target_height		= '$target_height', \n";
