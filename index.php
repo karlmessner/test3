@@ -133,6 +133,15 @@ $logMessage = "DONE storing titlecard to cloud.";
 if ($logging){logStatus($id,$logMessage);}
 
 
+
+
+
+
+
+
+
+
+
 // INSERT INTO DATABASE
 if ($debug) {echo "insert into database if there's a file...<BR>";}
 $sql = "INSERT INTO mc_submissions SET \n";
