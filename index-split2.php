@@ -62,7 +62,7 @@ if ($logging){logStatus($id,$logMessage);}
 if ($debug) {echo "PULL EMAIL FROM FROM DATABASE...<BR>";}
 $sql = "SELECT  mc_email from mc_submissions where mc_id='$id'";
 $rsEMAIL = mysqli_query($db, $sql); 
-$thisEMAIL = mysql_fetch_array($rsEMAIL);
+$thisEMAIL = mysqli_fetch_array($rsEMAIL);
 $EMAIL = $thisEMAIL['mc_email'];
 $sqlError = mysqli_error($db);
 if ($debug) {echo mysqli_error($db);}
