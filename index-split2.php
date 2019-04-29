@@ -12,7 +12,7 @@
 
 
 // DEBUG SETTINGS  	
-$debug 						= $_POST['debug'];
+$debug 						= $_REQUEST['debug'];
 $logging						= true;
 $sendTheNotificationEmail 	= true; // also need to change in worker-videoProcessor.php
 
@@ -63,9 +63,10 @@ if ($debug) {echo "PULL EMAIL FROM FROM DATABASE...<BR>";}
 $sql = "SELECT  mc_email from mc_submissions where mc_id='$id'";
 $rsEMAIL = mysqli_query($db, $sql); 
 $thisEMAIL = mysqli_fetch_array($rsEMAIL);
-$EMAIL = $thisEMAIL['mc_email'];
+$Email = $thisEMAIL['mc_email'];
 $sqlError = mysqli_error($db);
-if ($debug) {echo mysqli_error($db);}
+if ($debug) {
+	echo "EMAIL: $Email <BR> "; echo mysqli_error($db);}
 
 
 // ADD TO QUEUE
