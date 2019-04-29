@@ -141,7 +141,7 @@ $shortDownloadLink = "https://www.Moodcaster.com/send/download.php?s=".$s;
 $shortDownloadLink = "https://moodcaster.com/share/".$s;
 
 // CREATE S3 FILENAME (KEY) TIMESTAMP_ID
-$s3Key = $now ."_".$id;
+$s3Key = $now ."_".$id . ".zip";
 
 
 // EXTRACT ENVIRONMENT VARIABLES
