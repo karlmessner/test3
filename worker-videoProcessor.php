@@ -311,7 +311,7 @@ if ($logging){logStatus($id,$logMessage);}
 // EMAIL SUBMISSION TO RECIPIENTS
 if ($debug) {echo "Sending Submission to recipients...<BR>";}
 
-if (strlen($Recipients_emails > 5)){
+if (strlen($Recipients_emails) > 5){
 	include ('email/sendRecipientsEmail.php');
 }
 
