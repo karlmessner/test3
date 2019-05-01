@@ -13,7 +13,7 @@
 
 // DEBUG SETTINGS  	
 $debug 						= $_REQUEST['debug'];
-$logging						= true;
+$logging					= true;
 $sendTheNotificationEmail 	= true; // also need to change in worker-videoProcessor.php
 
 
